@@ -1,0 +1,91 @@
+import 'package:flutter/material.dart';
+import 'package:idhar_udhar/features/auth/screens/allowlocation.dart';
+import 'package:idhar_udhar/features/auth/screens/gender_screen.dart';
+import 'package:idhar_udhar/features/auth/screens/languageselection_screen.dart';
+import 'package:idhar_udhar/features/auth/screens/locationpermission_screen.dart';
+import 'package:idhar_udhar/features/auth/screens/login&signup_screen.dart';
+import 'package:idhar_udhar/features/auth/screens/login_screen.dart';
+import 'package:idhar_udhar/features/auth/screens/otp_screen.dart';
+import 'package:idhar_udhar/features/auth/screens/signup_screen.dart';
+import 'package:idhar_udhar/features/splash/dashboard_screen.dart';
+
+// Import screens
+import '../features/splash/splash_screen.dart';
+// import '../features/auth/screens/login_screen.dart';
+// import '../features/user/home/user_home_screen.dart';
+// import '../features/user/ride_booking/ride_request_screen.dart';
+// import '../features/user/history/user_history_screen.dart';
+// import '../features/user/profile/user_profile_screen.dart';
+
+//import '../features/driver/dashboard/driver_home_screen.dart';
+// import '../features/driver/trip_requests/trip_request_screen.dart';
+// import '../features/driver/earnings/driver_earnings_screen.dart';
+// import '../features/driver/profile/driver_profile_screen.dart';
+//
+// import '../features/admin/dashboard/admin_dashboard_screen.dart';
+// import '../features/admin/manage_users/manage_users_screen.dart';
+// import '../features/admin/manage_drivers/manage_drivers_screen.dart';
+// import '../features/admin/reports/reports_screen.dart';
+
+class AppRoutes {
+  static const String splash = '/';
+  static const String login = '/login';
+  static const String loginsignup = '/loginsignup';
+  static const String dashboard = '/dashboard';
+  static const String signup = '/signup';
+  static const String languageselection = '/languageselection';
+  static const String otp = '/otpscreen';
+  static const String locationaccess = '/locationaccess';
+  static const String allowlocation = '/allowlocation';
+  static const String gender = '/gender';
+
+  // User
+  static const String userHome = '/user/home';
+  static const String rideRequest = '/user/ride-request';
+  static const String userHistory = '/user/history';
+  static const String userProfile = '/user/profile';
+
+  // Driver
+  static const String driverHome = '/driver/home';
+  static const String tripRequest = '/driver/trip-request';
+  static const String driverEarnings = '/driver/earnings';
+  static const String driverProfile = '/driver/profile';
+
+  // Admin
+  static const String adminDashboard = '/admin/dashboard';
+  static const String manageUsers = '/admin/users';
+  static const String manageDrivers = '/admin/drivers';
+  static const String reports = '/admin/reports';
+
+  static Map<String, WidgetBuilder> routes = {
+    splash: (context) => SplashScreen(),
+    dashboard: (context) => DashboardScreen(),
+    loginsignup: (context) => LoginSignupScreen(),
+    login: (context) => LoginScreen(),
+    otp: (context) => OTPScreen(),
+    signup: (context) => SignupScreen(),
+    languageselection: (context) => LanguageSelectionScreen(),
+    locationaccess: (context) => LocationAccessScreen(),
+    gender: (context) => GenderScreen(),
+    allowlocation: (context) => AllowLocationScreen(),
+
+    //
+    // // User
+    // userHome: (context) => UserHomeScreen(),
+    // rideRequest: (context) => RideRequestScreen(),
+    // userHistory: (context) => UserHistoryScreen(),
+    // userProfile: (context) => UserProfileScreen(),
+    //
+    // // Driver
+    // driverHome: (context) => DriverHomeScreen(),
+    // tripRequest: (context) => TripRequestScreen(),
+    // driverEarnings: (context) => DriverEarningsScreen(),
+    // driverProfile: (context) => DriverProfileScreen(),
+    //
+    // // Admin
+    // adminDashboard: (context) => AdminDashboardScreen(),
+    // manageUsers: (context) => ManageUsersScreen(),
+    // manageDrivers: (context) => ManageDriversScreen(),
+    // reports: (context) => ReportsScreen(),
+  };
+}
