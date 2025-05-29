@@ -11,14 +11,14 @@ class LoginSignupScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: Column(
-            children: [
-              const SizedBox(height: 40),
-              // Top Welcome Text
-              Column(
+        child: Column(
+          children: [
+            // Top content with padding
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Column(
                 children: [
+                  const SizedBox(height: 40),
                   Text(
                     'Welcome to IdharUdhar',
                     style: TextStyle(
@@ -31,7 +31,7 @@ class LoginSignupScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    'Get started by logging into your existing\naccount or create a new one to enjoy\nour services.',
+                    'Get started by logging into your existing account or create a new one to enjoy our services.',
                     style: TextStyle(
                       color: Colors.white70,
                       fontSize: screenSize.width * 0.038,
@@ -41,22 +41,23 @@ class LoginSignupScreen extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
 
-              const Spacer(),
+            const Spacer(),
 
-              // Car Image
-              SizedBox(
-                width: screenSize.width,
-                child: Image.asset(
-                  'assets/images/welcomeVector.png',
-                  fit: BoxFit.contain,
-                ),
-              ),
+            // Full-width image without padding
+            Image.asset(
+              'assets/images/welcomeVector.png',
+              width: double.infinity,
+              fit: BoxFit.fitWidth,
+            ),
 
-              const Spacer(),
+            const Spacer(),
 
-              // Buttons
-              Column(
+            // Bottom buttons with padding
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Column(
                 children: [
                   SizedBox(
                     width: double.infinity,
@@ -100,8 +101,8 @@ class LoginSignupScreen extends StatelessWidget {
                   const SizedBox(height: 24),
                 ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

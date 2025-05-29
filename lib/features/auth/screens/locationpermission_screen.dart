@@ -52,26 +52,35 @@ class LocationAccessScreen extends StatelessWidget {
                   ),
                 ],
               ),
-
+              Flexible(
+                child: Image.asset(
+                  'assets/images/locationVector.png',
+                  width: screenSize.width,
+                  fit: BoxFit.contain,
+                ),
+              ),
               /// Bottom Section - Button and Login
               Column(
                 children: [
                   SizedBox(
                     width: double.infinity,
+                    height: 48,
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.pushNamed(context, '/allowlocation');
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary,
-                        padding: const EdgeInsets.symmetric(vertical: 15),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(6),
+                          borderRadius: BorderRadius.circular(10),
                         ),
                       ),
                       child: const Text(
-                        "Allow Access",
-                        style: TextStyle(fontSize: 16, color: Colors.white),
+                        'Allow Access',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),

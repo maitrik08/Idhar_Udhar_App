@@ -109,20 +109,23 @@ class _GenderScreenState extends State<GenderScreen> {
                 children: [
                   SizedBox(
                     width: double.infinity,
+                    height: 48,
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.pushNamed(context, '/locationaccess');
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary,
-                        padding: const EdgeInsets.symmetric(vertical: 15),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(6),
+                          borderRadius: BorderRadius.circular(10),
                         ),
                       ),
                       child: const Text(
-                        "Submit",
-                        style: TextStyle(fontSize: 16, color: Colors.white),
+                        'Submit',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),

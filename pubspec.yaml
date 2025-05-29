@@ -5,7 +5,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.8.0
+  sdk: ">=2.17.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -14,11 +14,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   font_awesome_flutter: ^10.7.0
   pin_code_fields: ^7.4.0
-  google_maps_flutter: ^2.5.0
-  geolocator: ^10.1.0
-  geocoding: ^2.1.0
-  google_maps_webservice: ^0.0.20-nullsafety
-#  flutter_google_places: ^0.3.0
+  intl: ^0.20.2
 
 dev_dependencies:
   flutter_test:
@@ -27,13 +23,13 @@ dev_dependencies:
   flutter_lints: ^5.0.0
 
 flutter:
-
   uses-material-design: true
 
   assets:
+    - assets/images/home/
+    - assets/images/icons/
     - assets/images/
     - assets/
-
 
   fonts:
     - family: inter
@@ -42,13 +38,3 @@ flutter:
     - family: lexend
       fonts:
         - asset: assets/fonts/Lexend.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/to/font-from-package

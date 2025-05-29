@@ -100,7 +100,7 @@ class DashboardScreen extends StatelessWidget {
               height: 48,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/loginsignup');
+                  Navigator.pushNamed(context, '/loginsignup');
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,

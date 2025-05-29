@@ -10,6 +10,7 @@ import 'package:idhar_udhar/features/auth/screens/signup_screen.dart';
 import 'package:idhar_udhar/features/splash/dashboard_screen.dart';
 
 // Import screens
+import '../features/home/home_screen.dart';
 import '../features/splash/splash_screen.dart';
 // import '../features/auth/screens/login_screen.dart';
 // import '../features/user/home/user_home_screen.dart';
@@ -40,22 +41,11 @@ class AppRoutes {
   static const String gender = '/gender';
 
   // User
-  static const String userHome = '/user/home';
+  static const String home = '/home/homescreen';
   static const String rideRequest = '/user/ride-request';
   static const String userHistory = '/user/history';
   static const String userProfile = '/user/profile';
 
-  // Driver
-  static const String driverHome = '/driver/home';
-  static const String tripRequest = '/driver/trip-request';
-  static const String driverEarnings = '/driver/earnings';
-  static const String driverProfile = '/driver/profile';
-
-  // Admin
-  static const String adminDashboard = '/admin/dashboard';
-  static const String manageUsers = '/admin/users';
-  static const String manageDrivers = '/admin/drivers';
-  static const String reports = '/admin/reports';
 
   static Map<String, WidgetBuilder> routes = {
     splash: (context) => SplashScreen(),
@@ -71,21 +61,9 @@ class AppRoutes {
 
     //
     // // User
-    // userHome: (context) => UserHomeScreen(),
+    home: (context) => HomeScreen(),
     // rideRequest: (context) => RideRequestScreen(),
     // userHistory: (context) => UserHistoryScreen(),
     // userProfile: (context) => UserProfileScreen(),
-    //
-    // // Driver
-    // driverHome: (context) => DriverHomeScreen(),
-    // tripRequest: (context) => TripRequestScreen(),
-    // driverEarnings: (context) => DriverEarningsScreen(),
-    // driverProfile: (context) => DriverProfileScreen(),
-    //
-    // // Admin
-    // adminDashboard: (context) => AdminDashboardScreen(),
-    // manageUsers: (context) => ManageUsersScreen(),
-    // manageDrivers: (context) => ManageDriversScreen(),
-    // reports: (context) => ReportsScreen(),
   };
 }

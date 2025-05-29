@@ -105,123 +105,122 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
               _toggleDropdown(); // close dropdown if open
             }
           },
-          child: SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(minHeight: height),
-              child: IntrinsicHeight(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: width * 0.08),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(height: height * 0.08),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(minHeight: height),
+            child: IntrinsicHeight(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: width * 0.08),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(height: height * 0.08),
 
-                      Text(
-                        "Choose Your Language",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: width * 0.06,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textAlign: TextAlign.center,
+                    Text(
+                      "Choose Your Language",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: width * 0.06,
+                        fontWeight: FontWeight.bold,
                       ),
-                      SizedBox(height: height * 0.02),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: height * 0.02),
 
-                      Text(
-                        "Please select your preferred language to continue. You can change it anytime from settings.",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white70,
-                          fontSize: width * 0.035,
-                        ),
+                    Text(
+                      "Please select your preferred language to continue. You can change it anytime from settings.",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white70,
+                        fontSize: width * 0.035,
                       ),
-                      SizedBox(height: height * 0.12),
+                    ),
+                    SizedBox(height: height * 0.12),
 
-                      CompositedTransformTarget(
-                        link: _layerLink,
-                        child: GestureDetector(
-                          onTap: _toggleDropdown,
-                          child: Container(
-                            key: _selectBoxKey,
-                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-                            decoration: BoxDecoration(
-                              color: AppColors.primary,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  selectedLanguage ?? "Select Language",
-                                  style: const TextStyle(color: Colors.white),
-                                ),
-                                const SizedBox(width: 8),
-                                const Icon(Icons.arrow_drop_down, color: Colors.white),
-                              ],
-                            ),
+                    CompositedTransformTarget(
+                      link: _layerLink,
+                      child: GestureDetector(
+                        onTap: _toggleDropdown,
+                        child: Container(
+                          key: _selectBoxKey,
+                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                          decoration: BoxDecoration(
+                            color: AppColors.primary,
+                            borderRadius: BorderRadius.circular(10),
                           ),
-                        ),
-                      ),
-
-                      const Spacer(),
-
-                      SizedBox(
-                        width: double.infinity,
-                        height: height * 0.06,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            if (selectedLanguage != null) {
-                              print("Selected: $selectedLanguage");
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text('Please select a language'),
-                                  behavior: SnackBarBehavior.floating,
-                                ),
-                              );
-                            }
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.primary,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          child: const Text(
-                            "Continue",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: height * 0.02),
-
-                      Center(
-                        child: RichText(
-                          text: TextSpan(
-                            text: "Already have an account ? ",
-                            style: const TextStyle(color: Colors.white70),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              TextSpan(
-                                text: "Log in",
-                                style: TextStyle(
-                                  color: AppColors.primary,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {
-                                    Navigator.pushNamed(context, '/login');
-                                  },
+                              Text(
+                                selectedLanguage ?? "Select Language",
+                                style: const TextStyle(color: Colors.white),
                               ),
+                              const SizedBox(width: 8),
+                              const Icon(Icons.arrow_drop_down, color: Colors.white),
                             ],
                           ),
                         ),
                       ),
-                      SizedBox(height: height * 0.03),
-                    ],
-                  ),
+                    ),
+
+                    const Spacer(),
+
+                    SizedBox(
+                      width: double.infinity,
+                      height: height * 0.06,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (selectedLanguage != null) {
+                            Navigator.pushNamed(context, '/gender');
+                            print("Selected: $selectedLanguage");
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Please select a language'),
+                                behavior: SnackBarBehavior.floating,
+                              ),
+                            );
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.primary,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        child: Text(
+                          "Continue",
+                          style: TextStyle(
+                            color: selectedLanguage != null?Colors.white:Colors.white70,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: height * 0.02),
+
+                    Center(
+                      child: RichText(
+                        text: TextSpan(
+                          text: "Already have an account ? ",
+                          style: const TextStyle(color: Colors.white70),
+                          children: [
+                            TextSpan(
+                              text: "Log in",
+                              style: TextStyle(
+                                color: AppColors.primary,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  Navigator.pushNamed(context, '/login');
+                                },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: height * 0.03),
+                  ],
                 ),
               ),
             ),
