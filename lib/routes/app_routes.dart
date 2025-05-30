@@ -7,10 +7,13 @@ import 'package:idhar_udhar/features/auth/screens/login&signup_screen.dart';
 import 'package:idhar_udhar/features/auth/screens/login_screen.dart';
 import 'package:idhar_udhar/features/auth/screens/otp_screen.dart';
 import 'package:idhar_udhar/features/auth/screens/signup_screen.dart';
+import 'package:idhar_udhar/features/delivery/maindelivery_screen.dart';
 import 'package:idhar_udhar/features/splash/dashboard_screen.dart';
 
 // Import screens
 import '../features/home/home_screen.dart';
+import '../features/mainlayout.dart';
+import '../features/ride/mainRide_screen.dart';
 import '../features/splash/splash_screen.dart';
 // import '../features/auth/screens/login_screen.dart';
 // import '../features/user/home/user_home_screen.dart';
@@ -42,9 +45,10 @@ class AppRoutes {
 
   // User
   static const String home = '/home/homescreen';
-  static const String rideRequest = '/user/ride-request';
-  static const String userHistory = '/user/history';
-  static const String userProfile = '/user/profile';
+  static const String ride = '/ride';
+  static const String profile = '/profile';
+  static const String delivery = '/delivery';
+  static const String layout = '/layout';
 
 
   static Map<String, WidgetBuilder> routes = {
@@ -58,6 +62,10 @@ class AppRoutes {
     locationaccess: (context) => LocationAccessScreen(),
     gender: (context) => GenderScreen(),
     allowlocation: (context) => AllowLocationScreen(),
+    ride: (context) => RideScreen(),
+    layout: (context) => MainLayout(),
+    delivery: (context) => DeliveryScreen(),
+
 
     //
     // // User

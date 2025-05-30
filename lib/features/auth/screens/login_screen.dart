@@ -117,7 +117,7 @@ class LoginScreen extends StatelessWidget {
                           height: 48,
                           child: ElevatedButton(
                             onPressed: () {
-                                Navigator.pushNamed(context, '/home/homescreen');
+                                Navigator.pushNamed(context, '/layout');
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppColors.primary,
