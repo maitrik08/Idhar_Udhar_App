@@ -8,11 +8,18 @@ import 'package:idhar_udhar/features/auth/screens/login_screen.dart';
 import 'package:idhar_udhar/features/auth/screens/otp_screen.dart';
 import 'package:idhar_udhar/features/auth/screens/signup_screen.dart';
 import 'package:idhar_udhar/features/delivery/maindelivery_screen.dart';
+import 'package:idhar_udhar/features/ride/bike/bookbike_screen.dart';
+import 'package:idhar_udhar/features/ride/bike/creditcardpayment_screen.dart';
 import 'package:idhar_udhar/features/splash/dashboard_screen.dart';
 
 // Import screens
 import '../features/home/home_screen.dart';
 import '../features/mainlayout.dart';
+import '../features/ride/bike/confirmpayment_screen.dart';
+import '../features/ride/bike/confirmpickup_screen.dart';
+import '../features/ride/bike/paymentmethods_screen.dart';
+import '../features/ride/bike/searchdriver_screen.dart';
+import '../features/ride/bike/selectbikelocation_screen.dart';
 import '../features/ride/mainRide_screen.dart';
 import '../features/splash/splash_screen.dart';
 // import '../features/auth/screens/login_screen.dart';
@@ -51,6 +58,17 @@ class AppRoutes {
   static const String layout = '/layout';
 
 
+  static const String selectbikelocation = '/selectbikelocation';
+  static const String bookbike = '/bookbike';
+  static const String searchbikedriver = '/searchbikedriver';
+  static const String confirmbikrpickup = '/confirmbikrpickup';
+  static const String paymentmethodbike = '/paymentmethodbike';
+  static const String creditcardpaymentbike = '/creditcardpaymentbike';
+  static const String confirmpaymentbike = '/confirmpaymentbike';
+
+
+
+
   static Map<String, WidgetBuilder> routes = {
     splash: (context) => SplashScreen(),
     dashboard: (context) => DashboardScreen(),
@@ -70,6 +88,15 @@ class AppRoutes {
     //
     // // User
     home: (context) => HomeScreen(),
+
+
+    selectbikelocation: (context) => SelectBikeLocationScreen(),
+    bookbike: (context) => BookBikeScreen(),
+    searchbikedriver: (context) => SearchingDriverScreen(),
+    confirmbikrpickup: (context) => ConfirmBikePickupScreen(),
+    paymentmethodbike: (context) => PaymentMethodScreen(),
+    creditcardpaymentbike: (context)=> CreditCardPaymentScreen(),
+    confirmpaymentbike: (context)=> ConfirmPaymentScreen()
     // rideRequest: (context) => RideRequestScreen(),
     // userHistory: (context) => UserHistoryScreen(),
     // userProfile: (context) => UserProfileScreen(),

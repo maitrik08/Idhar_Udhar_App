@@ -29,7 +29,12 @@ class RideScreen extends StatelessWidget {
                 style: TextStyle(color: Colors.white70, fontSize: 12),
               ),
               const SizedBox(height: 20),
-              buildRideOption("Zip Through Traffic", "assets/images/ride/bike.png",cardSize),
+              InkWell(
+                 onTap:() {
+                   Navigator.pushNamed(context, '/selectbikelocation');
+                 },
+                  child: buildRideOption("Zip Through Traffic", "assets/images/ride/bike.png",cardSize)
+              ),
               buildRideOption("Ride in Comfort", "assets/images/ride/car.png",cardSize),
               buildRideOption("Go Local, Go Easy", "assets/images/ride/auto.png",cardSize),
             ],
