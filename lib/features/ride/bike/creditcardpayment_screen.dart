@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:idhar_udhar/core/themes/colors.dart';
 
-class CreditCardPaymentScreen extends StatelessWidget {
-  const CreditCardPaymentScreen({super.key});
+class CreditCardPaymentBikeScreen extends StatelessWidget {
+  const CreditCardPaymentBikeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

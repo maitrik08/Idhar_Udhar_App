@@ -209,7 +209,7 @@ class _ConfirmBikePickupScreenState extends State<ConfirmBikePickupScreen> {
                           context: context,
                           isScrollControlled: true,
                           backgroundColor: Colors.transparent,
-                          builder: (context) => const PaymentMethodScreen(),
+                          builder: (context) => const PaymentMethodBikeScreen(),
                         );
                       },
                       style: ElevatedButton.styleFrom(

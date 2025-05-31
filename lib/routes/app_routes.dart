@@ -8,8 +8,12 @@ import 'package:idhar_udhar/features/auth/screens/login_screen.dart';
 import 'package:idhar_udhar/features/auth/screens/otp_screen.dart';
 import 'package:idhar_udhar/features/auth/screens/signup_screen.dart';
 import 'package:idhar_udhar/features/delivery/maindelivery_screen.dart';
+import 'package:idhar_udhar/features/ride/auto/bookauto_screen.dart';
+import 'package:idhar_udhar/features/ride/auto/selectautolocation_screen.dart';
 import 'package:idhar_udhar/features/ride/bike/bookbike_screen.dart';
 import 'package:idhar_udhar/features/ride/bike/creditcardpayment_screen.dart';
+import 'package:idhar_udhar/features/ride/car/bookcar_screen.dart';
+import 'package:idhar_udhar/features/ride/car/selectcarlocation_screen.dart';
 import 'package:idhar_udhar/features/splash/dashboard_screen.dart';
 
 // Import screens
@@ -66,7 +70,22 @@ class AppRoutes {
   static const String creditcardpaymentbike = '/creditcardpaymentbike';
   static const String confirmpaymentbike = '/confirmpaymentbike';
 
+  static const String selectautolocation = '/selectautolocation';
+  static const String bookauto = '/bookauto';
+  static const String searchautodriver = '/searchautodriver';
+  static const String confirmautorpickup = '/confirmautorpickup';
+  static const String paymentmethodauto = '/paymentmethodauto';
+  static const String creditcardpaymentauto = '/creditcardpaymentauto';
+  static const String confirmpaymentauto= '/confirmpaymentauto';
 
+
+  static const String selectcarlocation = '/selectcarlocation';
+  static const String bookcar = '/bookcar';
+  static const String searchcardriver = '/searchcardriver';
+  static const String confirmcarpickup = '/confirmcarpickup';
+  static const String paymentmethodcar = '/paymentmethodcar';
+  static const String creditcardpaymentcar = '/creditcardpaymentcar';
+  static const String confirmpaymentcar= '/confirmpaymentcar';
 
 
   static Map<String, WidgetBuilder> routes = {
@@ -92,11 +111,30 @@ class AppRoutes {
 
     selectbikelocation: (context) => SelectBikeLocationScreen(),
     bookbike: (context) => BookBikeScreen(),
-    searchbikedriver: (context) => SearchingDriverScreen(),
+    searchbikedriver: (context) => SearchingBikeDriverScreen(),
     confirmbikrpickup: (context) => ConfirmBikePickupScreen(),
-    paymentmethodbike: (context) => PaymentMethodScreen(),
-    creditcardpaymentbike: (context)=> CreditCardPaymentScreen(),
-    confirmpaymentbike: (context)=> ConfirmPaymentScreen()
+    paymentmethodbike: (context) => PaymentMethodBikeScreen(),
+    creditcardpaymentbike: (context)=> CreditCardPaymentBikeScreen(),
+    confirmpaymentbike: (context)=> ConfirmPaymentBIKEScreen(),
+
+    selectautolocation: (context) => SelectAutoLocationScreen(),
+    bookauto: (context) => BookAutoScreen(),
+    searchautodriver: (context) => SearchingBikeDriverScreen(),
+    confirmautorpickup: (context) => ConfirmBikePickupScreen(),
+    paymentmethodauto: (context) => PaymentMethodBikeScreen(),
+    creditcardpaymentauto: (context)=> CreditCardPaymentBikeScreen(),
+    confirmpaymentauto: (context)=> ConfirmPaymentBIKEScreen(),
+
+
+    selectcarlocation: (context) => SelectcarLocationScreen(),
+    bookcar: (context) => BookCarScreen(),
+    searchcardriver: (context) => SearchingBikeDriverScreen(),
+    confirmcarpickup: (context) => ConfirmBikePickupScreen(),
+    paymentmethodcar: (context) => PaymentMethodBikeScreen(),
+    creditcardpaymentcar: (context)=> CreditCardPaymentBikeScreen(),
+    confirmpaymentcar: (context)=> ConfirmPaymentBIKEScreen()
+
+
     // rideRequest: (context) => RideRequestScreen(),
     // userHistory: (context) => UserHistoryScreen(),
     // userProfile: (context) => UserProfileScreen(),

@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 
 import '../../../core/themes/colors.dart';
 
-class SearchingDriverScreen extends StatefulWidget {
-  const SearchingDriverScreen({super.key});
+class SearchingBikeDriverScreen extends StatefulWidget {
+  const SearchingBikeDriverScreen({super.key});
 
   @override
-  State<SearchingDriverScreen> createState() => _SearchingDriverScreenState();
+  State<SearchingBikeDriverScreen> createState() => _SearchingBikeDriverScreenState();
 }
 
-class _SearchingDriverScreenState extends State<SearchingDriverScreen> {
+class _SearchingBikeDriverScreenState extends State<SearchingBikeDriverScreen> {
   Duration _timeLeft = const Duration(minutes: 4);
   Timer? _timer;
 

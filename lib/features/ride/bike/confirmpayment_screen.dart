@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:idhar_udhar/core/themes/colors.dart';
 
-class ConfirmPaymentScreen extends StatelessWidget {
-  const ConfirmPaymentScreen({super.key});
-
+class ConfirmPaymentBIKEScreen extends StatelessWidget {
+  const ConfirmPaymentBIKEScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,8 +11,10 @@ class ConfirmPaymentScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
+              Expanded(
+                  child: Container()
+              ),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -33,6 +34,7 @@ class ConfirmPaymentScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              SizedBox(height: 15,)
             ],
           ),
         ),
