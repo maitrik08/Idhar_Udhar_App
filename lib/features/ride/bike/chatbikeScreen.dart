@@ -15,6 +15,7 @@ class ChatBikeScreen extends StatelessWidget {
         elevation: 0,
         title: Row(
           children: [
+            
             const CircleAvatar(
               backgroundImage: AssetImage('assets/images/driver_avatar.png'),
               radius: 20,

@@ -79,7 +79,7 @@ class _ConfirmMapWrapperScreenState extends State<ConfirmMapWrapperScreen> {
               },
             ),
 
-          // Reopen FAB
+        
           if (!showPopup)
             Positioned(
               bottom: 10,

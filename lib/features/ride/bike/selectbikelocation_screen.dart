@@ -14,7 +14,7 @@ class _SelectBikeLocationScreenState extends State<SelectBikeLocationScreen> {
   final TextEditingController dropDownLocationController = TextEditingController();
 
   @override
-  void dispose() {
+  void dispose() { 
     currentLocationController.dispose();
     dropDownLocationController.dispose();
     super.dispose();
