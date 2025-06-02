@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:idhar_udhar/core/themes/colors.dart';
+import 'package:idhar_udhar/features/ride/bike/confirmmap_screen.dart';
+
 
 class ConfirmPaymentBIKEScreen extends StatelessWidget {
   const ConfirmPaymentBIKEScreen({super.key});
@@ -19,6 +21,10 @@ class ConfirmPaymentBIKEScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
+                     Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const ConfirmMapWrapperScreen()),
+                  );
                     // Add payment logic
                   },
                   style: ElevatedButton.styleFrom(

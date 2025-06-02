@@ -22,7 +22,7 @@ class PaymentMethodBikeScreen extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-              padding: EdgeInsetsGeometry.all(11),
+              padding: EdgeInsets.all(11),
               child: Center(
                   child: Container(
                     height: 4,
