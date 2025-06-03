@@ -114,20 +114,35 @@ class _SearchingBikeDriverScreenState extends State<SearchingBikeDriverScreen> {
           ],
         ),
       ),
-      floatingActionButton: IconButton(
-        padding: EdgeInsets.all(70),
-        iconSize: 50,
-          onPressed: () {
-            _timer?.cancel();
-            Navigator.pushNamed(context, '/confirmbikrpickup');
-          },
-          icon: Icon(Icons.next_plan)
-      ),
+      floatingActionButton:Container(
+        padding: EdgeInsets.all(90),
+        //width:MediaQuery.of(context).size.width-100,
+        child:Row(
+            mainAxisSize: MainAxisSize.min,
+            children:[
+              TextButton(
+                onPressed: () {
+                  _timer?.cancel();
+                  Navigator.pushNamed(context, '/confirmbikrpickup');
+                },
+                child: Text('pickup'),
+              ),
+              TextButton(
+                  onPressed: () {
+                    _timer?.cancel();
+                    Navigator.pushNamed(context, '/nobikedriver');
+                  },
+                  child: Text('No Driver')
+              ),
+            ]
+        ),
+      )
     );
   }
 
   Widget _buildTimeBox(String value, String label) {
     return Column(
+
       children: [
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),

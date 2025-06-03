@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idhar_udhar/core/constants/constants.dart';
 
 import '../../shared/widgets/searchbar.dart';
 
@@ -32,18 +33,24 @@ class RideScreen extends StatelessWidget {
               InkWell(
                  onTap:() {
                    Navigator.pushNamed(context, '/selectbikelocation');
+                   RideType = "bike";
+                   print(RideType);
                  },
                   child: buildRideOption("Zip Through Traffic", "assets/images/ride/bike.png",cardSize)
               ),
               InkWell(
                   onTap:() {
                     Navigator.pushNamed(context, '/selectcarlocation');
+                    RideType = "car";
+                    print(RideType);
                   },
                   child: buildRideOption("Ride in Comfort", "assets/images/ride/car.png",cardSize)
               ),
               InkWell(
                 onTap:() {
                   Navigator.pushNamed(context, '/selectautolocation');
+                  RideType = "auto";
+                  print(RideType);
                 },
                 child:buildRideOption("Go Local, Go Easy", "assets/images/ride/auto.png",cardSize),
               ),

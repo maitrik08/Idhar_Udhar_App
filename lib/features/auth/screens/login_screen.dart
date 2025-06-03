@@ -3,8 +3,44 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:idhar_udhar/core/themes/colors.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController numberController = TextEditingController();
+
+  bool get _isInputValid =>
+      emailController.text.trim().isNotEmpty || numberController.text.trim().isNotEmpty;
+
+  void _onLoginPressed() {
+    if (_isInputValid) {
+      Navigator.pushNamed(context, '/layout');
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please enter email or number')),
+      );
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    emailController.addListener(() => setState(() {}));
+    numberController.addListener(() => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    numberController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +63,6 @@ class LoginScreen extends StatelessWidget {
                       children: [
                         SizedBox(height: size.height * 0.05),
 
-                        // Title
                         Center(
                           child: Text(
                             'Log In to Your Account',
@@ -40,7 +75,6 @@ class LoginScreen extends StatelessWidget {
                         ),
                         SizedBox(height: size.height * 0.015),
 
-                        // Subtitle
                         Center(
                           child: Text(
                             'Continue where you left off — your rides and bookings await.',
@@ -53,54 +87,38 @@ class LoginScreen extends StatelessWidget {
                         ),
                         SizedBox(height: size.height * 0.04),
 
-                        // Email Field
                         Text('Email', style: TextStyle(color: Colors.white, fontSize: size.width * 0.04)),
                         const SizedBox(height: 8),
                         _customInputField(
+                          controller: emailController,
                           icon: Icons.email_outlined,
                           hintText: 'Enter your email',
                         ),
                         SizedBox(height: size.height * 0.03),
+
                         Row(
                           children: [
-                            Expanded(
-                              child: Container(
-                                height: 1,
-                                color: Colors.white70,
-                              ),
-                            ),
+                            Expanded(child: Divider(color: Colors.white70)),
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 5),
-                              child: Center(
-                                child: Text(
-                                  'or',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Colors.white70,
-                                    fontSize: size.width * 0.037,
-                                  ),
-                                ),
-                              ),
+                              child: Text('or', style: TextStyle(color: Colors.white70, fontSize: size.width * 0.037)),
                             ),
-                            Expanded(
-                              child: Container(
-                                height: 1,
-                                color: Colors.white70,
-                              ),
-                            ),
+                            Expanded(child: Divider(color: Colors.white70)),
                           ],
                         ),
-                        // Number Field
+
                         Text('Number', style: TextStyle(color: Colors.white, fontSize: size.width * 0.04)),
                         const SizedBox(height: 8),
                         _customInputField(
+                          controller: numberController,
                           icon: Icons.phone_outlined,
                           hintText: 'Enter your number',
                         ),
+
                         ColorFiltered(
                           colorFilter: ColorFilter.mode(
-                            AppColors.primary.withOpacity(0.5), // Adjust opacity here
-                            BlendMode.srcATop, // Use srcATop or modulate for smooth overlay
+                            AppColors.primary.withOpacity(0.5),
+                            BlendMode.srcATop,
                           ),
                           child: Image.asset(
                             'assets/images/loginVector.png',
@@ -111,14 +129,11 @@ class LoginScreen extends StatelessWidget {
 
                         SizedBox(height: size.height * 0.02),
 
-                        // Login Button
                         SizedBox(
                           width: double.infinity,
                           height: 48,
                           child: ElevatedButton(
-                            onPressed: () {
-                                Navigator.pushNamed(context, '/layout');
-                            },
+                            onPressed: _onLoginPressed,
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppColors.primary,
                               shape: RoundedRectangleBorder(
@@ -134,9 +149,9 @@ class LoginScreen extends StatelessWidget {
                             ),
                           ),
                         ),
+
                         SizedBox(height: size.height * 0.025),
 
-                        // Optional: Add Sign Up link
                         Center(
                           child: RichText(
                             text: TextSpan(
@@ -171,16 +186,19 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  // Custom TextField Widget
-  Widget _customInputField({required IconData icon, required String hintText}) {
+  Widget _customInputField({
+    required IconData icon,
+    required String hintText,
+    required TextEditingController controller,
+  }) {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(color: Colors.white30),
         borderRadius: BorderRadius.circular(10),
       ),
       child: TextField(
+        controller: controller,
         style: const TextStyle(color: Colors.white),
-        keyboardType: TextInputType.text,
         decoration: InputDecoration(
           prefixIcon: Icon(icon, color: Colors.white70),
           hintText: hintText,
@@ -192,3 +210,4 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
+

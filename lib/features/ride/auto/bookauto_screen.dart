@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:idhar_udhar/core/themes/colors.dart'; // Ensure AppColors.primary = green
+import 'package:idhar_udhar/core/themes/colors.dart'; 
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class BookAutoScreen extends StatefulWidget {
@@ -75,7 +75,7 @@ class _BookAutoScreenState extends State<BookAutoScreen> {
                         ),
                         child: const Icon(Icons.electric_rickshaw,color: Colors.black,)
                     ),
-                    title: const Text("Bike", style: TextStyle(fontWeight: FontWeight.w600)),
+                    title: const Text("Auto", style: TextStyle(fontWeight: FontWeight.w600)),
                     subtitle: const Text("5:55 pm    3 mins"),
                     trailing: const Text(
                       "₹124",
@@ -101,7 +101,7 @@ class _BookAutoScreenState extends State<BookAutoScreen> {
               Expanded(
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/searchbikedriver');
+                    Navigator.pushNamed(context, '/searchautodriver');
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,

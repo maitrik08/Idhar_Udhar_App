@@ -130,7 +130,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:idhar_udhar/core/themes/colors.dart';
-import 'package:idhar_udhar/features/ride/bike/paymentmethods_screen.dart';
+
+import '../../payment/allpaymentmethods.dart';
 
 class ConfirmBikePickupScreen extends StatefulWidget {
   static const LatLng _center = LatLng(23.0225, 72.5714);
@@ -209,7 +210,7 @@ class _ConfirmBikePickupScreenState extends State<ConfirmBikePickupScreen> {
                           context: context,
                           isScrollControlled: true,
                           backgroundColor: Colors.transparent,
-                          builder: (context) => const PaymentMethodBikeScreen(),
+                          builder: (context) => const PaymentMethodScreen(),
                         );
                       },
                       style: ElevatedButton.styleFrom(

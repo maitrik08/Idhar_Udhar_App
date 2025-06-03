@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:idhar_udhar/core/constants/constants.dart';
 import 'package:idhar_udhar/core/themes/colors.dart';
 
-class ConfirmPaymentBIKEScreen extends StatelessWidget {
-  const ConfirmPaymentBIKEScreen({super.key});
+class ConfirmcardPaymentScreen extends StatelessWidget {
+  const ConfirmcardPaymentScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +20,22 @@ class ConfirmPaymentBIKEScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Add payment logic
+                    switch (RideType) {
+                      case 'bike':
+                        Navigator.pushNamed(context, '/confirmmapbike');
+                        break;
+                      case 'auto':
+                        Navigator.pushNamed(context, '/confirmmapauto'); // ✅ This shows the sheet
+                        break;
+                      case 'car':
+                        Navigator.pushNamed(context, '/confirmmapcar'); // ✅ This shows the sheet
+                        break;
+                      default:
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('ride not implemented')),
+                        );
+                    }
+                    //Navigator.pushNamed(context, '/confirmmapbike');
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,

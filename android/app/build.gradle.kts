@@ -29,7 +29,9 @@ android {
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
-
+    dependencies {
+        implementation("com.google.android.material:material:1.11.0")
+    }
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.

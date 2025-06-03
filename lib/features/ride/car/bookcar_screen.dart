@@ -75,7 +75,7 @@ class _BookCarScreenState extends State<BookCarScreen> {
                         ),
                         child: const Icon(Icons.car_crash,color: Colors.black,)
                     ),
-                    title: const Text("Bike", style: TextStyle(fontWeight: FontWeight.w600)),
+                    title: const Text("Car", style: TextStyle(fontWeight: FontWeight.w600)),
                     subtitle: const Text("5:55 pm    3 mins"),
                     trailing: const Text(
                       "₹124",
@@ -101,7 +101,7 @@ class _BookCarScreenState extends State<BookCarScreen> {
               Expanded(
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/searchbikedriver');
+                    Navigator.pushNamed(context, '/searchcardriver');
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,

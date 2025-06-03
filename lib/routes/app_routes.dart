@@ -9,38 +9,36 @@ import 'package:idhar_udhar/features/auth/screens/otp_screen.dart';
 import 'package:idhar_udhar/features/auth/screens/signup_screen.dart';
 import 'package:idhar_udhar/features/delivery/maindelivery_screen.dart';
 import 'package:idhar_udhar/features/ride/auto/bookauto_screen.dart';
+import 'package:idhar_udhar/features/ride/auto/chatauto_screen.dart';
+import 'package:idhar_udhar/features/ride/auto/confirmautopickup_screen.dart';
+import 'package:idhar_udhar/features/ride/auto/confirmmapauto.dart';
+import 'package:idhar_udhar/features/ride/auto/noautodriver_screen.dart';
 import 'package:idhar_udhar/features/ride/auto/selectautolocation_screen.dart';
 import 'package:idhar_udhar/features/ride/bike/bookbike_screen.dart';
-import 'package:idhar_udhar/features/ride/bike/creditcardpayment_screen.dart';
+import 'package:idhar_udhar/features/ride/bike/confirmmap_screen.dart';
+import 'package:idhar_udhar/features/ride/bike/nodriver_screen.dart';
+import 'package:idhar_udhar/features/ride/car/ConfirmMapWrapperScreen.dart';
 import 'package:idhar_udhar/features/ride/car/bookcar_screen.dart';
+import 'package:idhar_udhar/features/ride/car/chatcar_screen.dart';
+import 'package:idhar_udhar/features/ride/car/confirmcarpickup_screen.dart';
+import 'package:idhar_udhar/features/ride/car/nocardriver_screen.dart';
+import 'package:idhar_udhar/features/ride/car/searchcardriver_screen.dart';
 import 'package:idhar_udhar/features/ride/car/selectcarlocation_screen.dart';
 import 'package:idhar_udhar/features/splash/dashboard_screen.dart';
 
 // Import screens
 import '../features/home/home_screen.dart';
 import '../features/mainlayout.dart';
-import '../features/ride/bike/confirmpayment_screen.dart';
+import '../features/payment/allpaymentmethods.dart';
+import '../features/payment/confirmcreditcardpayment.dart';
+import '../features/payment/creditcardpayment.dart';
+import '../features/ride/auto/searchautodriver_screen.dart';
+import '../features/ride/bike/chatbike_screen.dart';
 import '../features/ride/bike/confirmpickup_screen.dart';
-import '../features/ride/bike/paymentmethods_screen.dart';
 import '../features/ride/bike/searchdriver_screen.dart';
 import '../features/ride/bike/selectbikelocation_screen.dart';
 import '../features/ride/mainRide_screen.dart';
 import '../features/splash/splash_screen.dart';
-// import '../features/auth/screens/login_screen.dart';
-// import '../features/user/home/user_home_screen.dart';
-// import '../features/user/ride_booking/ride_request_screen.dart';
-// import '../features/user/history/user_history_screen.dart';
-// import '../features/user/profile/user_profile_screen.dart';
-
-//import '../features/driver/dashboard/driver_home_screen.dart';
-// import '../features/driver/trip_requests/trip_request_screen.dart';
-// import '../features/driver/earnings/driver_earnings_screen.dart';
-// import '../features/driver/profile/driver_profile_screen.dart';
-//
-// import '../features/admin/dashboard/admin_dashboard_screen.dart';
-// import '../features/admin/manage_users/manage_users_screen.dart';
-// import '../features/admin/manage_drivers/manage_drivers_screen.dart';
-// import '../features/admin/reports/reports_screen.dart';
 
 class AppRoutes {
   static const String splash = '/';
@@ -69,6 +67,9 @@ class AppRoutes {
   static const String paymentmethodbike = '/paymentmethodbike';
   static const String creditcardpaymentbike = '/creditcardpaymentbike';
   static const String confirmpaymentbike = '/confirmpaymentbike';
+  static const String nobikedriver = '/nobikedriver';
+  static const String confirmmapbike = '/confirmmapbike';
+  static const String chatbikedriver = '/chatbikedriver';
 
   static const String selectautolocation = '/selectautolocation';
   static const String bookauto = '/bookauto';
@@ -77,6 +78,9 @@ class AppRoutes {
   static const String paymentmethodauto = '/paymentmethodauto';
   static const String creditcardpaymentauto = '/creditcardpaymentauto';
   static const String confirmpaymentauto= '/confirmpaymentauto';
+  static const String noautodriver= '/noautodriver';
+  static const String chatautodriver= '/chatautodriver';
+  static const String confirmmapauto = '/confirmmapauto';
 
 
   static const String selectcarlocation = '/selectcarlocation';
@@ -86,6 +90,14 @@ class AppRoutes {
   static const String paymentmethodcar = '/paymentmethodcar';
   static const String creditcardpaymentcar = '/creditcardpaymentcar';
   static const String confirmpaymentcar= '/confirmpaymentcar';
+  static const String nocardriver= '/nocardriver';
+  static const String chatcardriver= '/chatcardriver';
+  static const String confirmmapcar = '/confirmmapcar';
+
+
+  static const String paymentmethod= '/paymentmethod';
+  static const String creditcardpayment= '/creditcardpayment';
+  static const String confirmcardpayment= '/confirmcardpayment';
 
 
   static Map<String, WidgetBuilder> routes = {
@@ -112,31 +124,32 @@ class AppRoutes {
     selectbikelocation: (context) => SelectBikeLocationScreen(),
     bookbike: (context) => BookBikeScreen(),
     searchbikedriver: (context) => SearchingBikeDriverScreen(),
+    nobikedriver: (context) => NoDriverScreen(),
     confirmbikrpickup: (context) => ConfirmBikePickupScreen(),
-    paymentmethodbike: (context) => PaymentMethodBikeScreen(),
-    creditcardpaymentbike: (context)=> CreditCardPaymentBikeScreen(),
-    confirmpaymentbike: (context)=> ConfirmPaymentBIKEScreen(),
+    confirmmapbike: (context)=> ConfirmMapWrapperScreen(),
+    chatbikedriver: (context)=> ChatBikeScreen(),
 
     selectautolocation: (context) => SelectAutoLocationScreen(),
     bookauto: (context) => BookAutoScreen(),
-    searchautodriver: (context) => SearchingBikeDriverScreen(),
-    confirmautorpickup: (context) => ConfirmBikePickupScreen(),
-    paymentmethodauto: (context) => PaymentMethodBikeScreen(),
-    creditcardpaymentauto: (context)=> CreditCardPaymentBikeScreen(),
-    confirmpaymentauto: (context)=> ConfirmPaymentBIKEScreen(),
+    searchautodriver: (context) => SearchingAutoDriverScreen(),
+    confirmautorpickup: (context) => ConfirmAutoPickupScreen(),
+    noautodriver: (context)=> NoAutoDriverScreen(),
+    chatautodriver: (context)=> ChatAutoScreen(),
+    confirmmapauto: (context)=> ConfirmAutoMapWrapperScreen(),
 
 
     selectcarlocation: (context) => SelectcarLocationScreen(),
     bookcar: (context) => BookCarScreen(),
-    searchcardriver: (context) => SearchingBikeDriverScreen(),
-    confirmcarpickup: (context) => ConfirmBikePickupScreen(),
-    paymentmethodcar: (context) => PaymentMethodBikeScreen(),
-    creditcardpaymentcar: (context)=> CreditCardPaymentBikeScreen(),
-    confirmpaymentcar: (context)=> ConfirmPaymentBIKEScreen()
+    searchcardriver: (context) => SearchingCarDriverScreen(),
+    confirmcarpickup: (context) => ConfirmCarPickupScreen(),
+    nocardriver: (context)=> NoCarDriverScreen(),
+    chatcardriver: (context)=> ChatCarScreen(),
+    confirmmapcar : (context)=> ConfirmCarMapWrapperScreen(),
+
+    paymentmethod: (context) => PaymentMethodScreen(),
+    creditcardpayment: (context) => CreditCardPaymentScreen(),
+    confirmcardpayment: (context) => ConfirmcardPaymentScreen(),
 
 
-    // rideRequest: (context) => RideRequestScreen(),
-    // userHistory: (context) => UserHistoryScreen(),
-    // userProfile: (context) => UserProfileScreen(),
   };
 }

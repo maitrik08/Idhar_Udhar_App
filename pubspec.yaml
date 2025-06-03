@@ -29,6 +29,7 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/images/payment/
     - assets/images/home/
     - assets/images/ride/
     - assets/images/delivery/

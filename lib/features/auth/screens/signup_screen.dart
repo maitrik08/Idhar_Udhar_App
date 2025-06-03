@@ -2,7 +2,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:idhar_udhar/core/themes/colors.dart';
-
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
 
@@ -13,6 +12,8 @@ class SignupScreen extends StatefulWidget {
 class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _dobController = TextEditingController();
   final TextEditingController _numberController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -43,6 +44,23 @@ class _SignupScreenState extends State<SignupScreen> {
     }
   }
 
+  void _onSignupPressed() {
+    final isValid = _nameController.text.trim().isNotEmpty &&
+        _dobController.text.trim().isNotEmpty &&
+        _emailController.text.trim().isNotEmpty &&
+        _numberController.text.trim().isNotEmpty;
+
+    if (isValid) {
+      Navigator.pushNamed(context, '/otpscreen');
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Please fill all required fields."),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -58,7 +76,6 @@ class _SignupScreenState extends State<SignupScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Title
               Center(
                 child: Text(
                   'Create a New Account',
@@ -83,7 +100,11 @@ class _SignupScreenState extends State<SignupScreen> {
               SizedBox(height: size.height * 0.04),
 
               _buildLabel("Name"),
-              _buildInputField(icon: Icons.person, hint: "Enter your name"),
+              _buildInputField(
+                controller: _nameController,
+                icon: Icons.person,
+                hint: "Enter your name",
+              ),
               SizedBox(height: size.height * 0.025),
 
               _buildLabel("Birthday"),
@@ -91,14 +112,19 @@ class _SignupScreenState extends State<SignupScreen> {
               SizedBox(height: size.height * 0.025),
 
               _buildLabel("Email"),
-              _buildInputField(icon: Icons.email_outlined, hint: "Enter your email", inputType: TextInputType.emailAddress),
+              _buildInputField(
+                controller: _emailController,
+                icon: Icons.email_outlined,
+                hint: "Enter your email",
+                inputType: TextInputType.emailAddress,
+              ),
               SizedBox(height: size.height * 0.025),
 
               _buildLabel("Number"),
               _buildInputField(
+                controller: _numberController,
                 icon: Icons.phone_outlined,
                 hint: "Enter your number",
-                controller: _numberController,
                 inputType: TextInputType.phone,
               ),
               SizedBox(height: size.height * 0.08),
@@ -107,9 +133,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 width: double.infinity,
                 height: 48,
                 child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/otpscreen');
-                  },
+                  onPressed: _onSignupPressed,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,
                     shape: RoundedRectangleBorder(
@@ -161,6 +185,7 @@ class _SignupScreenState extends State<SignupScreen> {
       style: const TextStyle(color: Colors.white, fontSize: 15),
     );
   }
+
   Widget _buildInputField({
     required IconData icon,
     required String hint,
@@ -183,12 +208,13 @@ class _SignupScreenState extends State<SignupScreen> {
           hintText: hint,
           hintStyle: const TextStyle(color: Colors.white54, fontSize: 13),
           border: InputBorder.none,
-          isDense: true, // reduces height
+          isDense: true,
           contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
         ),
       ),
     );
   }
+
   Widget _buildDatePickerField(BuildContext context) {
     return GestureDetector(
       onTap: () => _selectDate(context),
@@ -196,9 +222,9 @@ class _SignupScreenState extends State<SignupScreen> {
         child: Container(
           margin: const EdgeInsets.only(top: 8),
           decoration: BoxDecoration(
-            color: Colors.black45, // Change to your desired background color
+            color: Colors.black45,
             border: Border.all(color: Colors.white30),
-            borderRadius: BorderRadius.circular(10), // More curved edges
+            borderRadius: BorderRadius.circular(10),
           ),
           child: TextField(
             controller: _dobController,
@@ -217,5 +243,5 @@ class _SignupScreenState extends State<SignupScreen> {
       ),
     );
   }
-
 }
+

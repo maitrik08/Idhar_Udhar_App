@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:idhar_udhar/core/themes/colors.dart';
 
-class CreditCardPaymentBikeScreen extends StatelessWidget {
-  const CreditCardPaymentBikeScreen({super.key});
+class CreditCardPaymentScreen extends StatelessWidget {
+  const CreditCardPaymentScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +112,7 @@ class CreditCardPaymentBikeScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/confirmpaymentbike');
+                    Navigator.pushNamed(context, '/confirmcardpayment');
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,
