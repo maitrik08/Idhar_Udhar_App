@@ -4,19 +4,51 @@ import 'package:idhar_udhar/core/themes/colors.dart';
 
 class ConfirmcardPaymentScreen extends StatelessWidget {
   const ConfirmcardPaymentScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size; // for responsiveness
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          child: Column(
-            children: [
-              Expanded(
-                  child: Container()
-              ),
-              SizedBox(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(height: size.height*0.03,),
+            Stack(
+              children: [
+                Image.asset(
+                  'assets/images/payment/paymentcomplete.gif',
+                  width: size.width,
+                  fit: BoxFit.contain,
+                ),
+                Center(
+                  child: TweenAnimationBuilder<double>(
+                    tween: Tween<double>(begin: 0.0, end: 1.0),
+                    duration: const Duration(seconds: 3),
+                    curve: Curves.easeOutBack,
+                    builder: (context, scale, child) {
+                      return Transform.scale(
+                        scale: scale,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 20),
+                          child: Image.asset(
+                            'assets/images/payment/paymentdone.png',
+                            height: size.height * 0.4,
+                            width: size.width - 150,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+            // Bottom Button (Wrapped in Padding directly instead of Positioned)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+              child: SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
@@ -25,17 +57,16 @@ class ConfirmcardPaymentScreen extends StatelessWidget {
                         Navigator.pushNamed(context, '/confirmmapbike');
                         break;
                       case 'auto':
-                        Navigator.pushNamed(context, '/confirmmapauto'); // ✅ This shows the sheet
+                        Navigator.pushNamed(context, '/confirmmapauto');
                         break;
                       case 'car':
-                        Navigator.pushNamed(context, '/confirmmapcar'); // ✅ This shows the sheet
+                        Navigator.pushNamed(context, '/confirmmapcar');
                         break;
                       default:
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('ride not implemented')),
+                          const SnackBar(content: Text('Ride not implemented')),
                         );
                     }
-                    //Navigator.pushNamed(context, '/confirmmapbike');
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,
@@ -50,9 +81,8 @@ class ConfirmcardPaymentScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 15,)
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

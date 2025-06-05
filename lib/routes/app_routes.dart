@@ -8,6 +8,8 @@ import 'package:idhar_udhar/features/auth/screens/login_screen.dart';
 import 'package:idhar_udhar/features/auth/screens/otp_screen.dart';
 import 'package:idhar_udhar/features/auth/screens/signup_screen.dart';
 import 'package:idhar_udhar/features/delivery/maindelivery_screen.dart';
+import 'package:idhar_udhar/features/parcel/heavyparcle_screen.dart';
+import 'package:idhar_udhar/features/parcel/parcelsize_screen.dart';
 import 'package:idhar_udhar/features/profile/myride_screen.dart';
 import 'package:idhar_udhar/features/profile/paymentsetting_screen.dart';
 import 'package:idhar_udhar/features/profile/privacyandsecurity_screen.dart';
@@ -32,7 +34,9 @@ import 'package:idhar_udhar/features/splash/dashboard_screen.dart';
 // Import screens
 import '../features/home/home_screen.dart';
 import '../features/mainlayout.dart';
+import '../features/parcel/chooceparcelthing_screen.dart';
 import '../features/parcel/selectparcel_screen.dart';
+import '../features/parcel/selectparcelbikelocation_screen.dart';
 import '../features/payment/allpaymentmethods.dart';
 import '../features/payment/confirmcreditcardpayment.dart';
 import '../features/payment/creditcardpayment.dart';
@@ -114,6 +118,10 @@ class AppRoutes {
 
 
   static const String selectparceltype= '/selectparceltype';
+  static const String heavyparceltype= '/heavyparceltype';
+  static const String chooseparcelthing= '/chooseparcelthing';
+  static const String parcelsize= '/parcelsize';
+  static const String selectparcelbike= '/selectparcelbike';
 
 
   static Map<String, WidgetBuilder> routes = {
@@ -176,6 +184,10 @@ class AppRoutes {
 
 
     selectparceltype: (context) => ParcelSelectionScreen(),
+    heavyparceltype: (context) => HeavyParcelSelectionScreen(),
+    chooseparcelthing: (context) => ChoosePrcelThingScreen(),
+    parcelsize: (context) => ParcelSizeScreen(),
+    selectparcelbike: (context) => SelectParcelBikeLocationScreen(),
 
 
   };
