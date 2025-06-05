@@ -51,6 +51,9 @@ void showConfirmPaymentDialog(BuildContext context) {
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primary,
                 padding: EdgeInsets.symmetric(vertical: 14),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(6), // Small radius for rectangle
+                ),
               ),
               onPressed: () {
                 switch (RideType) {

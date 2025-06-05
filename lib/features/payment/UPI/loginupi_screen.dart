@@ -87,6 +87,9 @@ class UpiLoginSheet {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.primary,
                             padding: const EdgeInsets.symmetric(vertical: 14),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(6), // Small radius for rectangle
+                            ),
                           ),
                           onPressed: () {
                             OtpVerificationSheet.show(context);

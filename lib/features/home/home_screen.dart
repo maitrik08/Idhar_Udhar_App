@@ -95,7 +95,12 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 16),
             sectionTitle('Deliver Anything, Anytime', sectionTitleFontSize),
             const SizedBox(height: 10),
-            roundedImage('assets/images/home/delivery.png', size),
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, '/selectparceltype');
+              },
+                child: roundedImage('assets/images/home/delivery.png', size)
+            ),
 
             const SizedBox(height: 16),
             sectionTitle('Your Ride, Your Way', sectionTitleFontSize),

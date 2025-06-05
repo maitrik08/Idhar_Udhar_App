@@ -55,6 +55,9 @@ class WalletPaymentBottomSheet {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(6), // Small radius for rectangle
+                    ),
                     padding: EdgeInsets.symmetric(vertical: 14),
                   ),
                   onPressed: () {

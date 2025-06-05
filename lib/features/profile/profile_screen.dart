@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'logoutpopup.dart';
+
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
@@ -18,10 +20,7 @@ class ProfileScreen extends StatelessWidget {
             width: double.infinity,
             decoration: const BoxDecoration(
               gradient: LinearGradient(
-                colors: [
-                  Color(0xFF00C853),
-                  Color(0xFF64DD17)
-                ],
+                colors: [Color(0xFF00C853), Color(0xFF64DD17)],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
               ),
@@ -42,7 +41,8 @@ class ProfileScreen extends StatelessWidget {
                         backgroundColor: Colors.white,
                         child: CircleAvatar(
                           radius: 32,
-                          backgroundImage: AssetImage('assets/images/profile.png'),
+                          backgroundImage:
+                              AssetImage('assets/images/profile.png'),
                         ),
                       ),
                       SizedBox(width: 16),
@@ -81,13 +81,42 @@ class ProfileScreen extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: ListView(
                 children: [
-                  profileOption(Icons.shopping_bag, "Your Orders"),
-                  profileOption(Icons.help_outline, "Help & Support"),
-                  profileOption(Icons.location_on, "Address"),
-                  profileOption(Icons.card_giftcard, "Rewards"),
-                  profileOption(Icons.payment, "Payment Settings"),
-                  profileOption(Icons.privacy_tip, "Account Privacy"),
-                  profileOption(Icons.logout, "Log Out"),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/myride');
+                    },
+                      child: profileOption(Icons.shopping_bag, "My Ride")),
+                  InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/helpandsupport');
+                      },
+                      child:
+                          profileOption(Icons.help_outline, "Help & Support")),
+                  InkWell(
+                      onTap: () {
+
+                      },
+                      child: profileOption(Icons.location_on, "Address")),
+                  InkWell(
+                      onTap: () {
+
+                      },
+                      child: profileOption(Icons.card_giftcard, "Rewards")),
+                  InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/paymentsetting');
+                      },
+                      child: profileOption(Icons.payment, "Payment Settings")),
+                  InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/privacyandsecurity');
+                      },
+                      child: profileOption(Icons.privacy_tip, "Account Privacy")),
+                  InkWell(
+                      onTap: () {
+                        showLogoutDialog(context);
+                      },
+                      child: profileOption(Icons.logout, "Log Out")),
                 ],
               ),
             ),

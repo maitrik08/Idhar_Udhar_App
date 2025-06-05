@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:idhar_udhar/features/ride/bike/bikeDriverDetailsPopup.dart';
 
 import 'autoDriverDetailsPopup.dart' show AutoDriverDetailsPopup;
+import 'autocancelRidedetail_bottomsheet.dart';
 
 class AutoRideDetailsPopup extends StatelessWidget {
   final String pin;
@@ -118,12 +119,7 @@ class AutoRideDetailsPopup extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        showModalBottomSheet(
-                          context: context,
-                          isScrollControlled: true,
-                          backgroundColor: Colors.transparent,
-                          builder: (context) =>  AutoDriverDetailsPopup(),
-                        );
+                        showAutoRideDetailsSheet(context);
                       },
                       child: const Icon(Icons.more_horiz, color: Colors.black54),
                     ),
@@ -209,7 +205,7 @@ class AutoRideDetailsPopup extends StatelessWidget {
             ),
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Row(
-              children: const [
+              children: [
                 Icon(Icons.message, color: Colors.white70),
                 SizedBox(width: 15),
                 Expanded(
@@ -222,7 +218,41 @@ class AutoRideDetailsPopup extends StatelessWidget {
                     ),
                   ),
                 ),
-                Icon(Icons.photo_camera, color: Colors.white70),
+                Row(
+                  children: [
+                    Container(
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10)
+                        ),
+                        child:  Padding(
+                          padding: const EdgeInsets.all(3),
+                          child: Icon(Icons.phone, color: Colors.black,size: 15,),
+                        )
+                    ),
+                    SizedBox(width: 10),
+                    InkWell(
+                      onTap: () {
+                        showModalBottomSheet(
+                          context: context,
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          builder: (context) =>  AutoDriverDetailsPopup(),
+                        );
+                      },
+                      child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10)
+                          ),
+                          child:  Padding(
+                            padding: const EdgeInsets.all(2),
+                            child: Icon(Icons.more_horiz, color: Colors.black,size: 15,),
+                          )
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),

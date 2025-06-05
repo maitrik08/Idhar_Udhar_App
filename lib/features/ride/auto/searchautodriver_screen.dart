@@ -38,7 +38,7 @@ class _SearchingAutoDriverScreenState extends State<SearchingAutoDriverScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text("Request auto-cancelled. No driver found.")),
     );
-    Navigator.pop(context); // Or navigate to another screen
+    Navigator.pushNamed(context, '/noautodriver'); // Or navigate to another screen
   }
 
   @override
@@ -117,24 +117,12 @@ class _SearchingAutoDriverScreenState extends State<SearchingAutoDriverScreen> {
         floatingActionButton:Container(
           padding: EdgeInsets.all(90),
           //width:MediaQuery.of(context).size.width-100,
-          child:Row(
-              mainAxisSize: MainAxisSize.min,
-              children:[
-                TextButton(
-                  onPressed: () {
-                    _timer?.cancel();
-                    Navigator.pushNamed(context, '/confirmautorpickup');
-                  },
-                  child: Text('pickup'),
-                ),
-                TextButton(
-                    onPressed: () {
-                      _timer?.cancel();
-                      Navigator.pushNamed(context, '/noautodriver');
-                    },
-                    child: Text('No Driver')
-                ),
-              ]
+          child:TextButton(
+            onPressed: () {
+              _timer?.cancel();
+              Navigator.pushNamed(context, '/confirmautorpickup');
+            },
+            child: Text('pickup'),
           ),
         )
     );

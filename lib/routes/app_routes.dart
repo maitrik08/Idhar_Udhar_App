@@ -8,6 +8,9 @@ import 'package:idhar_udhar/features/auth/screens/login_screen.dart';
 import 'package:idhar_udhar/features/auth/screens/otp_screen.dart';
 import 'package:idhar_udhar/features/auth/screens/signup_screen.dart';
 import 'package:idhar_udhar/features/delivery/maindelivery_screen.dart';
+import 'package:idhar_udhar/features/profile/myride_screen.dart';
+import 'package:idhar_udhar/features/profile/paymentsetting_screen.dart';
+import 'package:idhar_udhar/features/profile/privacyandsecurity_screen.dart';
 import 'package:idhar_udhar/features/ride/auto/bookauto_screen.dart';
 import 'package:idhar_udhar/features/ride/auto/chatauto_screen.dart';
 import 'package:idhar_udhar/features/ride/auto/confirmautopickup_screen.dart';
@@ -29,9 +32,11 @@ import 'package:idhar_udhar/features/splash/dashboard_screen.dart';
 // Import screens
 import '../features/home/home_screen.dart';
 import '../features/mainlayout.dart';
+import '../features/parcel/selectparcel_screen.dart';
 import '../features/payment/allpaymentmethods.dart';
 import '../features/payment/confirmcreditcardpayment.dart';
 import '../features/payment/creditcardpayment.dart';
+import '../features/profile/helpsupport_screen.dart';
 import '../features/ride/auto/searchautodriver_screen.dart';
 import '../features/ride/bike/chatbike_screen.dart';
 import '../features/ride/bike/confirmpickup_screen.dart';
@@ -100,6 +105,17 @@ class AppRoutes {
   static const String confirmcardpayment= '/confirmcardpayment';
 
 
+
+  static const String myride= '/myride';
+  static const String privacyandsecurity= '/privacyandsecurity';
+  static const String helpandsupport= '/helpandsupport';
+  static const String paymentsetting= '/paymentsetting';
+
+
+
+  static const String selectparceltype= '/selectparceltype';
+
+
   static Map<String, WidgetBuilder> routes = {
     splash: (context) => SplashScreen(),
     dashboard: (context) => DashboardScreen(),
@@ -149,6 +165,17 @@ class AppRoutes {
     paymentmethod: (context) => PaymentMethodScreen(),
     creditcardpayment: (context) => CreditCardPaymentScreen(),
     confirmcardpayment: (context) => ConfirmcardPaymentScreen(),
+
+
+
+    myride: (context) => MyRideScreen(),
+    privacyandsecurity: (context) => PrivacyAndSecurityScreen(),
+    helpandsupport: (context) => HelpSupportScreen(),
+    paymentsetting: (context) => PaymentSettingScreen(),
+
+
+
+    selectparceltype: (context) => ParcelSelectionScreen(),
 
 
   };

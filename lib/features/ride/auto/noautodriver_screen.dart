@@ -110,7 +110,7 @@ class _NoAutoDriverScreenState extends State<NoAutoDriverScreen> {
                       child: ElevatedButton(
                         onPressed: selectedAmount != null
                             ? () {
-                          // Add amount logic
+                          Navigator.pushNamed(context, '/searchautodriver');
                         }
                             : null,
                         style: ElevatedButton.styleFrom(
