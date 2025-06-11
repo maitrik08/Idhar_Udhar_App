@@ -34,7 +34,7 @@ void showCancelBikeParcelConfirmationSheet(BuildContext context) {
 
             // Title
             Text(
-              'Cancel Ride?',
+              'Are you sure you want to cancel?',
               style: TextStyle(color: Colors.white70),
             ),
             SizedBox(height: 20),
@@ -51,13 +51,16 @@ void showCancelBikeParcelConfirmationSheet(BuildContext context) {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Cancel Trip?',
+                      'Cancel Delivery?',
                       style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
                     ),
                     SizedBox(height: 4),
-                    Text(
-                      'Your driver is already on the way.',
-                      style: TextStyle(color: Colors.white70),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width*0.6,
+                      child: Text(
+                        'Your delivery partner is already on the way.',
+                        style: TextStyle(color: Colors.white70),
+                      ),
                     ),
                   ],
                 ),
@@ -109,7 +112,7 @@ void showCancelBikeParcelConfirmationSheet(BuildContext context) {
                 ),
               ),
               child: Text(
-                'CANCEL YOUR RIDE',
+                'CANCEL Delivery',
                 style: TextStyle(color: Colors.red),
               ),
             ),

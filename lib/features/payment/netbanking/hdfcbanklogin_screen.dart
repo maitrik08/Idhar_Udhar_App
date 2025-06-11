@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:idhar_udhar/core/themes/colors.dart';
 import '../../../core/constants/constants.dart';
-import '../confirmpaymentsheet.dart'; // Make sure this exists
+import '../confirmpaymentsheet.dart';
 
-class HdfcLoginSheet {
-  static void show(BuildContext context) {
+class BankLoginSheet {
+  static void show(BuildContext context, {required String bankName}) {
     final usernameController = TextEditingController();
     final passwordController = TextEditingController();
 
@@ -19,7 +19,7 @@ class HdfcLoginSheet {
         return Padding(
           padding: MediaQuery.of(context).viewInsets,
           child: SizedBox(
-            height: MediaQuery.of(context).size.height*0.8, // 🔒 Fixed height
+            height: MediaQuery.of(context).size.height * 0.8,
             child: Container(
               padding: const EdgeInsets.all(20),
               child: Column(
@@ -39,60 +39,56 @@ class HdfcLoginSheet {
                     children: [
                       InkWell(
                         onTap: () => Navigator.pop(context),
-                        child: const Align(
-                          alignment: Alignment.centerLeft,
-                          child: Icon(Icons.arrow_back, color: Colors.black),
-                        ),
+                        child: const Icon(Icons.arrow_back, color: Colors.black),
                       ),
-
                       Expanded(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Login to HDFC NetBanking',
-                              style: TextStyle(fontSize: 18, color: Colors.black),
-                            ),
-                          ],
+                        child: Center(
+                          child: Text(
+                            'Login to $bankName',
+                            style: const TextStyle(fontSize: 18, color: Colors.black),
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                       ),
                     ],
                   ),
+
                   const SizedBox(height: 30),
 
                   const Align(
                     alignment: Alignment.centerLeft,
-                    child: Text('Username', style: TextStyle(fontSize: 14, color: Colors.black)),
+                    child: Text('Enter your', style: TextStyle(fontSize: 14, color: Colors.black)),
                   ),
                   const SizedBox(height: 8),
                   TextFormField(
+                    style: TextStyle(color: Colors.black,fontSize: 13),
                     controller: usernameController,
                     decoration: const InputDecoration(
-                      hintText: 'Enter your username',
-                      hintStyle: TextStyle(color: Colors.black),
-                      prefixIcon: Icon(Icons.person, color: Colors.black),
-                      filled: true,
-                      fillColor: Colors.white,
-                      border: OutlineInputBorder(),
+                      disabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black)
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(ButtonBorderRadius)),
+                      ),
                     ),
                   ),
 
                   const SizedBox(height: 20),
                   const Align(
                     alignment: Alignment.centerLeft,
-                    child: Text('Password', style: TextStyle(fontSize: 14, color: Colors.black)),
+                    child: Text('Enter your Password', style: TextStyle(fontSize: 14, color: Colors.black)),
                   ),
                   const SizedBox(height: 8),
                   TextFormField(
-                    controller: passwordController,
-                    obscureText: true,
+                    style: TextStyle(color: Colors.black,fontSize: 13),
+                    controller: usernameController,
                     decoration: const InputDecoration(
-                      hintText: 'Enter your password',
-                      hintStyle: TextStyle(color: Colors.black),
-                      prefixIcon: Icon(Icons.lock, color: Colors.black),
-                      filled: true,
-                      fillColor: Colors.white70,
-                      border: OutlineInputBorder(),
+                      disabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black)
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(ButtonBorderRadius)),
+                      ),
                     ),
                   ),
 

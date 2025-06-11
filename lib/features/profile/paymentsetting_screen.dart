@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/themes/colors.dart';
+import 'addpaymentsheet.dart';
 
 class PaymentSettingScreen extends StatefulWidget {
   const PaymentSettingScreen({super.key});
@@ -9,38 +10,22 @@ class PaymentSettingScreen extends StatefulWidget {
   State<PaymentSettingScreen> createState() => _PaymentSettingScreenState();
 }
 
-class _PaymentItem {
-  final IconData icon;
-  final String label;
-  final String number;
-  final String expiry;
-  final bool isDefault;
-
-  const _PaymentItem({
-    required this.icon,
-    required this.label,
-    required this.number,
-    required this.expiry,
-    this.isDefault = false,
-  });
-}
-
 class _PaymentSettingScreenState extends State<PaymentSettingScreen> {
-  final List<_PaymentItem> _methods = [
-    const _PaymentItem(
+  final List<PaymentItem> _methods = [
+    const PaymentItem(
       icon: Icons.credit_card_outlined,
       label: "HDFC Credit Card",
       number: "•••• 4242",
       expiry: "12/26",
       isDefault: true,
     ),
-    const _PaymentItem(
+    const PaymentItem(
       icon: Icons.credit_card_outlined,
       label: "ICICI Debit Card",
       number: "•••• 5678",
       expiry: "09/25",
     ),
-    const _PaymentItem(
+    const PaymentItem(
       icon: Icons.credit_card_outlined,
       label: "user@upi",
       number: "",
@@ -48,8 +33,10 @@ class _PaymentSettingScreenState extends State<PaymentSettingScreen> {
     ),
   ];
 
-  void _addNewMethod() {
-    // You can implement add functionality here
+  void _addNewMethod(PaymentItem newItem) {
+    setState(() {
+      _methods.add(newItem);
+    });
   }
 
   @override
@@ -65,21 +52,13 @@ class _PaymentSettingScreenState extends State<PaymentSettingScreen> {
               const Center(
                 child: Text(
                   'Payment Methods',
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                  ),
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600, color: Colors.white),
                 ),
               ),
               const SizedBox(height: 32),
               const Text(
                 'Saved Payment Methods',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
               ),
               const SizedBox(height: 16),
               Expanded(
@@ -90,16 +69,13 @@ class _PaymentSettingScreenState extends State<PaymentSettingScreen> {
                     if (index < _methods.length) {
                       final method = _methods[index];
                       return Container(
-                        padding: const EdgeInsets.only(top: 16,right: 16,left: 16,bottom: 8),
+                        padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
                           color: const Color(0xFF2F2F2F),
                           borderRadius: BorderRadius.circular(12),
-                          border: method.isDefault
-                              ? Border.all(color: AppColors.primary)
-                              : null,
+                          border: method.isDefault ? Border.all(color: Colors.green) : null,
                         ),
                         child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Icon(method.icon, color: Colors.white, size: 28),
                             const SizedBox(width: 16),
@@ -107,47 +83,25 @@ class _PaymentSettingScreenState extends State<PaymentSettingScreen> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    method.label,
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14,
-                                    ),
-                                  ),
+                                  Text(method.label,
+                                      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14)),
                                   if (method.number.isNotEmpty)
                                     Padding(
                                       padding: const EdgeInsets.only(top: 4),
-                                      child: Text(
-                                        method.number,
-                                        style: const TextStyle(
-                                          color: Colors.white70,
-                                          fontSize: 12,
-                                        ),
-                                      ),
+                                      child: Text(method.number,
+                                          style: const TextStyle(color: Colors.white70, fontSize: 12)),
                                     ),
                                   if (method.expiry.isNotEmpty)
                                     Padding(
                                       padding: const EdgeInsets.only(top: 2),
-                                      child: Text(
-                                        "Expires: ${method.expiry}",
-                                        style: const TextStyle(
-                                          color: Colors.white70,
-                                          fontSize: 12,
-                                        ),
-                                      ),
+                                      child: Text("Expires: ${method.expiry}",
+                                          style: const TextStyle(color: Colors.white70, fontSize: 12)),
                                     ),
                                   if (method.isDefault)
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 4),
-                                      child: Text(
-                                        "Default",
-                                        style: TextStyle(
-                                          color: AppColors.primary,
-                                          fontSize: 11,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
+                                    const Padding(
+                                      padding: EdgeInsets.only(top: 4),
+                                      child: Text("Default",
+                                          style: TextStyle(color: Colors.green, fontSize: 11, fontWeight: FontWeight.w500)),
                                     ),
                                 ],
                               ),
@@ -156,26 +110,24 @@ class _PaymentSettingScreenState extends State<PaymentSettingScreen> {
                         ),
                       );
                     } else {
-                      // Add New Payment Method Button
+                      // Add new button
                       return GestureDetector(
-                        onTap: _addNewMethod,
+                        onTap: () {
+                          AddCardBottomSheet.show(context, _addNewMethod);
+                        },
                         child: Container(
                           padding: const EdgeInsets.all(16),
                           decoration: BoxDecoration(
                             color: const Color(0xFF2F2F2F),
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          child: Row(
-                            children: const [
-                              Icon(Icons.add, color: AppColors.primary),
+                          child: const Row(
+                            children: [
+                              Icon(Icons.add, color: Colors.green),
                               SizedBox(width: 12),
                               Text(
-                                "Add new Payment Methods",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 14,
-                                ),
+                                "Add new Payment Method",
+                                style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 14),
                               ),
                             ],
                           ),

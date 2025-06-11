@@ -5,25 +5,28 @@ import 'delivery/maindelivery_screen.dart';
 import 'home/home_screen.dart';
 
 class MainLayout extends StatefulWidget {
-  const MainLayout({Key? key}) : super(key: key);
+  MainLayout({Key? key}) : super(key: key);
+
+  // ✅ Create the global key here
+  static final GlobalKey<_MainLayoutState> mainLayoutKey = GlobalKey<_MainLayoutState>();
 
   @override
   State<MainLayout> createState() => _MainLayoutState();
 }
 
-class _MainLayoutState extends State<MainLayout> {
-  int _currentIndex = 0;
+int currentIndex = 0;
 
+class _MainLayoutState extends State<MainLayout> {
   final List<Widget> _screens = [
-    HomeScreen(),
+    HomeScreen(),  // Pass nothing here
     RideScreen(),
     DeliveryScreen(),
     ProfileScreen(),
   ];
 
-  void _onTabTapped(int index) {
+  void setIndex(int index) {
     setState(() {
-      _currentIndex = index;
+      currentIndex = index;
     });
   }
 
@@ -32,12 +35,12 @@ class _MainLayoutState extends State<MainLayout> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: IndexedStack(
-        index: _currentIndex,
+        index: currentIndex,
         children: _screens,
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: _onTabTapped,
+        currentIndex: currentIndex,
+        onTap: (index) => setIndex(index),
         backgroundColor: const Color(0xFF2F3E2F),
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.white54,
@@ -49,13 +52,12 @@ class _MainLayoutState extends State<MainLayout> {
           _buildNavItem("assets/images/icons/delivery.png", "Delivery", 2),
           _buildNavItem("assets/images/icons/profile.png", "Profile", 3),
         ],
-      )
-
-
+      ),
     );
   }
+
   BottomNavigationBarItem _buildNavItem(String iconPath, String label, int index) {
-    bool isSelected = _currentIndex == index;
+    bool isSelected = currentIndex == index;
 
     return BottomNavigationBarItem(
       label: label,
@@ -70,5 +72,4 @@ class _MainLayoutState extends State<MainLayout> {
       ),
     );
   }
-
 }

@@ -77,11 +77,11 @@ class ParcelSelectionScreen extends StatelessWidget {
               const SizedBox(height: 12),
               InkWell(
                 onTap: () {
-                  RideType='truck-parcel';
+                  RideType='auto-parcel';
                   Navigator.pushNamed(context, '/chooseparcelthing');
                 },
                 child: VehicleCard(
-                  icon: Icons.airport_shuttle,
+                  icon: Icons.electric_rickshaw_outlined,
                   title: "Spacious & Strong",
                   subtitle:
                   "Best for furniture, heavier goods, or stacked parcels.",

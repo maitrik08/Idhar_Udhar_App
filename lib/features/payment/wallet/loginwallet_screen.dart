@@ -78,7 +78,7 @@ class WalletLoginSheet {
                   decoration: const InputDecoration(
                     hintText: 'Enter your number',
                     hintStyle: TextStyle(color: Colors.black),
-                    prefixIcon: Icon(Icons.phone, color: Colors.black),
+                    prefixIcon: Icon(Icons.phone_outlined, color: Colors.black),
                     filled: true,
                     fillColor: Colors.white,
                     border: OutlineInputBorder(),

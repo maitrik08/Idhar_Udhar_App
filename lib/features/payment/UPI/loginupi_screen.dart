@@ -65,18 +65,29 @@ class UpiLoginSheet {
 
               const SizedBox(height: 30),
 
-              const Text('UPI ID', style: TextStyle(fontSize: 14, color: Colors.black)),
+              const Text('UPI ID', style: TextStyle(fontSize: 14, color: Colors.black,fontFamily: 'lexend')),
               const SizedBox(height: 8),
 
               TextFormField(
+                style: TextStyle(color: Colors.black,fontSize: 12),
                 keyboardType: TextInputType.emailAddress,
+                cursorColor: AppColors.primary,
                 decoration: const InputDecoration(
                   hintText: 'Enter your UPI ID',
-                  hintStyle: TextStyle(color: Colors.black),
-                  prefixIcon: Icon(Icons.call, color: Colors.black),
+                  hintStyle: TextStyle(color: Colors.black,fontSize: 12),
+                  prefixIcon: Icon(Icons.call_outlined, color: Colors.black),
                   filled: true,
                   fillColor: Colors.white,
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.primary)
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: AppColors.primary)
+                  ),
+
                 ),
               ),
 

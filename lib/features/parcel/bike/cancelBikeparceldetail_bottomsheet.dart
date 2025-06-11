@@ -37,7 +37,7 @@ void showBikeParcelDetailsSheet(BuildContext context) {
             const SizedBox(height: 16),
             const Center(
               child: Text(
-                'Ride Details',
+                'Courier Details',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
               ),
             ),

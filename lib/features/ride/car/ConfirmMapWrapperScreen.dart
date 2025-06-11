@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:idhar_udhar/features/ride/auto/autoridedetailpopup.dart';
 import 'package:idhar_udhar/features/ride/car/carRideDetail_screen.dart';
-
 
 class ConfirmCarMapWrapperScreen extends StatefulWidget {
   const ConfirmCarMapWrapperScreen({super.key});
@@ -12,8 +10,58 @@ class ConfirmCarMapWrapperScreen extends StatefulWidget {
 }
 
 class _ConfirmCarMapWrapperScreenState extends State<ConfirmCarMapWrapperScreen> {
-  bool showPopup = true;
+  bool showPopup = false;
   static const LatLng destination = LatLng(23.0422, 72.5917);
+
+  @override
+  void initState() {
+    super.initState();
+    // Automatically show fixed bottom sheet on load
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _showFixedBottomSheet();
+    });
+  }
+
+  void _showFixedBottomSheet() {
+    setState(() {
+      showPopup = true;
+    });
+
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: false,
+      isDismissible: false,
+      enableDrag: false,
+      backgroundColor: Colors.black,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (BuildContext bottomSheetContext) {
+        final screenHeight = MediaQuery.of(bottomSheetContext).size.height;
+        return SizedBox(
+          height: screenHeight * 0.6, // 60% of screen height
+          child: Stack(
+            children: [
+              const CarRideDetailsPopup(),
+              Positioned(
+                top: 8,
+                right: 8,
+                child: IconButton(
+                  icon: const Icon(Icons.keyboard_arrow_down, color: Colors.white),
+                  onPressed: () {
+                    Navigator.pop(context);
+                    setState(() {
+                      showPopup = false;
+                    });
+                  },
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +69,6 @@ class _ConfirmCarMapWrapperScreenState extends State<ConfirmCarMapWrapperScreen>
       backgroundColor: Colors.black,
       body: Stack(
         children: [
-
           GoogleMap(
             initialCameraPosition: const CameraPosition(
               target: destination,
@@ -34,55 +81,6 @@ class _ConfirmCarMapWrapperScreenState extends State<ConfirmCarMapWrapperScreen>
               ),
             },
           ),
-
-          // Bottom popup panel
-          if (showPopup)
-            DraggableScrollableSheet(
-              initialChildSize: 0.28,
-              minChildSize: 0.2,
-              maxChildSize: 0.6,
-              builder: (context, scrollController) {
-                return SafeArea(
-                  bottom: false, // Prevent extra bottom padding
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-                    child: Container(
-                      color: Colors.black,
-                      padding: EdgeInsets.zero,
-                      margin: EdgeInsets.zero,
-                      child: Stack(
-                        children: [
-                          ListView(
-                            controller: scrollController,
-                            padding: EdgeInsets.zero,
-                            physics: const ClampingScrollPhysics(),
-                            children: const [
-                              CarRideDetailsPopup(),
-                            ],
-                          ),
-                          Positioned(
-                            top: 4,
-                            right: 4,
-                            child: IconButton(
-                              icon: const Icon(Icons.keyboard_arrow_down, color: Colors.white, size: 20),
-                              padding: EdgeInsets.zero,
-                              constraints: const BoxConstraints(),
-                              onPressed: () {
-                                setState(() {
-                                  showPopup = false;
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
-
-
           if (!showPopup)
             Positioned(
               bottom: 10,
@@ -90,11 +88,7 @@ class _ConfirmCarMapWrapperScreenState extends State<ConfirmCarMapWrapperScreen>
               child: FloatingActionButton(
                 mini: true,
                 backgroundColor: Colors.blue,
-                onPressed: () {
-                  setState(() {
-                    showPopup = true;
-                  });
-                },
+                onPressed: _showFixedBottomSheet,
                 child: const Icon(Icons.keyboard_arrow_up),
               ),
             ),

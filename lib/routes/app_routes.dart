@@ -9,6 +9,7 @@ import 'package:idhar_udhar/features/auth/screens/signup_screen.dart';
 import 'package:idhar_udhar/features/delivery/maindelivery_screen.dart';
 import 'package:idhar_udhar/features/parcel/bike/chatparcelbike_screen.dart';
 import 'package:idhar_udhar/features/parcel/bike/selectlocationbikeparcel_screen.dart';
+import 'package:idhar_udhar/features/parcel/car/carparcelmap_screen.dart';
 import 'package:idhar_udhar/features/parcel/heavyparcle_screen.dart';
 import 'package:idhar_udhar/features/parcel/parcelsize_screen.dart';
 import 'package:idhar_udhar/features/profile/address/addressdetails_screen.dart';
@@ -20,6 +21,7 @@ import 'package:idhar_udhar/features/profile/helpandsupport/faqs_screen.dart';
 import 'package:idhar_udhar/features/profile/myride_screen.dart';
 import 'package:idhar_udhar/features/profile/paymentsetting_screen.dart';
 import 'package:idhar_udhar/features/profile/privacyandsecurity_screen.dart';
+import 'package:idhar_udhar/features/profile/rewards_screen.dart';
 import 'package:idhar_udhar/features/ride/auto/bookauto_screen.dart';
 import 'package:idhar_udhar/features/ride/auto/chatauto_screen.dart';
 import 'package:idhar_udhar/features/ride/auto/confirmautopickup_screen.dart';
@@ -41,6 +43,7 @@ import 'package:idhar_udhar/features/splash/dashboard_screen.dart';
 // Import screens
 import '../features/home/home_screen.dart';
 import '../features/mainlayout.dart';
+import '../features/parcel/auto/autoparcelmap_screen.dart';
 import '../features/parcel/bike/bikeparcelmap_screen.dart';
 import '../features/parcel/chooceparcelthing_screen.dart';
 import '../features/parcel/selectparcel_screen.dart';
@@ -120,6 +123,7 @@ class AppRoutes {
 
   static const String myride= '/myride';
   static const String privacyandsecurity= '/privacyandsecurity';
+  static const String rewards= '/rewards';
   static const String helpandsupport= '/helpandsupport';
   static const String paymentsetting= '/paymentsetting';
   static const String avtarselection= '/avtarselection';
@@ -144,6 +148,10 @@ class AppRoutes {
   static const String bikeparcelmap= '/bikeparcelmap';
 
 
+  static const String carparcelmap= '/carparcelmap';
+  static const String autoparcelmap= '/autoparcelmap';
+
+
   static Map<String, WidgetBuilder> routes = {
     splash: (context) => SplashScreen(),
     dashboard: (context) => DashboardScreen(),
@@ -155,7 +163,7 @@ class AppRoutes {
     locationaccess: (context) => LocationAccessScreen(),
     gender: (context) => GenderScreen(),
     ride: (context) => RideScreen(),
-    layout: (context) => MainLayout(),
+    layout: (context) => MainLayout(key: MainLayout.mainLayoutKey),
     delivery: (context) => DeliveryScreen(),
 
 
@@ -199,6 +207,7 @@ class AppRoutes {
     privacyandsecurity: (context) => PrivacyAndSecurityScreen(),
     helpandsupport: (context) => HelpSupportScreen(),
     paymentsetting: (context) => PaymentSettingScreen(),
+    rewards: (context) => RewardScreen(),
     avtarselection: (context) => AvatarSelectionScreen(),
          faqscreen: (context) => FAQScreen(),
          chatsupport: (context) => SupportChatScreen(),
@@ -217,6 +226,9 @@ class AppRoutes {
     selectlocaionbikeparcel: (context) => SelectBikeParcelScreen(),
     chatparcelbikedriver: (context) => ChatParcelBikeScreen(),
     bikeparcelmap: (context) => BikeParcelMapScreen(),
+
+    carparcelmap: (context) => CarParcelMapScreen(),
+    autoparcelmap: (context) => AutoParcelMapScreen(),
 
 
 

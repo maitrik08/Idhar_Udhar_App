@@ -121,7 +121,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       onTap: () => Navigator.pushNamed(context, '/addressdetail'),
                       child: profileOption('assets/images/profile/address.png', "Address")),
                   InkWell(
-                      onTap: () {},
+                      onTap: () =>Navigator.pushNamed(context, '/rewards'),
                       child: profileOption('assets/images/profile/reward.png', "Rewards")),
                   InkWell(
                       onTap: () => Navigator.pushNamed(context, '/paymentsetting'),

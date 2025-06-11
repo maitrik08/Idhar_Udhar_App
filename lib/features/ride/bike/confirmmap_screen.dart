@@ -15,11 +15,12 @@ class _ConfirmMapWrapperScreenState extends State<ConfirmMapWrapperScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final popupHeight = MediaQuery.of(context).size.height * 0.6;
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: Stack(
         children: [
-
           GoogleMap(
             initialCameraPosition: const CameraPosition(
               target: destination,
@@ -33,65 +34,49 @@ class _ConfirmMapWrapperScreenState extends State<ConfirmMapWrapperScreen> {
             },
           ),
 
-          // Bottom popup panel
+          // Fixed-position popup
           if (showPopup)
-            DraggableScrollableSheet(
-              initialChildSize: 0.28,
-              minChildSize: 0.2,
-              maxChildSize: 0.6,
-              builder: (context, scrollController) {
-                return SafeArea(
-                  bottom: false, // Prevent extra bottom padding
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-                    child: Container(
-                      color: Colors.black,
-                      padding: EdgeInsets.zero,
-                      margin: EdgeInsets.zero,
-                      child: Stack(
-                        children: [
-                          ListView(
-                            controller: scrollController,
-                            padding: EdgeInsets.zero,
-                            physics: const ClampingScrollPhysics(),
-                            children: const [
-                              BikeRideDetailsPopup(),
-                            ],
-                          ),
-                          Positioned(
-                            top: 4,
-                            right: 4,
-                            child: IconButton(
-                              icon: const Icon(Icons.keyboard_arrow_down, color: Colors.white, size: 20),
-                              padding: EdgeInsets.zero,
-                              constraints: const BoxConstraints(),
-                              onPressed: () {
-                                setState(() {
-                                  showPopup = false;
-                                });
-                              },
-                            ),
-                          ),
-                        ],
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                height: popupHeight,
+                decoration: const BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+                ),
+                child: Stack(
+                  children: [
+                    // Content
+                    const BikeRideDetailsPopup(),
+
+                    // Collapse button
+                    Positioned(
+                      top: 8,
+                      right: 8,
+                      child: IconButton(
+                        icon: const Icon(Icons.keyboard_arrow_down, color: Colors.white),
+                        onPressed: () {
+                          setState(() => showPopup = false);
+                        },
                       ),
                     ),
-                  ),
-                );
-              },
+                  ],
+                ),
+              ),
             ),
 
-
+          // Expand FAB
           if (!showPopup)
             Positioned(
-              bottom: 10,
-              right: 10,
+              bottom: 20,
+              right: 20,
               child: FloatingActionButton(
                 mini: true,
                 backgroundColor: Colors.blue,
                 onPressed: () {
-                  setState(() {
-                    showPopup = true;
-                  });
+                  setState(() => showPopup = true);
                 },
                 child: const Icon(Icons.keyboard_arrow_up),
               ),

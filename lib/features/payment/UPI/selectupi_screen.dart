@@ -13,7 +13,7 @@ class UPIPaymentBottomSheet {
       ),
       isScrollControlled: true,
       builder: (context) => SizedBox(
-        height: MediaQuery.of(context).size.height * 0.6, // 🔒 Fixed height
+        height: MediaQuery.of(context).size.height * 0.8, // 🔒 Fixed height
         child: Container(
           padding: const EdgeInsets.all(16),
           decoration: const BoxDecoration(
@@ -44,14 +44,10 @@ class UPIPaymentBottomSheet {
               Expanded(
                 child: ListView(
                   children: [
-                    _buildUPITile('Google Pay', 'assets/images/payment/gpay.png', '', context),
-                    Divider(height: 1, color: Colors.grey.shade400),
-                    _buildUPITile('PhonePe', 'assets/images/payment/phonpay.png', '', context),
-                    Divider(height: 1, color: Colors.grey.shade400),
-                    _buildUPITile('Paytm UPI', 'assets/images/payment/paytmupi.png', '', context),
-                    Divider(height: 1, color: Colors.grey.shade400),
+                    _buildUPITile('Google Pay', 'assets/images/payment/phonpay.png', '', context),
+                    _buildUPITile('PhonePe', 'assets/images/payment/paytm.png', '', context),
+                    _buildUPITile('Paytm UPI', 'assets/images/payment/gpay.png', '', context),
                     _buildUPITile('BHIM', 'assets/images/payment/bhimupi.png', '', context),
-                    Divider(height: 1, color: Colors.grey.shade400),
                   ],
                 ),
               ),
@@ -92,10 +88,10 @@ class UPIPaymentBottomSheet {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 12.0),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Image.asset(assetPath, width: 50, height: 40),
-            const SizedBox(width: 20),
-            Text(name, style: const TextStyle(color: Colors.black, fontSize: 16)),
+            Image.asset(assetPath, width: 80, height: 40),
+            Icon(Icons.navigate_next_outlined,color: Colors.black,)
           ],
         ),
       ),

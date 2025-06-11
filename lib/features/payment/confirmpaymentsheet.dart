@@ -38,19 +38,19 @@ void showConfirmPaymentDialog(BuildContext context) {
           Text(
             'This payment will be debited from your selected bank account.',
             style: TextStyle(
-              fontSize: 14,
+              fontSize: 10,
               color: Colors.black, // ✅ Black text
             ),
             textAlign: TextAlign.center,
           ),
 
-          SizedBox(height: 20),
+          SizedBox(height: 60),
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primary,
-                padding: EdgeInsets.symmetric(vertical: 14),
+                padding: EdgeInsets.symmetric(vertical: 10),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(ButtonBorderRadius), // Small radius for rectangle
                 ),
@@ -65,6 +65,18 @@ void showConfirmPaymentDialog(BuildContext context) {
                     break;
                   case 'car':
                     Navigator.pushNamed(context, '/confirmmapcar');
+                    break;
+                  case 'bike-parcel':
+                    Navigator.pushNamed(context, '/bikeparcelmap');
+                    break;
+                  case 'car-parcel':
+                    Navigator.pushNamed(context, '/carparcelmap');
+                    break;
+                  case 'truck-parcel':
+                    Navigator.pushNamed(context, '/confirmmapcar');
+                    break;
+                  case 'auto-parcel':
+                    Navigator.pushNamed(context, '/autoparcelmap');
                     break;
                   default:
                     ScaffoldMessenger.of(context).showSnackBar(

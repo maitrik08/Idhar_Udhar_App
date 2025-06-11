@@ -2,10 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:idhar_udhar/features/delivery/maindelivery_screen.dart';
 
 import '../../core/constants/constants.dart';
+import '../mainlayout.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -83,7 +89,7 @@ class HomeScreen extends StatelessWidget {
                       InkWell(
                           onTap:() {
                             Navigator.pushNamed(context, '/selectbikelocation');
-                            RideType = "car";
+                            RideType = "bike";
                             print(RideType);
                           },
                           child: roundedImage('assets/images/home/bike.png', size)),
@@ -112,8 +118,8 @@ class HomeScreen extends StatelessWidget {
             sectionTitle("Hungry? We've Got You", sectionTitleFontSize),
             const SizedBox(height: 10),
             InkWell(
-                onTap:() {
-                  Navigator.push(context,MaterialPageRoute(builder: (_) => Scaffold(body: DeliveryScreen())) );
+                onTap: () {
+                  MainLayout.mainLayoutKey.currentState?.setIndex(2);
                 },
                 child: roundedImage('assets/images/home/burger.png', size)),
 

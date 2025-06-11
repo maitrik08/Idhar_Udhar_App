@@ -66,10 +66,13 @@ class ConfirmcardPaymentScreen extends StatelessWidget {
                         Navigator.pushNamed(context, '/bikeparcelmap');
                         break;
                       case 'car-parcel':
-                        Navigator.pushNamed(context, '/confirmmapcar');
+                        Navigator.pushNamed(context, '/carparcelmap');
                         break;
                       case 'truck-parcel':
                         Navigator.pushNamed(context, '/confirmmapcar');
+                        break;
+                      case 'auto-parcel':
+                        Navigator.pushNamed(context, '/autoparcelmap');
                         break;
                       default:
                         ScaffoldMessenger.of(context).showSnackBar(

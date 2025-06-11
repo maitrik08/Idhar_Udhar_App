@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:idhar_udhar/features/ride/car/carRideDetail_screen.dart';
+import 'package:idhar_udhar/features/parcel/auto/autoparceldetailpopup.dart';
 
 
-class ConfirmCarMapWrapperScreen extends StatefulWidget {
-  const ConfirmCarMapWrapperScreen({super.key});
+class AutoParcelMapScreen extends StatefulWidget {
+  const AutoParcelMapScreen({super.key});
 
   @override
-  State<ConfirmCarMapWrapperScreen> createState() => _ConfirmCarMapWrapperScreenState();
+  State<AutoParcelMapScreen> createState() => _AutoParcelMapScreenState();
 }
 
-class _ConfirmCarMapWrapperScreenState extends State<ConfirmCarMapWrapperScreen> {
+class _AutoParcelMapScreenState extends State<AutoParcelMapScreen> {
   bool showPopup = true;
   static const LatLng destination = LatLng(23.0422, 72.5917);
 
@@ -36,10 +36,10 @@ class _ConfirmCarMapWrapperScreenState extends State<ConfirmCarMapWrapperScreen>
 
           // Bottom popup panel
           if (showPopup)
-          // Bottom popup panel
-            if (showPopup)
-              SafeArea(
-                bottom: false,
+            SafeArea(
+              bottom: false, // Prevent extra bottom padding
+              child: Align(
+                alignment: Alignment.bottomCenter,
                 child: ClipRRect(
                   borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
                   child: Container(
@@ -47,11 +47,34 @@ class _ConfirmCarMapWrapperScreenState extends State<ConfirmCarMapWrapperScreen>
                     color: Colors.black,
                     padding: EdgeInsets.zero,
                     margin: EdgeInsets.zero,
-                    child: const CarRideDetailsPopup(), // Remove ListView here
+                    child: Stack(
+                      children: [
+                        ListView(
+                          padding: EdgeInsets.zero,
+                          children: const [
+                            AutoParcelDetailsPopup(),
+                          ],
+                        ),
+                        Positioned(
+                          top: 4,
+                          right: 4,
+                          child: IconButton(
+                            icon: const Icon(Icons.keyboard_arrow_down, color: Colors.white, size: 20),
+                            padding: EdgeInsets.zero,
+                            constraints: const BoxConstraints(),
+                            onPressed: () {
+                              setState(() {
+                                showPopup = false;
+                              });
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-
+            ),
 
 
           if (!showPopup)

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:idhar_udhar/core/constants/constants.dart';
 import 'package:idhar_udhar/features/ride/bike/bikeDriverDetailsPopup.dart';
-
 import 'cancelRidedetail_bottomsheet.dart';
 
 class BikeRideDetailsPopup extends StatelessWidget {
@@ -10,7 +9,6 @@ class BikeRideDetailsPopup extends StatelessWidget {
   const BikeRideDetailsPopup({super.key, this.pin = "1234"});
 
   @override
-  @override
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
@@ -18,11 +16,9 @@ class BikeRideDetailsPopup extends StatelessWidget {
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-      height: MediaQuery.of(context).size.height * 0.6, // Set fixed height here
       child: Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.max,
         children: [
-          // Drag handle
           Center(
             child: Container(
               width: 40,
@@ -34,8 +30,6 @@ class BikeRideDetailsPopup extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-
-          // Pickup info
           const Center(
             child: Column(
               children: [
@@ -59,8 +53,6 @@ class BikeRideDetailsPopup extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-
-          // PIN section
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -96,8 +88,6 @@ class BikeRideDetailsPopup extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 20),
-
-          // Ride details container
           Container(
             decoration: BoxDecoration(
               color: Colors.grey[300],
@@ -138,8 +128,6 @@ class BikeRideDetailsPopup extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-
-          // Driver Info Card
           Container(
             decoration: BoxDecoration(
               color: Colors.grey[200],
@@ -196,13 +184,11 @@ class BikeRideDetailsPopup extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-
-          // Message Input
           Container(
             decoration: BoxDecoration(
               color: Colors.black,
               borderRadius: BorderRadius.circular(ButtonBorderRadius),
-              border: Border.all(color: Colors.white)
+              border: Border.all(color: Colors.white),
             ),
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Row(
@@ -238,7 +224,7 @@ class BikeRideDetailsPopup extends StatelessWidget {
                           context: context,
                           isScrollControlled: true,
                           backgroundColor: Colors.transparent,
-                          builder: (context) =>  DriverDetailsPopup(),
+                          builder: (context) => const DriverDetailsPopup(),
                         );
                       },
                       child: Container(
@@ -261,5 +247,4 @@ class BikeRideDetailsPopup extends StatelessWidget {
       ),
     );
   }
-
 }

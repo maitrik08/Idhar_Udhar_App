@@ -49,7 +49,7 @@ class _CancelBikeParcelSheetState extends State<CancelBikeParcelSheet> {
                 onPressed: () => Navigator.of(context).pop(),
               ),
               Text(
-                'Cancel Trip?',
+                'Cancel Delivery?',
                 style: TextStyle(fontWeight: FontWeight.w600),
               ),
               TextButton(

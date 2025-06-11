@@ -66,7 +66,7 @@ class HeavyParcelSelectionScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 12),
                       VehicleCard(
-                        icon: Icons.airport_shuttle,
+                        icon: Icons.electric_rickshaw_outlined,
                         title: "14 Ft Truck",
                         subtitle:
                         "Great for bulk items, small furniture, and larger parcels.",

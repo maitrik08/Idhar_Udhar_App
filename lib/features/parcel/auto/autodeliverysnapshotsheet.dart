@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:idhar_udhar/core/constants/constants.dart';
 import 'package:idhar_udhar/core/themes/colors.dart';
 
-import '../payment/allpaymentmethods.dart';
-class DeliverySnapshotContent extends StatelessWidget {
-  const DeliverySnapshotContent({super.key});
+import '../../payment/allpaymentmethods.dart';
+class AutoDeliverySnapshotContent extends StatelessWidget {
+  const AutoDeliverySnapshotContent({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -51,19 +51,11 @@ class DeliverySnapshotContent extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Icon(Icons.two_wheeler, color: Colors.white, size: 28),
+              const Icon(Icons.electric_rickshaw_outlined, color: Colors.white, size: 28),
               const SizedBox(width: 10),
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text("Two-Wheeler ",
-                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600)),
-                    SizedBox(height: 4),
-                    Text("Courier",
-                        style: TextStyle(color: Colors.white, fontSize: 13,fontWeight: FontWeight.bold)),
-                  ],
-                ),
+                child: Text("Auto Courier",
+                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600)),
               ),
               Column(
                 children: [

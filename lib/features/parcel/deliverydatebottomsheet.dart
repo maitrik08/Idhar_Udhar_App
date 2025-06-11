@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:idhar_udhar/core/themes/colors.dart';
 
 import '../../core/constants/constants.dart';
-import 'deliverysnapshotsheet.dart';
+import 'auto/autodeliverysnapshotsheet.dart';
+import 'bike/bikedeliverysnapshotsheet.dart';
+import 'car/cardeliverysnapshotsheet.dart';
 
 class DeliveryDateBottomSheet extends StatelessWidget {
   const DeliveryDateBottomSheet({super.key});
@@ -65,12 +67,40 @@ class DeliveryDateBottomSheet extends StatelessWidget {
             height: 50,
             child: ElevatedButton(
               onPressed: () {
-                showModalBottomSheet(
-                  context: context,
-                  isScrollControlled: true,
-                  backgroundColor: Colors.transparent, // Make it blend naturally
-                  builder: (_) => const DeliverySnapshotContent(),
-                );
+                switch (RideType) {
+                  case 'bike-parcel':
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      backgroundColor: Colors.transparent, // Make it blend naturally
+                      builder: (_) => const BikeDeliverySnapshotContent(),
+                    );
+                    break;
+                  case 'car-parcel':
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      backgroundColor: Colors.transparent, // Make it blend naturally
+                      builder: (_) => const CarDeliverySnapshotContent(),
+                    );
+                    break;
+                  case 'truck-parcel':
+                    Navigator.pushNamed(context, '/confirmmapcar');
+                    break;
+                  case 'auto-parcel':
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      backgroundColor: Colors.transparent, // Make it blend naturally
+                      builder: (_) => const AutoDeliverySnapshotContent(),
+                    );
+                    break;
+                  default:
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('ride not implemented')),
+                    );
+                }
+
 
               },
               style: ElevatedButton.styleFrom(
