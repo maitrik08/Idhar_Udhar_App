@@ -52,7 +52,7 @@ void showConfirmPaymentDialog(BuildContext context) {
                 backgroundColor: AppColors.primary,
                 padding: EdgeInsets.symmetric(vertical: 14),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(6), // Small radius for rectangle
+                  borderRadius: BorderRadius.circular(ButtonBorderRadius), // Small radius for rectangle
                 ),
               ),
               onPressed: () {

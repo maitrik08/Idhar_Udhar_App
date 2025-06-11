@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:idhar_udhar/features/ride/bike/bikeDriverDetailsPopup.dart';
-
-import 'autoDriverDetailsPopup.dart' show AutoDriverDetailsPopup;
+import 'autoDriverDetailsPopup.dart';
 import 'autocancelRidedetail_bottomsheet.dart';
 
 class AutoRideDetailsPopup extends StatelessWidget {

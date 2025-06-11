@@ -62,6 +62,15 @@ class ConfirmcardPaymentScreen extends StatelessWidget {
                       case 'car':
                         Navigator.pushNamed(context, '/confirmmapcar');
                         break;
+                      case 'bike-parcel':
+                        Navigator.pushNamed(context, '/bikeparcelmap');
+                        break;
+                      case 'car-parcel':
+                        Navigator.pushNamed(context, '/confirmmapcar');
+                        break;
+                      case 'truck-parcel':
+                        Navigator.pushNamed(context, '/confirmmapcar');
+                        break;
                       default:
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text('Ride not implemented')),
@@ -72,7 +81,7 @@ class ConfirmcardPaymentScreen extends StatelessWidget {
                     backgroundColor: AppColors.primary,
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(ButtonBorderRadius),
                     ),
                   ),
                   child: const Text(

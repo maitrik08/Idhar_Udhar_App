@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:idhar_udhar/core/themes/colors.dart';
 
+import '../../../core/constants/constants.dart';
+
 
 class AutoDriverDetailsPopup extends StatelessWidget {
   const AutoDriverDetailsPopup({super.key});
@@ -11,7 +13,7 @@ class AutoDriverDetailsPopup extends StatelessWidget {
 
     return SafeArea(
       child: Container(
-        height: screenHeight * 0.65,
+        height: screenHeight * 0.55,
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         decoration: const BoxDecoration(
           color: Colors.black,
@@ -157,7 +159,7 @@ class AutoDriverDetailsPopup extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(ButtonBorderRadius),
                     ),
                   ),
                   onPressed: () => Navigator.pop(context),

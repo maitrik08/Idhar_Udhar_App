@@ -11,21 +11,25 @@ class HelpSupportScreen extends StatelessWidget {
       icon: Icons.help_outline,
       title: 'FAQs',
       subtitle: 'Find answers to common questions',
+      path: '/faqscreen'
     ),
     _SupportItem(
       icon: Icons.chat_bubble_outline,
       title: 'Chat with Support',
       subtitle: 'Chat with a support agent',
+        path: '/chatsupport'
     ),
     _SupportItem(
       icon: Icons.call_outlined,
       title: 'Call Support',
       subtitle: 'Call us for immediate assistance',
+        path: '/callsupport'
     ),
     _SupportItem(
       icon: Icons.email_outlined,
       title: 'Email Us',
       subtitle: 'Send us an email with your query',
+        path: '/emailsupport'
     ),
   ];
 
@@ -87,7 +91,7 @@ class HelpSupportScreen extends StatelessWidget {
                           ),
                         ),
                         onTap: () {
-                          // Add your tap logic here
+                          Navigator.pushNamed(context, item.path);
                         },
                       ),
                     );
@@ -106,10 +110,12 @@ class _SupportItem {
   final IconData icon;
   final String title;
   final String subtitle;
+  final String path;
 
   const _SupportItem({
     required this.icon,
     required this.title,
     required this.subtitle,
+    required this.path,
   });
 }

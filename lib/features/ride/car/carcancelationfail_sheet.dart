@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/constants/constants.dart';
+
 void showCarCancellationFailedSheet(BuildContext context) {
   showModalBottomSheet(
     context: context,
@@ -62,7 +64,7 @@ void showCarCancellationFailedSheet(BuildContext context) {
                 backgroundColor: Colors.grey[850],
                 minimumSize: const Size(double.infinity, 48),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(6),
+                  borderRadius: BorderRadius.circular(ButtonBorderRadius),
                 ),
               ),
               child: const Text(

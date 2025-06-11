@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../core/constants/constants.dart';
 import '../../../core/themes/colors.dart';
 
 class GenderScreen extends StatefulWidget {
@@ -11,12 +12,6 @@ class GenderScreen extends StatefulWidget {
 class _GenderScreenState extends State<GenderScreen> {
   String? selectedGender;
 
-  final List<Map<String, dynamic>> genderOptions = [
-    {'label': 'Male', 'icon': Icons.male},
-    {'label': 'Female', 'icon': Icons.female},
-    {'label': 'Other', 'icon': Icons.transgender},
-  ];
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -27,7 +22,7 @@ class _GenderScreenState extends State<GenderScreen> {
       backgroundColor: Colors.black,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -43,81 +38,134 @@ class _GenderScreenState extends State<GenderScreen> {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  const Text(
-                    "We personalize your journey — just tell us a bit about you.",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.white70, fontSize: 14),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 33),
+                    child: Text(
+                      "We personalize your journey — just tell us a bit about you.",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white, fontSize: size.width * 0.033),
+                    ),
                   ),
-                   SizedBox(height: height*0.1),
-
-                  /// Gender Options
+                  SizedBox(height: height * 0.05),
                   Column(
-                    children: genderOptions.map((option) {
-                      final isSelected = selectedGender == option['label'];
-                      return GestureDetector(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      // Male GIF
+                      GestureDetector(
                         onTap: () {
                           setState(() {
-                            selectedGender = option['label'];
+                            selectedGender = 'male';
                           });
                         },
                         child: Container(
-                          margin: const EdgeInsets.only(bottom: 16),
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 14, horizontal: 20),
+                          width: size.height * 0.2, // Ensure width equals height for circle
+                          height: size.height * 0.2,
                           decoration: BoxDecoration(
-                            color: isSelected
-                                ? AppColors.primary
-                                : Colors.transparent,
+                            shape: BoxShape.circle, // Make the container circular
                             border: Border.all(
-                              color: isSelected
-                                  ? AppColors.primary
-                                  : Colors.white70,
-                              width: 1.5,
+                              color: selectedGender == 'male' ? Colors.green : Colors.transparent,
+                              width: 3.0,
                             ),
-                            borderRadius: BorderRadius.circular(8),
                           ),
-                          child: Row(
+                          child: Stack(
                             children: [
-                              Icon(
-                                option['icon'],
-                                color: isSelected
-                                    ? Colors.white
-                                    : Colors.white70,
-                              ),
-                              const SizedBox(width: 12),
-                              Text(
-                                option['label'],
-                                style: TextStyle(
-                                  fontSize: size.height*0.02,
-                                  color: isSelected
-                                      ? Colors.white
-                                      : Colors.white70,
-                                  fontWeight: FontWeight.w300,
+                              ClipOval( // Clip the image to a circle
+                                child: Image.asset(
+                                  'assets/animation/male.gif',
+                                  height: size.height * 0.2,
+                                  width: size.height * 0.2,
+                                  fit: BoxFit.cover,
                                 ),
                               ),
+                              if (selectedGender == 'male')
+                                Positioned(
+                                  bottom: 5,
+                                  right: 5,
+                                  child: Container(
+                                    padding: const EdgeInsets.all(4.0),
+                                    decoration: const BoxDecoration(
+                                      color: Colors.green,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: const Icon(
+                                      Icons.check,
+                                      color: Colors.white,
+                                      size: 20,
+                                    ),
+                                  ),
+                                ),
                             ],
                           ),
                         ),
-                      );
-                    }).toList(),
+                      ),
+                      SizedBox(width: size.width * 0.05),
+                      // Female GIF
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selectedGender = 'female';
+                          });
+                        },
+                        child: Container(
+                          width: size.height * 0.2, // Ensure width equals height for circle
+                          height: size.height * 0.2,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle, // Make the container circular
+                            border: Border.all(
+                              color: selectedGender == 'female' ? Colors.green : Colors.transparent,
+                              width: 2.0,
+                            ),
+                          ),
+                          child: Stack(
+                            children: [
+                              ClipOval( // Clip the image to a circle
+                                child: Image.asset(
+                                  'assets/animation/female.gif',
+                                  height: size.height * 0.2,
+                                  width: size.height * 0.2,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              if (selectedGender == 'female')
+                                Positioned(
+                                  bottom: 5,
+                                  right: 5,
+                                  child: Container(
+                                    padding: const EdgeInsets.all(4.0),
+                                    decoration: const BoxDecoration(
+                                      color: Colors.green,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: const Icon(
+                                      Icons.check,
+                                      color: Colors.white,
+                                      size: 20,
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-
-              /// Submit & Login
               Column(
                 children: [
                   SizedBox(
                     width: double.infinity,
                     height: 48,
                     child: ElevatedButton(
-                      onPressed: () {
+                      onPressed: selectedGender == null
+                          ? null // Disable button if no gender is selected
+                          : () {
                         Navigator.pushNamed(context, '/locationaccess');
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(ButtonBorderRadius),
                         ),
                       ),
                       child: const Text(
@@ -129,12 +177,12 @@ class _GenderScreenState extends State<GenderScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
-                        "Already have a account ? ",
+                        "Already have an account? ",
                         style: TextStyle(color: Colors.white70),
                       ),
                       InkWell(

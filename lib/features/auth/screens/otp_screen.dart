@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import '../../../core/constants/constants.dart';
 import '../../../core/themes/colors.dart';
 
 class OTPScreen extends StatefulWidget {
@@ -83,11 +84,11 @@ class _OTPScreenState extends State<OTPScreen> {
         ),
         const SizedBox(height: 12),
         const Text(
-          "We’ve sent a 6-digit verification code to your registered mobile number/email. Please enter it below to verify your identity.",
+          "We’ve sent a 6-digit verification code to your registered mobile number/email. Enter it below to verify your identity.",
           textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.white70, fontSize: 14),
+          style: TextStyle(color: Colors.white70, fontSize: 9.5),
         ),
-        SizedBox(height: size.height * 0.04),
+        SizedBox(height: size.height * 0.14),
 
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -96,7 +97,7 @@ class _OTPScreenState extends State<OTPScreen> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 4.0),
                 child: AspectRatio(
-                  aspectRatio: 1,
+                  aspectRatio: 0.8,
                   child: TextField(
                     controller: controllers[index],
                     focusNode: focusNodes[index],
@@ -111,11 +112,11 @@ class _OTPScreenState extends State<OTPScreen> {
                       counterText: '',
                       enabledBorder: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.white),
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(ButtonBorderRadius),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.green),
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(ButtonBorderRadius),
                       ),
                       filled: true,
                       fillColor: Colors.black,
@@ -136,7 +137,7 @@ class _OTPScreenState extends State<OTPScreen> {
           }),
         ),
 
-        const SizedBox(height: 20),
+        const SizedBox(height: 11),
 
         GestureDetector(
           onTap: canResend ? startTimer : null,
@@ -149,7 +150,6 @@ class _OTPScreenState extends State<OTPScreen> {
           ),
         ),
 
-        SizedBox(height: size.height * 0.05),
 
         Flexible(
           child: Image.asset(
@@ -173,7 +173,7 @@ class _OTPScreenState extends State<OTPScreen> {
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.primary,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(ButtonBorderRadius),
               ),
             ),
             child: const Text(

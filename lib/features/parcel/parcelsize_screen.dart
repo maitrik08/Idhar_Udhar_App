@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:idhar_udhar/core/themes/colors.dart';
 
+import '../../core/constants/constants.dart';
+
 
 class ParcelSizeScreen extends StatefulWidget {
   @override
@@ -93,7 +95,7 @@ class _ParcelSizeScreenState extends State<ParcelSizeScreen> {
                     isFormComplete ? AppColors.primary : AppColors.primarylite,
                     minimumSize: Size(double.infinity, 50),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(ButtonBorderRadius),
                     ),
                   ),
                   child: const Text(
@@ -121,11 +123,11 @@ class _ParcelSizeScreenState extends State<ParcelSizeScreen> {
         fillColor: Colors.transparent,
         enabledBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: Colors.white70),
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(ButtonBorderRadius),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: Colors.greenAccent),
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(ButtonBorderRadius),
         ),
       ),
     );

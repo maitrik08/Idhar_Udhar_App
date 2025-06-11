@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/constants/constants.dart';
 import '../../../core/themes/colors.dart' show AppColors;
 import 'autocancelride_sheet.dart';
 
@@ -122,7 +123,7 @@ import 'autocancelride_sheet.dart';
                   backgroundColor: AppColors.primary,
                   minimumSize: Size(double.infinity, 48),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(6), // Small radius for rectangle
+                    borderRadius: BorderRadius.circular(ButtonBorderRadius), // Small radius for rectangle
                   ),
                 ),
                 child: Text('Close',style: TextStyle(color: Colors.white),),

@@ -22,6 +22,7 @@ class CustomSearchBar extends StatelessWidget {
           const SizedBox(width: 8),
           Expanded(
             child: TextField(
+              style: TextStyle(color: Colors.black), // Typed text color
               decoration: InputDecoration(
                 hintText: hintText,
                 border: InputBorder.none,

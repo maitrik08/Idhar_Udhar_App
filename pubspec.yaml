@@ -18,6 +18,10 @@ dependencies:
   google_maps_flutter: ^2.5.0
   sliding_up_panel: ^2.0.0
   flutter_animate: ^4.2.0
+  image_picker: ^1.1.2
+  file_picker: ^10.1.9
+  url_launcher: ^6.3.1
+  android_intent_plus: ^5.3.0
 
 dev_dependencies:
   flutter_test:
@@ -30,11 +34,14 @@ flutter:
 
   assets:
     - assets/images/payment/
+    - assets/images/profile/
     - assets/images/home/
     - assets/images/ride/
     - assets/images/delivery/
     - assets/images/icons/
+    - assets/images/avtars/
     - assets/images/
+    - assets/animation/
     - assets/
 
   fonts:

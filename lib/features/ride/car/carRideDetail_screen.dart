@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idhar_udhar/core/constants/constants.dart';
 import 'package:idhar_udhar/features/ride/bike/bikeDriverDetailsPopup.dart';
 import 'package:idhar_udhar/features/ride/car/carDriverDetailsPopup.dart';
 
@@ -12,6 +13,7 @@ class CarRideDetailsPopup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: MediaQuery.of(context).size.height * 0.64,
       decoration: const BoxDecoration(
         color: Colors.black,
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
@@ -200,8 +202,9 @@ class CarRideDetailsPopup extends StatelessWidget {
           // Message Input
           Container(
             decoration: BoxDecoration(
-              color: Colors.grey[800],
-              borderRadius: BorderRadius.circular(24),
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(ButtonBorderRadius),
+              border: Border.all(color: Colors.white)
             ),
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Row(
@@ -213,7 +216,7 @@ class CarRideDetailsPopup extends StatelessWidget {
                     style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
                       hintText: 'Send a message',
-                      hintStyle: TextStyle(color: Colors.white54),
+                      hintStyle: TextStyle(color: Colors.white),
                       border: InputBorder.none,
                     ),
                   ),
@@ -223,10 +226,10 @@ class CarRideDetailsPopup extends StatelessWidget {
                     Container(
                         decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.circular(10)
+                            borderRadius: BorderRadius.circular(2)
                         ),
                         child:  Padding(
-                          padding: const EdgeInsets.all(3),
+                          padding: const EdgeInsets.all(0),
                           child: Icon(Icons.phone, color: Colors.black,size: 15,),
                         )
                     ),
@@ -243,10 +246,10 @@ class CarRideDetailsPopup extends StatelessWidget {
                       child: Container(
                           decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(10)
+                              borderRadius: BorderRadius.circular(2)
                           ),
                           child:  Padding(
-                            padding: const EdgeInsets.all(2),
+                            padding: const EdgeInsets.all(0),
                             child: Icon(Icons.more_horiz, color: Colors.black,size: 15,),
                           )
                       ),

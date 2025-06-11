@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:idhar_udhar/core/themes/colors.dart';
 
+import '../../../core/constants/constants.dart';
+
 class LocationAccessScreen extends StatelessWidget {
   const LocationAccessScreen({super.key});
 
@@ -45,11 +47,14 @@ class LocationAccessScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  const Text(
-                    "Your location helps us connect you to the nearest services instantly.",
-                    style: TextStyle(color: Colors.white70),
-                    textAlign: TextAlign.center,
-                  ),
+                   Padding(
+                     padding: const EdgeInsets.symmetric(horizontal: 20),
+                     child: Text(
+                      "Your location helps us connect you to the nearest services instantly.",
+                      style: TextStyle(color: Colors.white,fontSize: screenSize.width*0.03),
+                      textAlign: TextAlign.center,
+                                       ),
+                   ),
                 ],
               ),
               Flexible(
@@ -67,12 +72,12 @@ class LocationAccessScreen extends StatelessWidget {
                     height: 48,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/allowlocation');
+                        Navigator.pushNamed(context, '/layout');
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(ButtonBorderRadius),
                         ),
                       ),
                       child: const Text(
@@ -85,24 +90,6 @@ class LocationAccessScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children:  [
-                      Text(
-                        "Already have a account ? ",
-                        style: TextStyle(color: Colors.white70),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.pushNamed(context, '/login');
-                        },
-                        child: Text(
-                          "Log in",
-                          style: TextStyle(color: AppColors.primary),
-                        ),
-                      ),
-                    ],
-                  ),
                 ],
               ),
             ],

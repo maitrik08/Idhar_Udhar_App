@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../core/constants/constants.dart';
 import '../../../core/themes/colors.dart';
 
 class NoDriverScreen extends StatefulWidget {
@@ -116,7 +117,7 @@ class _NoDriverScreenState extends State<NoDriverScreen> {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.primary,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(ButtonBorderRadius),
                           ),
                         ),
                         child: Text(
@@ -141,7 +142,7 @@ class _NoDriverScreenState extends State<NoDriverScreen> {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.primary,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(ButtonBorderRadius),
                           ),
                         ),
                         child: const Text(

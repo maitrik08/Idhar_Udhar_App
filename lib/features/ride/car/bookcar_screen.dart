@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:idhar_udhar/core/themes/colors.dart'; // Ensure AppColors.primary = green
+import 'package:idhar_udhar/core/themes/colors.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+
+import '../../../core/constants/constants.dart';
 
 class BookCarScreen extends StatefulWidget {
   const BookCarScreen({super.key});
@@ -18,6 +20,10 @@ class _BookCarScreenState extends State<BookCarScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final isSmallDevice = size.height < 700;
+    final textScale = MediaQuery.of(context).textScaleFactor;
+
     return Scaffold(
       key: _scaffoldKey,
       body: Stack(
@@ -33,99 +39,121 @@ class _BookCarScreenState extends State<BookCarScreen> {
 
           SlidingUpPanel(
             controller: _panelController,
-            minHeight: 250,
-            maxHeight: 400,
+            minHeight: isSmallDevice ? 250 : 280,
+            maxHeight: isSmallDevice ? 250 : 280,
+            isDraggable: false,
             borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
-            panel: _buildPanel(),
-            color: Colors.white, // Matches image
+            panel: _buildPanel(context, size, textScale),
+            color: Colors.white,
           ),
         ],
       ),
-
     );
   }
 
-  Widget _buildPanel() {
+  Widget _buildPanel(BuildContext context, Size size, double textScale) {
+    final double padding = size.width * 0.04;
+
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
+        // Car Tile
         Container(
-          decoration: BoxDecoration(
-              color: Colors.black,
-              borderRadius: BorderRadius.vertical(top: Radius.circular(20))
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+            color: Colors.black,
           ),
-          child: Column(
-            children: [
-              const SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Container(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 15, right: 15, left: 15, bottom: 35),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.black,
+                border: Border.all(color: AppColors.primary, width: 1.3),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: ListTile(
+                contentPadding: EdgeInsets.symmetric(horizontal: padding / 1.5, vertical: 4),
+                leading: Container(
+                  height: 40,
+                  width: 40,
                   decoration: BoxDecoration(
-                      border: Border.all(color: AppColors.primary, width: 1),
-                      borderRadius: BorderRadius.circular(12),
-                      color: Colors.black
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(5),
                   ),
-                  child: ListTile(
-                    leading: Container(
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5)
-                        ),
-                        child: const Icon(Icons.car_crash,color: Colors.black,)
-                    ),
-                    title: const Text("Car", style: TextStyle(fontWeight: FontWeight.w600)),
-                    subtitle: const Text("5:55 pm    3 mins"),
-                    trailing: const Text(
-                      "₹124",
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                    ),
-                  ),
+                  child: const Icon(Icons.directions_car, color: Colors.black),
+                ),
+                title: Text("Car",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14 * textScale,
+                        color: Colors.white)),
+                subtitle: Text("5:55 pm    3 mins",
+                    style: TextStyle(fontSize: 12 * textScale, color: Colors.white70)),
+                trailing: Text(
+                  "₹124",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16 * textScale,
+                      color: Colors.white),
                 ),
               ),
-              const SizedBox(height: 12),
-            ],
+            ),
           ),
         ),
-        const ListTile(
-          leading: Icon(Icons.credit_card,color: Colors.black,),
-          title: Text("Credit Card", style: TextStyle(fontWeight: FontWeight.w500,color: Colors.black)),
-          trailing: Icon(Icons.arrow_forward_ios, size: 18,color: Colors.black,),
+
+        SizedBox(height: size.height * 0.01),
+
+        // Payment method
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: padding),
+          child: const ListTile(
+            dense: true,
+            contentPadding: EdgeInsets.zero,
+            leading: Icon(Icons.credit_card, color: Colors.black),
+            title: Text("Credit Card",
+                style: TextStyle(fontWeight: FontWeight.w500, color: Colors.black)),
+            trailing: Icon(Icons.arrow_forward_ios, size: 18, color: Colors.black),
+          ),
         ),
 
+        SizedBox(height: size.height * 0.003),
+
+        // Buttons
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: padding),
           child: Row(
             children: [
               Expanded(
                 child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/searchcardriver');
-                  },
+                  onPressed: () => Navigator.pushNamed(context, '/searchcardriver'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,
-                    minimumSize: const Size.fromHeight(50),
+                    minimumSize: Size.fromHeight(size.height * 0.055),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(ButtonBorderRadius),
                     ),
                   ),
-                  child: const Text(
-                    "Ready to Ride",
-                    style: TextStyle(fontSize: 15, color: Colors.white),
-                  ),
+                  child: Text("Ready to Ride",
+                      style: TextStyle(fontSize: 13 * textScale, color: Colors.white)),
                 ),
               ),
-              const SizedBox(width: 10),
+              SizedBox(width: padding / 2),
               Container(
-                height: 50,
-                width: 50,
+                height: size.height * 0.055,
+                width: size.height * 0.055,
                 decoration: BoxDecoration(
-                  color: AppColors.primary,
+                  color: Colors.grey.shade300,
                   borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.shade600,
+                      offset: const Offset(1, 3),
+                      blurRadius: 2,
+                    ),
+                  ],
                 ),
                 child: IconButton(
-                  icon: const Icon(Icons.calendar_today, color: Colors.white, size: 20),
+                  icon: const Icon(Icons.calendar_month_outlined, color: Colors.black, size: 27),
                   onPressed: () {
                     showDatePicker(
                       context: context,
@@ -139,7 +167,6 @@ class _BookCarScreenState extends State<BookCarScreen> {
             ],
           ),
         ),
-        const SizedBox(height: 16),
       ],
     );
   }

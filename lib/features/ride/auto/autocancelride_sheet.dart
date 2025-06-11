@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:idhar_udhar/core/themes/colors.dart';
 
+import '../../../core/constants/constants.dart';
 import 'autocancelrideconfirmation_sheet.dart';
 
 
@@ -100,7 +101,7 @@ class _CancelAutoTripSheetState extends State<CancelAutoTripSheet> {
               backgroundColor: AppColors.primary,
               minimumSize: Size(double.infinity, 48),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(6), // Small radius for rectangle
+                borderRadius: BorderRadius.circular(ButtonBorderRadius), // Small radius for rectangle
               ),
             ),
             child: Text('Keep my Trip',style: TextStyle(color: Colors.white),),

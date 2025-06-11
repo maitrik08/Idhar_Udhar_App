@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:idhar_udhar/core/themes/colors.dart';
 
+import '../../core/constants/constants.dart';
+
 class ChoosePrcelThingScreen extends StatefulWidget {
   @override
   _ChoosePrcelThingScreenState createState() => _ChoosePrcelThingScreenState();
@@ -47,10 +49,16 @@ class _ChoosePrcelThingScreenState extends State<ChoosePrcelThingScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(width: 15),
-                    Text(
-                      'What Are You Sending?',
-                      style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'What Are You Sending?',
+                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -71,11 +79,11 @@ class _ChoosePrcelThingScreenState extends State<ChoosePrcelThingScreen> {
                           onPressed: () => selectOption(option['label']),
                           style: ElevatedButton.styleFrom(
                             backgroundColor:
-                            isSelected ? AppColors.primarylite : Colors.grey[850],
+                            isSelected ? AppColors.primary : Colors.grey[850],
                             padding: const EdgeInsets.symmetric(
                                 vertical: 16, horizontal: 20),
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(ButtonBorderRadius),
                             ),
                             alignment: Alignment.centerLeft,
                           ),
@@ -102,7 +110,7 @@ class _ChoosePrcelThingScreenState extends State<ChoosePrcelThingScreen> {
                     backgroundColor: AppColors.primary,
                     minimumSize: Size(double.infinity, 50),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(ButtonBorderRadius),
                     ),
                   ),
                   child: const Text(

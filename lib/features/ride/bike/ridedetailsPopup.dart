@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idhar_udhar/core/constants/constants.dart';
 import 'package:idhar_udhar/features/ride/bike/bikeDriverDetailsPopup.dart';
 
 import 'cancelRidedetail_bottomsheet.dart';
@@ -9,6 +10,7 @@ class BikeRideDetailsPopup extends StatelessWidget {
   const BikeRideDetailsPopup({super.key, this.pin = "1234"});
 
   @override
+  @override
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
@@ -16,6 +18,7 @@ class BikeRideDetailsPopup extends StatelessWidget {
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      height: MediaQuery.of(context).size.height * 0.6, // Set fixed height here
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -57,7 +60,7 @@ class BikeRideDetailsPopup extends StatelessWidget {
           ),
           const SizedBox(height: 20),
 
-          // PIN
+          // PIN section
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -94,7 +97,7 @@ class BikeRideDetailsPopup extends StatelessWidget {
           ),
           const SizedBox(height: 20),
 
-          // Ride message container
+          // Ride details container
           Container(
             decoration: BoxDecoration(
               color: Colors.grey[300],
@@ -104,7 +107,6 @@ class BikeRideDetailsPopup extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Header + More button
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -155,8 +157,8 @@ class BikeRideDetailsPopup extends StatelessWidget {
                           radius: 26,
                           backgroundImage: AssetImage('assets/images/profile.png'),
                         ),
-                        SizedBox(height: 2,),
-                        Text(
+                        const SizedBox(height: 2),
+                        const Text(
                           'Ashutosh',
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
@@ -166,11 +168,10 @@ class BikeRideDetailsPopup extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(width: MediaQuery.of(context).size.width-250,),
-                    Column(
+                    SizedBox(width: MediaQuery.of(context).size.width - 250),
+                    const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-
+                      children: [
                         SizedBox(height: 4),
                         Text(
                           'GJ01XN5412',
@@ -199,15 +200,16 @@ class BikeRideDetailsPopup extends StatelessWidget {
           // Message Input
           Container(
             decoration: BoxDecoration(
-              color: Colors.grey[800],
-              borderRadius: BorderRadius.circular(24),
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(ButtonBorderRadius),
+              border: Border.all(color: Colors.white)
             ),
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Row(
-              children:  [
-                Icon(Icons.message, color: Colors.white70),
-                SizedBox(width: 15),
-                Expanded(
+              children: [
+                const Icon(Icons.message, color: Colors.white70),
+                const SizedBox(width: 15),
+                const Expanded(
                   child: TextField(
                     style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
@@ -220,34 +222,34 @@ class BikeRideDetailsPopup extends StatelessWidget {
                 Row(
                   children: [
                     Container(
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10)
-                        ),
-                        child:  Padding(
-                          padding: const EdgeInsets.all(3),
-                          child: Icon(Icons.phone, color: Colors.black,size: 15,),
-                        )
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: const Padding(
+                        padding: EdgeInsets.all(3),
+                        child: Icon(Icons.phone, color: Colors.black, size: 15),
+                      ),
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     InkWell(
                       onTap: () {
                         showModalBottomSheet(
                           context: context,
                           isScrollControlled: true,
                           backgroundColor: Colors.transparent,
-                          builder: (context) => const DriverDetailsPopup(),
+                          builder: (context) =>  DriverDetailsPopup(),
                         );
                       },
                       child: Container(
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10)
-                          ),
-                          child:  Padding(
-                            padding: const EdgeInsets.all(2),
-                            child: Icon(Icons.more_horiz, color: Colors.black,size: 15,),
-                          )
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.all(2),
+                          child: Icon(Icons.more_horiz, color: Colors.black, size: 15),
+                        ),
                       ),
                     ),
                   ],
@@ -259,4 +261,5 @@ class BikeRideDetailsPopup extends StatelessWidget {
       ),
     );
   }
+
 }

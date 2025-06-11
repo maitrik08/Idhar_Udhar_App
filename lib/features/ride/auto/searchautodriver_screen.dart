@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
+import '../../../core/constants/constants.dart';
 import '../../../core/themes/colors.dart';
 
 class SearchingAutoDriverScreen extends StatefulWidget {
@@ -11,6 +12,7 @@ class SearchingAutoDriverScreen extends StatefulWidget {
 }
 
 class _SearchingAutoDriverScreenState extends State<SearchingAutoDriverScreen> {
+  //Duration _timeLeft = const Duration(seconds: 20);
   Duration _timeLeft = const Duration(minutes: 4);
   Timer? _timer;
 
@@ -62,7 +64,7 @@ class _SearchingAutoDriverScreenState extends State<SearchingAutoDriverScreen> {
         body: SafeArea(
           child: Column(
             children: [
-              const Spacer(flex: 3),
+              const Spacer(flex: 1),
               const Text(
                 "Looking for a Driver....",
                 style: TextStyle(
@@ -100,7 +102,7 @@ class _SearchingAutoDriverScreenState extends State<SearchingAutoDriverScreen> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primary,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(ButtonBorderRadius),
                       ),
                     ),
                     child: const Text(

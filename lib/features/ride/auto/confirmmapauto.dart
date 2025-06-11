@@ -36,49 +36,44 @@ class _ConfirmAutoMapWrapperScreenState extends State<ConfirmAutoMapWrapperScree
 
           // Bottom popup panel
           if (showPopup)
-            DraggableScrollableSheet(
-              initialChildSize: 0.28,
-              minChildSize: 0.2,
-              maxChildSize: 0.6,
-              builder: (context, scrollController) {
-                return SafeArea(
-                  bottom: false, // Prevent extra bottom padding
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-                    child: Container(
-                      color: Colors.black,
-                      padding: EdgeInsets.zero,
-                      margin: EdgeInsets.zero,
-                      child: Stack(
-                        children: [
-                          ListView(
-                            controller: scrollController,
+            SafeArea(
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+                  child: Container(
+                    height: MediaQuery.of(context).size.height * 0.6,
+                    color: Colors.black,
+                    padding: EdgeInsets.zero,
+                    margin: EdgeInsets.zero,
+                    child: Stack(
+                      children: [
+                        ListView(
+                          padding: EdgeInsets.zero,
+                          physics: const ClampingScrollPhysics(),
+                          children: const [
+                            AutoRideDetailsPopup(),
+                          ],
+                        ),
+                        Positioned(
+                          top: 4,
+                          right: 4,
+                          child: IconButton(
+                            icon: const Icon(Icons.keyboard_arrow_down, color: Colors.white, size: 20),
                             padding: EdgeInsets.zero,
-                            physics: const ClampingScrollPhysics(),
-                            children: const [
-                              AutoRideDetailsPopup(),
-                            ],
+                            constraints: const BoxConstraints(),
+                            onPressed: () {
+                              setState(() {
+                                showPopup = false;
+                              });
+                            },
                           ),
-                          Positioned(
-                            top: 4,
-                            right: 4,
-                            child: IconButton(
-                              icon: const Icon(Icons.keyboard_arrow_down, color: Colors.white, size: 20),
-                              padding: EdgeInsets.zero,
-                              constraints: const BoxConstraints(),
-                              onPressed: () {
-                                setState(() {
-                                  showPopup = false;
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
-                );
-              },
+                ),
+              ),
             ),
 
 

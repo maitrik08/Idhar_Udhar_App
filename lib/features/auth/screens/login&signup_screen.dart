@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:idhar_udhar/core/themes/colors.dart';
 
+import '../../../core/constants/constants.dart';
+
 class LoginSignupScreen extends StatelessWidget {
   const LoginSignupScreen({super.key});
 
@@ -30,14 +32,18 @@ class LoginSignupScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 12),
-                  Text(
-                    'Get started by logging into your existing account or create a new one to enjoy our services.',
-                    style: TextStyle(
-                      color: Colors.white70,
-                      fontSize: screenSize.width * 0.038,
-                      fontFamily: 'inter',
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Text(
+                      'Get started by logging into your existing account or create a new one to enjoy our services.',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500,
+                        fontSize: screenSize.width * 0.032,
+                        fontFamily: 'inter',
+                      ),
+                      textAlign: TextAlign.center,
                     ),
-                    textAlign: TextAlign.center,
                   ),
                 ],
               ),
@@ -69,7 +75,7 @@ class LoginSignupScreen extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(ButtonBorderRadius),
                         ),
                       ),
                       child: const Text(
@@ -89,7 +95,7 @@ class LoginSignupScreen extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(ButtonBorderRadius),
                         ),
                       ),
                       child: const Text(

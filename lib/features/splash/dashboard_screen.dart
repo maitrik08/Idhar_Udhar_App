@@ -1,8 +1,62 @@
 import 'package:flutter/material.dart';
+import 'package:idhar_udhar/core/constants/constants.dart';
 import 'package:idhar_udhar/core/themes/colors.dart';
 
-class DashboardScreen extends StatelessWidget {
+class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
+
+  @override
+  State<DashboardScreen> createState() => _DashboardScreenState();
+}
+
+class _DashboardScreenState extends State<DashboardScreen> with TickerProviderStateMixin {
+  late AnimationController _autoController;
+  late AnimationController _bikeController;
+  late AnimationController _carController;
+  late AnimationController _circleController;
+
+  late Animation<Offset> _autoOffset;
+  late Animation<Offset> _bikeOffset;
+  late Animation<Offset> _carOffset;
+  late Animation<double> _circleOpacity;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _autoController = AnimationController(vsync: this, duration: const Duration(milliseconds: 800));
+    _bikeController = AnimationController(vsync: this, duration: const Duration(milliseconds: 800));
+    _carController = AnimationController(vsync: this, duration: const Duration(milliseconds: 800));
+    _circleController = AnimationController(vsync: this, duration: const Duration(milliseconds: 1000));
+
+    _autoOffset = Tween<Offset>(begin: const Offset(1, 0), end: Offset.zero).animate(
+      CurvedAnimation(parent: _autoController, curve: Curves.easeOut),
+    );
+    _bikeOffset = Tween<Offset>(begin: const Offset(-1, 0), end: Offset.zero).animate(
+      CurvedAnimation(parent: _bikeController, curve: Curves.easeOut),
+    );
+    _carOffset = Tween<Offset>(begin: const Offset(1.5, 0), end: Offset.zero).animate(
+      CurvedAnimation(parent: _carController, curve: Curves.easeOut),
+    );
+    _circleOpacity = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(parent: _circleController, curve: Curves.easeIn),
+    );
+
+    // Run animations with delay
+    _circleController.forward();
+    Future.delayed(const Duration(milliseconds: 300), () => _autoController.forward());
+    Future.delayed(const Duration(milliseconds: 700), () => _bikeController.forward());
+    Future.delayed(const Duration(milliseconds: 1200), () => _carController.forward());
+  }
+
+  @override
+  void dispose() {
+    _autoController.dispose();
+    _bikeController.dispose();
+    _carController.dispose();
+    _circleController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,84 +66,72 @@ class DashboardScreen extends StatelessWidget {
       backgroundColor: Colors.black,
       body: Stack(
         children: [
-          // Background Circles
           Align(
             alignment: Alignment.center,
             child: SizedBox(
               width: screenSize.width,
-              height: screenSize.height * 0.3, // Adjust height as needed
+              height: screenSize.height * 0.3,
               child: Stack(
                 clipBehavior: Clip.none,
                 children: [
+                  // Car
                   Positioned(
-                    top: screenSize.width *0.2,
+                    top: screenSize.width * 0.2,
                     left: screenSize.width * 0.38,
-                    child: Image.asset(
-                      'assets/images/car.png',
-                      width: screenSize.width * 0.65,
+                    child: SlideTransition(
+                      position: _carOffset,
+                      child: Image.asset(
+                        'assets/images/car.png',
+                        width: screenSize.width * 0.65,
+                      ),
                     ),
                   ),
-
-                  // Auto - middle layer, center-left
+                  // Auto
                   Positioned(
                     bottom: screenSize.height * 0.025,
                     right: screenSize.width * 0.25,
-                    child: Image.asset(
-                      'assets/images/auto.png',
-                      width: screenSize.width * 0.46,
+                    child: SlideTransition(
+                      position: _autoOffset,
+                      child: Image.asset(
+                        'assets/images/auto.png',
+                        width: screenSize.width * 0.46,
+                      ),
                     ),
                   ),
-
-                  // Bike - top layer, slightly above and left
+                  // Bike
                   Positioned(
                     top: screenSize.height * 0.07,
                     left: screenSize.width * 0.01,
-                    child: Image.asset(
-                      'assets/images/bike.png',
-                      width: screenSize.width * 0.5,
+                    child: SlideTransition(
+                      position: _bikeOffset,
+                      child: Image.asset(
+                        'assets/images/bike.png',
+                        width: screenSize.width * 0.5,
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
           ),
-          Positioned(
-            top: screenSize.height * 0.05,
-            right: screenSize.width * 0.05,
-            child: _buildCircle(screenSize.width * 0.25),
-          ),
-          Positioned(
-            bottom: screenSize.height * 0.29,
-            left: screenSize.width * -0.07,
-            child: _buildCircle(screenSize.width * 0.3),
-          ),
-          Positioned(
-            bottom: screenSize.height * 0.25,
-            right: screenSize.width * 0.05,
-            child: _buildCircle(screenSize.width * 0.10),
-          ),
-          Positioned(
-            bottom: screenSize.height * -0.05,
-            right: screenSize.width * 0.45,
-            child: _buildCircle(screenSize.width * 0.15),
-          ),
-
-          // Tagline Text
+          ..._buildAnimatedCircles(screenSize),
+          // Tagline
           Align(
             alignment: const Alignment(0, -0.46),
             child: Padding(
-              padding:  EdgeInsets.symmetric(horizontal: screenSize.width*0.03),
+              padding: EdgeInsets.symmetric(horizontal: screenSize.width * 0.14),
               child: Text(
-                'Ride Clean. Live Green.A Better Way to Book,Travel, and Deliver.',
+                'Ride Clean. Live Green. A Better Way to Book, Travel, and Deliver.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: screenSize.width * 0.055,
+                  fontSize: screenSize.width * 0.058,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
           ),
+
           // Get Start Button
           Positioned(
             bottom: 50,
@@ -99,13 +141,11 @@ class DashboardScreen extends StatelessWidget {
               width: double.infinity,
               height: 48,
               child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/loginsignup');
-                },
+                onPressed: () => Navigator.pushNamed(context, '/loginsignup'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(ButtonBorderRadius),
                   ),
                 ),
                 child: Text(
@@ -113,15 +153,40 @@ class DashboardScreen extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: screenSize.width * 0.045,
-                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
             ),
           ),
+
         ],
       ),
     );
+  }
+
+  List<Widget> _buildAnimatedCircles(Size screenSize) {
+    return [
+      Positioned(
+        top: screenSize.height * 0.05,
+        right: screenSize.width * 0.05,
+        child: FadeTransition(opacity: _circleOpacity, child: _buildCircle(screenSize.width * 0.25)),
+      ),
+      Positioned(
+        bottom: screenSize.height * 0.29,
+        left: screenSize.width * -0.07,
+        child: FadeTransition(opacity: _circleOpacity, child: _buildCircle(screenSize.width * 0.3)),
+      ),
+      Positioned(
+        bottom: screenSize.height * 0.25,
+        right: screenSize.width * 0.05,
+        child: FadeTransition(opacity: _circleOpacity, child: _buildCircle(screenSize.width * 0.10)),
+      ),
+      Positioned(
+        bottom: screenSize.height * -0.05,
+        right: screenSize.width * 0.45,
+        child: FadeTransition(opacity: _circleOpacity, child: _buildCircle(screenSize.width * 0.15)),
+      ),
+    ];
   }
 
   Widget _buildCircle(double size) {
@@ -130,14 +195,13 @@ class DashboardScreen extends StatelessWidget {
       height: size,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: AppColors.primary,
         gradient: RadialGradient(
-            colors: [
-              AppColors.primarylite,
-              AppColors.primarylite,
-              AppColors.primary,
-            ]
-        )
+          colors: [
+            AppColors.primarylite,
+            AppColors.primarylite,
+            AppColors.primary,
+          ],
+        ),
       ),
     );
   }

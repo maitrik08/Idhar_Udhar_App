@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:idhar_udhar/core/themes/colors.dart';
 
 class PrivacyAndSecurityScreen extends StatefulWidget {
   const PrivacyAndSecurityScreen({super.key});
@@ -88,7 +89,7 @@ class _PrivacyAndSecurityScreenState extends State<PrivacyAndSecurityScreen> {
                                 settings[key] = value;
                               });
                             },
-                            activeColor: Colors.white60,
+                            activeColor: AppColors.primary,
                             inactiveTrackColor: Colors.grey.shade700,
                             inactiveThumbColor: Colors.white,
                           ),

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:idhar_udhar/features/delivery/maindelivery_screen.dart';
+
+import '../../core/constants/constants.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -31,6 +34,7 @@ class HomeScreen extends StatelessWidget {
                         const SizedBox(width: 8),
                         Expanded(
                           child: TextField(
+                            style: TextStyle(color: Colors.black),
                             decoration: InputDecoration(
                               hintText: 'Search',
                               border: InputBorder.none,
@@ -60,7 +64,13 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 20),
             sectionTitle('Ride in Comfort', sectionTitleFontSize),
             const SizedBox(height: 10),
-            roundedImage('assets/images/home/car.png', size),
+            InkWell(
+                onTap:() {
+                  Navigator.pushNamed(context, '/selectcarlocation');
+                  RideType = "car";
+                  print(RideType);
+                },
+                child: roundedImage('assets/images/home/car.png', size)),
 
             const SizedBox(height: 16),
             Row(
@@ -70,7 +80,13 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       sectionTitle('Swift Rides, Zero Wait', sectionTitleFontSize),
                       const SizedBox(height: 10),
-                      roundedImage('assets/images/home/bike.png', size),
+                      InkWell(
+                          onTap:() {
+                            Navigator.pushNamed(context, '/selectbikelocation');
+                            RideType = "car";
+                            print(RideType);
+                          },
+                          child: roundedImage('assets/images/home/bike.png', size)),
                     ],
                   ),
                 ),
@@ -80,7 +96,12 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       sectionTitle('Swift Rides, Zero Wait', sectionTitleFontSize),
                       const SizedBox(height: 10),
-                      roundedImage('assets/images/home/bag.png', size),
+                      InkWell(
+                          onTap:() {
+                            Navigator.push(context,MaterialPageRoute(builder: (_) => Scaffold(body: DeliveryScreen())) );
+                          },
+                          child: roundedImage('assets/images/home/bag.png', size)
+                      ),
                     ],
                   ),
                 ),
@@ -90,7 +111,11 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 16),
             sectionTitle("Hungry? We've Got You", sectionTitleFontSize),
             const SizedBox(height: 10),
-            roundedImage('assets/images/home/burger.png', size),
+            InkWell(
+                onTap:() {
+                  Navigator.push(context,MaterialPageRoute(builder: (_) => Scaffold(body: DeliveryScreen())) );
+                },
+                child: roundedImage('assets/images/home/burger.png', size)),
 
             const SizedBox(height: 16),
             sectionTitle('Deliver Anything, Anytime', sectionTitleFontSize),
@@ -120,10 +145,35 @@ class HomeScreen extends StatelessWidget {
               crossAxisSpacing: 12,
               mainAxisSpacing: 12,
               children: [
-                rideTile('Bike Ride', 'assets/images/home/bike1.png'),
-                rideTile('Car Ride', 'assets/images/home/car1.png'),
-                rideTile('Auto Ride', 'assets/images/home/auto.png'),
-                rideTile('Send a Parcel', 'assets/images/home/parcel.png'),
+                InkWell(
+                    onTap:() {
+                      Navigator.pushNamed(context, '/selectbikelocation');
+                      RideType = "bike";
+                      print(RideType);
+                    },
+                    child: rideTile('Bike Ride', 'assets/images/home/bike1.png')
+                ),
+                InkWell(
+                    onTap:() {
+                      Navigator.pushNamed(context, '/selectcarlocation');
+                      RideType = "car";
+                      print(RideType);
+                    },
+                    child: rideTile('Car Ride', 'assets/images/home/car1.png')
+                ),
+                InkWell(
+                    onTap:() {
+                      Navigator.pushNamed(context, '/selectautolocation');
+                      RideType = "auto";
+                      print(RideType);
+                    },
+                    child: rideTile('Auto Ride', 'assets/images/home/auto.png')
+                ),
+                InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/selectparceltype');
+                    },
+                    child: rideTile('Send a Parcel', 'assets/images/home/parcel.png')),
               ],
             ),
           ],
@@ -193,14 +243,14 @@ class HomeScreen extends StatelessWidget {
           right: 10,
           bottom: 10,
           child: Container(
-            width: 30,
-            height: 20,
+            width: 25,
+            height: 15,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(40),
             ),
             child: Padding(
-              padding: const EdgeInsets.all(1.0),
+              padding: const EdgeInsets.all(0.5),
               child: Image.asset('assets/images/icons/right-arrow.png'),
             ),
           ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 
+import '../../../core/constants/constants.dart';
 import '../../../core/themes/colors.dart';
-
 
 class LanguageSelectionScreen extends StatefulWidget {
   const LanguageSelectionScreen({super.key});
@@ -49,33 +49,47 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
           showWhenUnlinked: false,
           child: Material(
             elevation: 8,
-            color: Colors.grey.shade700, // Dark green background
-            borderRadius: BorderRadius.circular(12),
+            color: Colors.grey.shade800,
+            borderRadius: BorderRadius.circular(ButtonBorderRadius),
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxHeight: 250), // Max 5 items
-              child: ListView(
+              constraints: const BoxConstraints(maxHeight: 250),
+              child: ListView.separated(
                 shrinkWrap: true,
                 padding: const EdgeInsets.symmetric(vertical: 8),
-                children: languages.map((lang) {
-                  return InkWell(
-                    onTap: () {
-                      setState(() {
-                        selectedLanguage = lang;
-                        _toggleDropdown(); // close dropdown
-                      });
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-                      child: Text(
-                        lang,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
+                itemCount: languages.length,
+                separatorBuilder: (_, __) => const Divider(
+                  color: Colors.white24,
+                  height: 1,
+                  thickness: 0.5,
+                  indent: 12,
+                  endIndent: 12,
+                ),
+                  itemBuilder: (context, index) {
+                    final lang = languages[index];
+                    final isSelected = lang == selectedLanguage;
+
+                    return InkWell(
+                      onTap: () {
+                        setState(() {
+                          selectedLanguage = lang;
+                          _toggleDropdown(); // Close the dropdown
+                        });
+                      },
+                      child: Container(
+                        color: isSelected ? AppColors.primary : Colors.transparent, // Background color here
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                        child: Text(
+                          lang,
+                          style: TextStyle(
+                            color: isSelected ? Colors.white : Colors.white, // Keep text white
+                            fontSize: 14,
+                            fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                }).toList(),
+                    );
+                  }
+
               ),
             ),
           ),
@@ -145,7 +159,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                           decoration: BoxDecoration(
                             color: AppColors.primary,
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(ButtonBorderRadius),
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -171,7 +185,6 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                         onPressed: () {
                           if (selectedLanguage != null) {
                             Navigator.pushNamed(context, '/gender');
-                            print("Selected: $selectedLanguage");
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
@@ -184,13 +197,13 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.primary,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(ButtonBorderRadius),
                           ),
                         ),
                         child: Text(
                           "Continue",
                           style: TextStyle(
-                            color: selectedLanguage != null?Colors.white:Colors.white70,
+                            color: selectedLanguage != null ? Colors.white : Colors.white70,
                             fontWeight: FontWeight.bold,
                           ),
                         ),

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:idhar_udhar/core/themes/colors.dart';
 
+import '../../../core/constants/constants.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -57,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: ConstrainedBox(
                   constraints: BoxConstraints(minHeight: constraints.maxHeight),
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: size.width * 0.04),
+                    padding: EdgeInsets.symmetric(horizontal: size.width * 0.07),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -75,13 +77,16 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         SizedBox(height: size.height * 0.015),
 
-                        Center(
-                          child: Text(
-                            'Continue where you left off — your rides and bookings await.',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white70,
-                              fontSize: size.width * 0.037,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 40),
+                          child: Center(
+                            child: Text(
+                              'Continue where you left off — your rides and bookings await.',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: size.width * 0.033,
+                              ),
                             ),
                           ),
                         ),
@@ -113,6 +118,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           controller: numberController,
                           icon: Icons.phone_outlined,
                           hintText: 'Enter your number',
+                          keyboardType: TextInputType.phone, // 👈 Add this line
                         ),
 
                         ColorFiltered(
@@ -137,7 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppColors.primary,
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
+                                borderRadius: BorderRadius.circular(ButtonBorderRadius),
                               ),
                             ),
                             child: const Text(
@@ -190,14 +196,16 @@ class _LoginScreenState extends State<LoginScreen> {
     required IconData icon,
     required String hintText,
     required TextEditingController controller,
+    TextInputType keyboardType = TextInputType.text, // default
   }) {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(color: Colors.white30),
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(ButtonBorderRadius),
       ),
       child: TextField(
         controller: controller,
+        keyboardType: keyboardType, // <-- apply here
         style: const TextStyle(color: Colors.white),
         decoration: InputDecoration(
           prefixIcon: Icon(icon, color: Colors.white70),
@@ -209,5 +217,6 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
 }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:idhar_udhar/core/themes/colors.dart';
+import '../../../core/constants/constants.dart';
 import 'chatbike_screen.dart';
 
 class DriverDetailsPopup extends StatelessWidget {
@@ -157,7 +158,7 @@ class DriverDetailsPopup extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(ButtonBorderRadius),
                     ),
                   ),
                   onPressed: () => Navigator.pop(context),

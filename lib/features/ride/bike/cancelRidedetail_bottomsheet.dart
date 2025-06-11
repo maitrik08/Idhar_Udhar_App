@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/constants/constants.dart';
 import '../../../core/themes/colors.dart' show AppColors;
 import 'cancelride_sheet.dart';
 
@@ -110,7 +111,7 @@ import 'cancelride_sheet.dart';
                   backgroundColor: AppColors.primary,
                   minimumSize: Size(double.infinity, 48),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(6), // Small radius for rectangle
+                    borderRadius: BorderRadius.circular(ButtonBorderRadius), // Small radius for rectangle
                   ),
                 ),
                 child: Text('Cancel ride',style: TextStyle(color: Colors.white),),
@@ -122,7 +123,7 @@ import 'cancelride_sheet.dart';
                   backgroundColor: AppColors.primary,
                   minimumSize: Size(double.infinity, 48),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(6), // Small radius for rectangle
+                    borderRadius: BorderRadius.circular(ButtonBorderRadius), // Small radius for rectangle
                   ),
                 ),
                 child: Text('Close',style: TextStyle(color: Colors.white),),

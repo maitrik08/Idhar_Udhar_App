@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../core/constants/constants.dart';
 import '../../../core/themes/colors.dart';
 
 class NoAutoDriverScreen extends StatefulWidget {
@@ -82,7 +83,7 @@ class _NoAutoDriverScreenState extends State<NoAutoDriverScreen> {
                                   ? Colors.green.withOpacity(0.2)
                                   : Colors.transparent,
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(ButtonBorderRadius),
                               ),
                             ),
                             child: Padding(
@@ -116,7 +117,7 @@ class _NoAutoDriverScreenState extends State<NoAutoDriverScreen> {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.primary,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(ButtonBorderRadius),
                           ),
                         ),
                         child: Text(
@@ -141,7 +142,7 @@ class _NoAutoDriverScreenState extends State<NoAutoDriverScreen> {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.primary,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(ButtonBorderRadius),
                           ),
                         ),
                         child: const Text(

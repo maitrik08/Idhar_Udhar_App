@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:idhar_udhar/core/themes/colors.dart';
 
+import '../../core/constants/constants.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -150,7 +152,7 @@ class _RatingBottomSheetState extends State<RatingBottomSheet> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
+                      borderRadius: BorderRadius.circular(ButtonBorderRadius)),
                   minimumSize: Size(double.infinity, 50),
                 ),
                 onPressed: () {

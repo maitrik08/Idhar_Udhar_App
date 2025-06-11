@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:idhar_udhar/core/themes/colors.dart'; 
+import 'package:idhar_udhar/core/themes/colors.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+
+import '../../../core/constants/constants.dart';
 
 class BookAutoScreen extends StatefulWidget {
   const BookAutoScreen({super.key});
@@ -18,6 +20,9 @@ class _BookAutoScreenState extends State<BookAutoScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final isSmallDevice = size.height < 700;
+
     return Scaffold(
       key: _scaffoldKey,
       body: Stack(
@@ -30,117 +35,132 @@ class _BookAutoScreenState extends State<BookAutoScreen> {
             myLocationEnabled: true,
             myLocationButtonEnabled: false,
           ),
-
           SlidingUpPanel(
             controller: _panelController,
-            minHeight: 250,
-            maxHeight: 400,
+            minHeight: isSmallDevice ? 240 : 270,
+            maxHeight: isSmallDevice ? 240 : 270,
+            isDraggable: false,
             borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
-            panel: _buildPanel(),
-            color: Colors.white, // Matches image
-          ),
+            panel: _buildPanel(context, size),
+            color: Colors.white,
+          )
         ],
       ),
-
     );
   }
 
-  Widget _buildPanel() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          decoration: BoxDecoration(
-              color: Colors.black,
-              borderRadius: BorderRadius.vertical(top: Radius.circular(20))
-          ),
-          child: Column(
-            children: [
-              const SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: AppColors.primary, width: 1),
-                      borderRadius: BorderRadius.circular(12),
-                      color: Colors.black
-                  ),
-                  child: ListTile(
-                    leading: Container(
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5)
-                        ),
-                        child: const Icon(Icons.electric_rickshaw,color: Colors.black,)
-                    ),
-                    title: const Text("Auto", style: TextStyle(fontWeight: FontWeight.w600)),
-                    subtitle: const Text("5:55 pm    3 mins"),
-                    trailing: const Text(
-                      "₹124",
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 12),
-            ],
-          ),
-        ),
-        const ListTile(
-          leading: Icon(Icons.credit_card,color: Colors.black,),
-          title: Text("Credit Card", style: TextStyle(fontWeight: FontWeight.w500,color: Colors.black)),
-          trailing: Icon(Icons.arrow_forward_ios, size: 18,color: Colors.black,),
-        ),
+  Widget _buildPanel(BuildContext context, Size size) {
+    final textScale = MediaQuery.of(context).textScaleFactor;
+    final double padding = size.width * 0.04; // 4% of screen width
 
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Row(
-            children: [
-              Expanded(
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/searchautodriver');
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primary,
-                    minimumSize: const Size.fromHeight(50),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  child: const Text(
-                    "Ready to Ride",
-                    style: TextStyle(fontSize: 15, color: Colors.white),
-                  ),
-                ),
-              ),
-              const SizedBox(width: 10),
-              Container(
-                height: 50,
-                width: 50,
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // Auto Tile
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+              color: Colors.black,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 15,right: 15,left: 15,bottom: 35),
+              child: Container(
                 decoration: BoxDecoration(
-                  color: AppColors.primary,
-                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.black,
+                  border: Border.all(color: AppColors.primary,width: 1.3),
+                  borderRadius: BorderRadius.circular(10)
                 ),
-                child: IconButton(
-                  icon: const Icon(Icons.calendar_today, color: Colors.white, size: 20),
-                  onPressed: () {
-                    showDatePicker(
-                      context: context,
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime.now(),
-                      lastDate: DateTime.now().add(const Duration(days: 365)),
-                    );
-                  },
+                child: ListTile(
+                  contentPadding: EdgeInsets.symmetric(horizontal: padding / 1.5, vertical: 4),
+                  leading: Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: const Icon(Icons.electric_rickshaw, color: Colors.black),
+                  ),
+                  title: Text("Auto", style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14 * textScale, color: Colors.white)),
+                  subtitle: Text("5:55 pm    3 mins", style: TextStyle(fontSize: 12 * textScale, color: Colors.white70)),
+                  trailing: Text(
+                    "₹124",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16 * textScale, color: Colors.white),
+                  ),
                 ),
               ),
-            ],
+            ),
           ),
-        ),
-        const SizedBox(height: 16),
-      ],
+          SizedBox(height: size.height * 0.01),
+
+          // Payment method
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: padding),
+            child: const ListTile(
+              dense: true,
+              contentPadding: EdgeInsets.zero,
+              leading: Icon(Icons.credit_card, color: Colors.black),
+              title: Text("Credit Card", style: TextStyle(fontWeight: FontWeight.w500, color: Colors.black)),
+              trailing: Icon(Icons.arrow_forward_ios, size: 18, color: Colors.black),
+            ),
+          ),
+          SizedBox(height: size.height * 0.003),
+
+          // Buttons
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: padding),
+            child: Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () => Navigator.pushNamed(context, '/searchautodriver'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.primary,
+                      minimumSize: Size.fromHeight(size.height * 0.055),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                      ),
+                    ),
+                    child: Text("Ready to Ride", style: TextStyle(fontSize: 13 * textScale,color: Colors.white)),
+                  ),
+                ),
+                SizedBox(width: padding / 2),
+                Container(
+                  height: size.height * 0.055,
+                  width: size.height * 0.055,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade300,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.shade600,
+                        offset: const Offset(1, 3),
+                        blurRadius: 2,
+                      ),
+                    ],
+                  ),
+                  child: IconButton(
+                    icon: const Icon(Icons.calendar_month_rounded, color: Colors.black, size: 22),
+                    onPressed: () {
+                      showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime.now(),
+                        lastDate: DateTime.now().add(const Duration(days: 365)),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

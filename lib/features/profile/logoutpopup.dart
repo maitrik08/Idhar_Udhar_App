@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
+import '../../core/themes/colors.dart';
+
 void showLogoutDialog(BuildContext context) {
   showDialog(
     context: context,
 
     builder: (context) => AlertDialog(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(13),
       ),
       backgroundColor: Colors.white,
-      contentPadding: const EdgeInsets.all(24),
+      contentPadding: const EdgeInsets.only(left: 24,right: 24,top: 24,bottom: 15),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -17,18 +19,19 @@ void showLogoutDialog(BuildContext context) {
             "Do You Want to Log Out?",
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 18,
+              fontSize: 16,
               fontWeight: FontWeight.bold,
               color: Colors.black,
             ),
           ),
           const SizedBox(height: 12),
           Text(
-            "Don’t worry, your rides and settings\nwill stay safe.",
+            "Don’t worry, your rides and settings will stay safe.",
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 14,
+              fontSize: 12,
               color: Colors.black87,
+              fontWeight: FontWeight.w500,
             ),
           ),
           const SizedBox(height: 24),
@@ -40,8 +43,8 @@ void showLogoutDialog(BuildContext context) {
                 child: ElevatedButton(
                   onPressed: () => Navigator.pop(context),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green[700],
-                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    backgroundColor: AppColors.primary,
+                    padding: const EdgeInsets.symmetric(vertical: 7),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -61,8 +64,8 @@ void showLogoutDialog(BuildContext context) {
                     Navigator.pop(context);
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green[700],
-                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    backgroundColor: AppColors.primary,
+                    padding: const EdgeInsets.symmetric(vertical: 7),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),

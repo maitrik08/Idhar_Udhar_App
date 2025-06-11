@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../core/constants/constants.dart';
 import '../../../core/themes/colors.dart';
 import '../../home/home_screen.dart';
 import '../../mainlayout.dart';
@@ -122,7 +123,7 @@ void showCancelautoConfirmationSheet(BuildContext context) {
                 backgroundColor: Colors.grey[850],
                 minimumSize: Size(double.infinity, 48),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(6),
+                  borderRadius: BorderRadius.circular(ButtonBorderRadius),
                 ),
               ),
               child: Text('NO', style: TextStyle(color: Colors.white)),

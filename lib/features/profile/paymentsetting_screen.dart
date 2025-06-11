@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../core/themes/colors.dart';
+
 class PaymentSettingScreen extends StatefulWidget {
   const PaymentSettingScreen({super.key});
 
@@ -7,95 +9,47 @@ class PaymentSettingScreen extends StatefulWidget {
   State<PaymentSettingScreen> createState() => _PaymentSettingScreenState();
 }
 
+class _PaymentItem {
+  final IconData icon;
+  final String label;
+  final String number;
+  final String expiry;
+  final bool isDefault;
+
+  const _PaymentItem({
+    required this.icon,
+    required this.label,
+    required this.number,
+    required this.expiry,
+    this.isDefault = false,
+  });
+}
+
 class _PaymentSettingScreenState extends State<PaymentSettingScreen> {
   final List<_PaymentItem> _methods = [
-    _PaymentItem(icon: Icons.credit_card_outlined, label: "Credit/Debit Card"),
-    _PaymentItem(icon: Icons.currency_rupee, label: "UPI"),
-    _PaymentItem(icon: Icons.account_balance_wallet_outlined, label: "Wallet"),
+    const _PaymentItem(
+      icon: Icons.credit_card_outlined,
+      label: "HDFC Credit Card",
+      number: "•••• 4242",
+      expiry: "12/26",
+      isDefault: true,
+    ),
+    const _PaymentItem(
+      icon: Icons.credit_card_outlined,
+      label: "ICICI Debit Card",
+      number: "•••• 5678",
+      expiry: "09/25",
+    ),
+    const _PaymentItem(
+      icon: Icons.credit_card_outlined,
+      label: "user@upi",
+      number: "",
+      expiry: "",
+    ),
   ];
 
-  void _editMethod(int index) {
-    final controller = TextEditingController(text: _methods[index].label);
-
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          backgroundColor: const Color(0xFF1C1C1C),
-          title: const Text("Edit Method", style: TextStyle(color: Colors.white)),
-          content: TextField(
-            controller: controller,
-            style: const TextStyle(color: Colors.white),
-            decoration: const InputDecoration(
-              hintText: "Enter method name",
-              hintStyle: TextStyle(color: Colors.white54),
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.white30),
-              ),
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.white),
-              ),
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  _methods[index] = _PaymentItem(
-                    icon: _methods[index].icon,
-                    label: controller.text,
-                  );
-                });
-                Navigator.pop(context);
-              },
-              child: const Text("Save", style: TextStyle(color: Colors.blue)),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   void _addNewMethod() {
-    final controller = TextEditingController();
-
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          backgroundColor: const Color(0xFF1C1C1C),
-          title: const Text("Add New Method", style: TextStyle(color: Colors.white)),
-          content: TextField(
-            controller: controller,
-            style: const TextStyle(color: Colors.white),
-            decoration: const InputDecoration(
-              hintText: "Enter method name",
-              hintStyle: TextStyle(color: Colors.white54),
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.white30),
-              ),
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.white),
-              ),
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  _methods.add(_PaymentItem(
-                    icon: Icons.payment, // Default icon
-                    label: controller.text,
-                  ));
-                });
-                Navigator.pop(context);
-              },
-              child: const Text("Add", style: TextStyle(color: Colors.green)),
-            ),
-          ],
-        );
-      },
-    );
+    // You can implement add functionality here
   }
 
   @override
@@ -112,8 +66,8 @@ class _PaymentSettingScreenState extends State<PaymentSettingScreen> {
                 child: Text(
                   'Payment Methods',
                   style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 22,
+                    fontWeight: FontWeight.w600,
                     color: Colors.white,
                   ),
                 ),
@@ -136,48 +90,94 @@ class _PaymentSettingScreenState extends State<PaymentSettingScreen> {
                     if (index < _methods.length) {
                       final method = _methods[index];
                       return Container(
+                        padding: const EdgeInsets.only(top: 16,right: 16,left: 16,bottom: 8),
                         decoration: BoxDecoration(
-                          color: const Color(0xFF1C1C1C),
-                          borderRadius: BorderRadius.circular(10),
+                          color: const Color(0xFF2F2F2F),
+                          borderRadius: BorderRadius.circular(12),
+                          border: method.isDefault
+                              ? Border.all(color: AppColors.primary)
+                              : null,
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(7.5),
-                          child: ListTile(
-                            leading: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.grey.shade800,
-                                borderRadius: BorderRadius.circular(12),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Icon(method.icon, color: Colors.white, size: 28),
+                            const SizedBox(width: 16),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    method.label,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                  if (method.number.isNotEmpty)
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 4),
+                                      child: Text(
+                                        method.number,
+                                        style: const TextStyle(
+                                          color: Colors.white70,
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ),
+                                  if (method.expiry.isNotEmpty)
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 2),
+                                      child: Text(
+                                        "Expires: ${method.expiry}",
+                                        style: const TextStyle(
+                                          color: Colors.white70,
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ),
+                                  if (method.isDefault)
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 4),
+                                      child: Text(
+                                        "Default",
+                                        style: TextStyle(
+                                          color: AppColors.primary,
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                ],
                               ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(9),
-                                child: Icon(method.icon, color: Colors.white),
-                              ),
                             ),
-                            title: Text(
-                              method.label,
-                              style: const TextStyle(color: Colors.white,fontSize: 14),
-                            ),
-                            trailing: IconButton(
-                              icon: const Icon(Icons.edit_outlined, color: Colors.white),
-                              onPressed: () => _editMethod(index),
-                            ),
-                          ),
+                          ],
                         ),
                       );
                     } else {
+                      // Add New Payment Method Button
                       return GestureDetector(
                         onTap: _addNewMethod,
                         child: Container(
+                          padding: const EdgeInsets.all(16),
                           decoration: BoxDecoration(
-                            color: const Color(0xFF1C1C1C),
-                            borderRadius: BorderRadius.circular(10),
+                            color: const Color(0xFF2F2F2F),
+                            borderRadius: BorderRadius.circular(12),
                           ),
-                          child: const ListTile(
-                            leading: Icon(Icons.add, color: Colors.white),
-                            title: Text(
-                              "Add New Method",
-                              style: TextStyle(color: Colors.white),
-                            ),
+                          child: Row(
+                            children: const [
+                              Icon(Icons.add, color: AppColors.primary),
+                              SizedBox(width: 12),
+                              Text(
+                                "Add new Payment Methods",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       );
@@ -191,11 +191,4 @@ class _PaymentSettingScreenState extends State<PaymentSettingScreen> {
       ),
     );
   }
-}
-
-class _PaymentItem {
-  final IconData icon;
-  final String label;
-
-  const _PaymentItem({required this.icon, required this.label});
 }

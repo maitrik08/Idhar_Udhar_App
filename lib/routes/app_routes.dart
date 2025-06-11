@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:idhar_udhar/features/auth/screens/allowlocation.dart';
 import 'package:idhar_udhar/features/auth/screens/gender_screen.dart';
 import 'package:idhar_udhar/features/auth/screens/languageselection_screen.dart';
 import 'package:idhar_udhar/features/auth/screens/locationpermission_screen.dart';
@@ -8,8 +7,16 @@ import 'package:idhar_udhar/features/auth/screens/login_screen.dart';
 import 'package:idhar_udhar/features/auth/screens/otp_screen.dart';
 import 'package:idhar_udhar/features/auth/screens/signup_screen.dart';
 import 'package:idhar_udhar/features/delivery/maindelivery_screen.dart';
+import 'package:idhar_udhar/features/parcel/bike/chatparcelbike_screen.dart';
+import 'package:idhar_udhar/features/parcel/bike/selectlocationbikeparcel_screen.dart';
 import 'package:idhar_udhar/features/parcel/heavyparcle_screen.dart';
 import 'package:idhar_udhar/features/parcel/parcelsize_screen.dart';
+import 'package:idhar_udhar/features/profile/address/addressdetails_screen.dart';
+import 'package:idhar_udhar/features/profile/avtarselection_screen.dart';
+import 'package:idhar_udhar/features/profile/helpandsupport/callsupport_screen.dart';
+import 'package:idhar_udhar/features/profile/helpandsupport/chatsuport_screen.dart';
+import 'package:idhar_udhar/features/profile/helpandsupport/emailsupport_screen.dart';
+import 'package:idhar_udhar/features/profile/helpandsupport/faqs_screen.dart';
 import 'package:idhar_udhar/features/profile/myride_screen.dart';
 import 'package:idhar_udhar/features/profile/paymentsetting_screen.dart';
 import 'package:idhar_udhar/features/profile/privacyandsecurity_screen.dart';
@@ -34,6 +41,7 @@ import 'package:idhar_udhar/features/splash/dashboard_screen.dart';
 // Import screens
 import '../features/home/home_screen.dart';
 import '../features/mainlayout.dart';
+import '../features/parcel/bike/bikeparcelmap_screen.dart';
 import '../features/parcel/chooceparcelthing_screen.dart';
 import '../features/parcel/selectparcel_screen.dart';
 import '../features/parcel/selectparcelbikelocation_screen.dart';
@@ -114,6 +122,15 @@ class AppRoutes {
   static const String privacyandsecurity= '/privacyandsecurity';
   static const String helpandsupport= '/helpandsupport';
   static const String paymentsetting= '/paymentsetting';
+  static const String avtarselection= '/avtarselection';
+        static const String faqscreen= '/faqscreen';
+        static const String chatsupport= '/chatsupport';
+        static const String emailsupport= '/emailsupport';
+        static const String callsupport= '/callsupport';
+
+
+        static const String addressdetail= '/addressdetail';
+
 
 
 
@@ -122,6 +139,9 @@ class AppRoutes {
   static const String chooseparcelthing= '/chooseparcelthing';
   static const String parcelsize= '/parcelsize';
   static const String selectparcelbike= '/selectparcelbike';
+  static const String selectlocaionbikeparcel= '/selectlocaionbikeparcel';
+  static const String chatparcelbikedriver= '/chatparcelbikedriver';
+  static const String bikeparcelmap= '/bikeparcelmap';
 
 
   static Map<String, WidgetBuilder> routes = {
@@ -134,7 +154,6 @@ class AppRoutes {
     languageselection: (context) => LanguageSelectionScreen(),
     locationaccess: (context) => LocationAccessScreen(),
     gender: (context) => GenderScreen(),
-    allowlocation: (context) => AllowLocationScreen(),
     ride: (context) => RideScreen(),
     layout: (context) => MainLayout(),
     delivery: (context) => DeliveryScreen(),
@@ -180,6 +199,13 @@ class AppRoutes {
     privacyandsecurity: (context) => PrivacyAndSecurityScreen(),
     helpandsupport: (context) => HelpSupportScreen(),
     paymentsetting: (context) => PaymentSettingScreen(),
+    avtarselection: (context) => AvatarSelectionScreen(),
+         faqscreen: (context) => FAQScreen(),
+         chatsupport: (context) => SupportChatScreen(),
+         emailsupport: (context) => EmailSupportScreen(),
+         callsupport: (context) => CallSupportScreen(),
+
+    addressdetail: (context) => AddressDetailsScreen(),
 
 
 
@@ -188,6 +214,11 @@ class AppRoutes {
     chooseparcelthing: (context) => ChoosePrcelThingScreen(),
     parcelsize: (context) => ParcelSizeScreen(),
     selectparcelbike: (context) => SelectParcelBikeLocationScreen(),
+    selectlocaionbikeparcel: (context) => SelectBikeParcelScreen(),
+    chatparcelbikedriver: (context) => ChatParcelBikeScreen(),
+    bikeparcelmap: (context) => BikeParcelMapScreen(),
+
+
 
 
   };

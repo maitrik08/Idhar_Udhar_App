@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:idhar_udhar/core/themes/colors.dart';
 
+import '../../core/constants/constants.dart';
+
 class CreditCardPaymentScreen extends StatelessWidget {
   const CreditCardPaymentScreen({super.key});
 
@@ -118,7 +120,7 @@ class CreditCardPaymentScreen extends StatelessWidget {
                     backgroundColor: AppColors.primary,
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(ButtonBorderRadius),
                     ),
                   ),
                   child: const Text(

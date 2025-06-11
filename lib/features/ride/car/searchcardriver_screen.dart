@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
+import '../../../core/constants/constants.dart';
 import '../../../core/themes/colors.dart';
 
 class SearchingCarDriverScreen extends StatefulWidget {
@@ -38,7 +39,7 @@ class _SearchingCarDriverScreenState extends State<SearchingCarDriverScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text("Request auto-cancelled. No driver found.")),
     );
-    Navigator.pushNamed(context, '/chatcardriver'); // Or navigate to another screen
+    Navigator.pushNamed(context, '/nocardriver'); // Or navigate to another screen
   }
 
   @override
@@ -62,7 +63,7 @@ class _SearchingCarDriverScreenState extends State<SearchingCarDriverScreen> {
         body: SafeArea(
           child: Column(
             children: [
-              const Spacer(flex: 3),
+              const Spacer(flex: 1),
               const Text(
                 "Looking for a Driver....",
                 style: TextStyle(
@@ -100,7 +101,7 @@ class _SearchingCarDriverScreenState extends State<SearchingCarDriverScreen> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primary,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(ButtonBorderRadius),
                       ),
                     ),
                     child: const Text(

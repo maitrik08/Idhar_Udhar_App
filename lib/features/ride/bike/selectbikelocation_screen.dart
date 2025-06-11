@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:idhar_udhar/core/themes/colors.dart';
 
+import '../../../core/constants/constants.dart';
+
 
 class SelectBikeLocationScreen extends StatefulWidget {
   const SelectBikeLocationScreen({super.key});
@@ -75,7 +77,7 @@ class _SelectBikeLocationScreenState extends State<SelectBikeLocationScreen> {
                     backgroundColor: AppColors.primary,
                     foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(ButtonBorderRadius),
                     ),
                   ),
                   onPressed: () {
@@ -109,10 +111,14 @@ class _SelectBikeLocationScreenState extends State<SelectBikeLocationScreen> {
           const SizedBox(width: 10),
           Expanded(
             child: TextField(
+              style: TextStyle(color: Colors.black),
               controller: controller,
               decoration: InputDecoration(
                 hintText: hintText,
                 border: InputBorder.none,
+                  hintStyle: TextStyle(
+                      color: Colors.black38
+                  )
               ),
             ),
           ),
