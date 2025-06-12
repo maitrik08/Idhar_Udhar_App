@@ -89,7 +89,7 @@ class _ConfirmCarPickupScreenState extends State<ConfirmCarPickupScreen> {
                         backgroundColor: AppColors.primary,
                         padding: const EdgeInsets.symmetric(vertical: 14),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                          borderRadius: BorderRadius.circular(buttonBorderRadius),
                         ),
                       ),
                       child: const Text("Confirm pick-up", style: TextStyle(fontSize: 14,color: Colors.white)),

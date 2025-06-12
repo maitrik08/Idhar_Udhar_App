@@ -123,7 +123,7 @@ class _BookAutoScreenState extends State<BookAutoScreen> {
                       backgroundColor: AppColors.primary,
                       minimumSize: Size.fromHeight(size.height * 0.055),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                        borderRadius: BorderRadius.circular(buttonBorderRadius),
                       ),
                     ),
                     child: Text("Ready to Ride", style: TextStyle(fontSize: 13 * textScale,color: Colors.white)),

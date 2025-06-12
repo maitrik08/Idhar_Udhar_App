@@ -101,7 +101,7 @@ class _CancelBikeParcelSheetState extends State<CancelBikeParcelSheet> {
               backgroundColor: AppColors.primary,
               minimumSize: Size(double.infinity, 48),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(ButtonBorderRadius), // Small radius for rectangle
+                borderRadius: BorderRadius.circular(buttonBorderRadius), // Small radius for rectangle
               ),
             ),
             child: Text('Keep my Delivery',style: TextStyle(color: Colors.white),),

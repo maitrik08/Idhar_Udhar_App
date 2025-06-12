@@ -83,7 +83,7 @@ class _ChoosePrcelThingScreenState extends State<ChoosePrcelThingScreen> {
                             padding: const EdgeInsets.symmetric(
                                 vertical: 16, horizontal: 20),
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                              borderRadius: BorderRadius.circular(buttonBorderRadius),
                             ),
                             alignment: Alignment.centerLeft,
                           ),
@@ -110,7 +110,7 @@ class _ChoosePrcelThingScreenState extends State<ChoosePrcelThingScreen> {
                     backgroundColor: AppColors.primary,
                     minimumSize: Size(double.infinity, 50),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                      borderRadius: BorderRadius.circular(buttonBorderRadius),
                     ),
                   ),
                   child: const Text(

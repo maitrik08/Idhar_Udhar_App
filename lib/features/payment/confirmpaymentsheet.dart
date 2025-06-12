@@ -52,11 +52,11 @@ void showConfirmPaymentDialog(BuildContext context) {
                 backgroundColor: AppColors.primary,
                 padding: EdgeInsets.symmetric(vertical: 10),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(ButtonBorderRadius), // Small radius for rectangle
+                  borderRadius: BorderRadius.circular(buttonBorderRadius), // Small radius for rectangle
                 ),
               ),
               onPressed: () {
-                switch (RideType) {
+                switch (rideType) {
                   case 'bike':
                     Navigator.pushNamed(context, '/confirmmapbike');
                     break;

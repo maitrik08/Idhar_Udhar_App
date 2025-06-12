@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:idhar_udhar/core/themes/colors.dart';
 
 import '../../../core/constants/constants.dart';
@@ -143,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppColors.primary,
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                                borderRadius: BorderRadius.circular(buttonBorderRadius),
                               ),
                             ),
                             child: const Text(
@@ -201,7 +200,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(color: Colors.white30),
-        borderRadius: BorderRadius.circular(ButtonBorderRadius),
+        borderRadius: BorderRadius.circular(buttonBorderRadius),
       ),
       child: TextField(
         controller: controller,

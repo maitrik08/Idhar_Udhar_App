@@ -67,7 +67,7 @@ class DeliveryDateBottomSheet extends StatelessWidget {
             height: 50,
             child: ElevatedButton(
               onPressed: () {
-                switch (RideType) {
+                switch (rideType) {
                   case 'bike-parcel':
                     showModalBottomSheet(
                       context: context,
@@ -106,7 +106,7 @@ class DeliveryDateBottomSheet extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primary,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                  borderRadius: BorderRadius.circular(buttonBorderRadius),
                 ),
               ),
               child: const Text(

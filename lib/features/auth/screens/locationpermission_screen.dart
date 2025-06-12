@@ -9,7 +9,6 @@ class LocationAccessScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-    final width = screenSize.width;
     final height = screenSize.height;
     return Scaffold(
       backgroundColor: Colors.black,
@@ -77,7 +76,7 @@ class LocationAccessScreen extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                          borderRadius: BorderRadius.circular(buttonBorderRadius),
                         ),
                       ),
                       child: const Text(

@@ -187,7 +187,7 @@ class BikeRideDetailsPopup extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               color: Colors.black,
-              borderRadius: BorderRadius.circular(ButtonBorderRadius),
+              borderRadius: BorderRadius.circular(buttonBorderRadius),
               border: Border.all(color: Colors.white),
             ),
             padding: const EdgeInsets.symmetric(horizontal: 12),

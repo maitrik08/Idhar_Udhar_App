@@ -90,7 +90,7 @@ class _ConfirmBikePickupScreenState extends State<ConfirmBikePickupScreen> {
                         backgroundColor: AppColors.primary,
                         padding: const EdgeInsets.symmetric(vertical: 14),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                          borderRadius: BorderRadius.circular(buttonBorderRadius),
                         ),
                       ),
                       child: const Text("Confirm pick-up", style: TextStyle(fontSize: 14,color: Colors.white)),

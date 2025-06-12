@@ -112,11 +112,11 @@ class _OTPScreenState extends State<OTPScreen> {
                       counterText: '',
                       enabledBorder: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.white),
-                        borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                        borderRadius: BorderRadius.circular(buttonBorderRadius),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.green),
-                        borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                        borderRadius: BorderRadius.circular(buttonBorderRadius),
                       ),
                       filled: true,
                       fillColor: Colors.black,
@@ -173,7 +173,7 @@ class _OTPScreenState extends State<OTPScreen> {
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.primary,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                borderRadius: BorderRadius.circular(buttonBorderRadius),
               ),
             ),
             child: const Text(

@@ -103,7 +103,7 @@ void showCarRideDetailsSheet(BuildContext context) {
               backgroundColor: AppColors.primary,
               minimumSize: const Size(double.infinity, 48),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                borderRadius: BorderRadius.circular(buttonBorderRadius),
               ),
             ),
             child: const Text('Cancel ride', style: TextStyle(color: Colors.white)),
@@ -115,7 +115,7 @@ void showCarRideDetailsSheet(BuildContext context) {
               backgroundColor: AppColors.primary,
               minimumSize: const Size(double.infinity, 48),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                borderRadius: BorderRadius.circular(buttonBorderRadius),
               ),
             ),
             child: const Text('Close', style: TextStyle(color: Colors.white)),

@@ -50,7 +50,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
           child: Material(
             elevation: 8,
             color: Colors.grey.shade800,
-            borderRadius: BorderRadius.circular(ButtonBorderRadius),
+            borderRadius: BorderRadius.circular(buttonBorderRadius),
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxHeight: 250),
               child: ListView.separated(
@@ -159,7 +159,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                           decoration: BoxDecoration(
                             color: AppColors.primary,
-                            borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                            borderRadius: BorderRadius.circular(buttonBorderRadius),
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -197,7 +197,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.primary,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                            borderRadius: BorderRadius.circular(buttonBorderRadius),
                           ),
                         ),
                         child: Text(

@@ -6,7 +6,6 @@ import '../confirmpaymentsheet.dart';
 class BankLoginSheet {
   static void show(BuildContext context, {required String bankName}) {
     final usernameController = TextEditingController();
-    final passwordController = TextEditingController();
 
     showModalBottomSheet(
       context: context,
@@ -68,7 +67,7 @@ class BankLoginSheet {
                         borderSide: BorderSide(color: Colors.black)
                       ),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(ButtonBorderRadius)),
+                        borderRadius: BorderRadius.all(Radius.circular(buttonBorderRadius)),
                       ),
                     ),
                   ),
@@ -87,7 +86,7 @@ class BankLoginSheet {
                           borderSide: BorderSide(color: Colors.black)
                       ),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(ButtonBorderRadius)),
+                        borderRadius: BorderRadius.all(Radius.circular(buttonBorderRadius)),
                       ),
                     ),
                   ),
@@ -100,7 +99,7 @@ class BankLoginSheet {
                         backgroundColor: AppColors.primary,
                         padding: const EdgeInsets.symmetric(vertical: 14),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                          borderRadius: BorderRadius.circular(buttonBorderRadius),
                         ),
                       ),
                       onPressed: () {

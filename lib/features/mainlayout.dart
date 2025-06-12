@@ -5,7 +5,7 @@ import 'delivery/maindelivery_screen.dart';
 import 'home/home_screen.dart';
 
 class MainLayout extends StatefulWidget {
-  MainLayout({Key? key}) : super(key: key);
+  const MainLayout({Key? key}) : super(key: key);
 
   // ✅ Create the global key here
   static final GlobalKey<_MainLayoutState> mainLayoutKey = GlobalKey<_MainLayoutState>();

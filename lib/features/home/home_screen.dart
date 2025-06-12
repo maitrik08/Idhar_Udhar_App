@@ -73,8 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
             InkWell(
                 onTap:() {
                   Navigator.pushNamed(context, '/selectcarlocation');
-                  RideType = "car";
-                  print(RideType);
+                  rideType = "car";
                 },
                 child: roundedImage('assets/images/home/car.png', size)),
 
@@ -89,8 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       InkWell(
                           onTap:() {
                             Navigator.pushNamed(context, '/selectbikelocation');
-                            RideType = "bike";
-                            print(RideType);
+                            rideType = "bike";
                           },
                           child: roundedImage('assets/images/home/bike.png', size)),
                     ],
@@ -154,24 +152,21 @@ class _HomeScreenState extends State<HomeScreen> {
                 InkWell(
                     onTap:() {
                       Navigator.pushNamed(context, '/selectbikelocation');
-                      RideType = "bike";
-                      print(RideType);
+                      rideType = "bike";
                     },
                     child: rideTile('Bike Ride', 'assets/images/home/bike1.png')
                 ),
                 InkWell(
                     onTap:() {
                       Navigator.pushNamed(context, '/selectcarlocation');
-                      RideType = "car";
-                      print(RideType);
+                      rideType = "car";
                     },
                     child: rideTile('Car Ride', 'assets/images/home/car1.png')
                 ),
                 InkWell(
                     onTap:() {
                       Navigator.pushNamed(context, '/selectautolocation');
-                      RideType = "auto";
-                      print(RideType);
+                      rideType = "auto";
                     },
                     child: rideTile('Auto Ride', 'assets/images/home/auto.png')
                 ),

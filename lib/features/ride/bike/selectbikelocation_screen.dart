@@ -24,7 +24,6 @@ class _SelectBikeLocationScreenState extends State<SelectBikeLocationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -77,7 +76,7 @@ class _SelectBikeLocationScreenState extends State<SelectBikeLocationScreen> {
                     backgroundColor: AppColors.primary,
                     foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                      borderRadius: BorderRadius.circular(buttonBorderRadius),
                     ),
                   ),
                   onPressed: () {

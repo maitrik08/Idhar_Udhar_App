@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:idhar_udhar/core/constants/constants.dart';
-import 'package:idhar_udhar/features/ride/bike/bikeDriverDetailsPopup.dart';
 import 'package:idhar_udhar/features/ride/car/carDriverDetailsPopup.dart';
 import 'package:idhar_udhar/features/ride/car/carcancelRidedetail_bottomsheet.dart';
-import '../bike/cancelRidedetail_bottomsheet.dart';
 
 class CarRideDetailsPopup extends StatelessWidget {
   final String pin;
@@ -157,7 +155,7 @@ class CarRideDetailsPopup extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               color: Colors.black,
-              borderRadius: BorderRadius.circular(ButtonBorderRadius),
+              borderRadius: BorderRadius.circular(buttonBorderRadius),
               border: Border.all(color: Colors.white),
             ),
             padding: const EdgeInsets.symmetric(horizontal: 12),

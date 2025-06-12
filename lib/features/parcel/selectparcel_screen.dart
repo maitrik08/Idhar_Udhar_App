@@ -7,7 +7,6 @@ class ParcelSelectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -50,7 +49,7 @@ class ParcelSelectionScreen extends StatelessWidget {
               const SizedBox(height: 24),
               InkWell(
                 onTap: () {
-                  RideType='bike-parcel';
+                  rideType='bike-parcel';
                   Navigator.pushNamed(context, '/chooseparcelthing');
                 },
                 child: VehicleCard(
@@ -64,7 +63,7 @@ class ParcelSelectionScreen extends StatelessWidget {
               const SizedBox(height: 12),
               InkWell(
                 onTap: () {
-                  RideType='car-parcel';
+                  rideType='car-parcel';
                 Navigator.pushNamed(context, '/chooseparcelthing');},
                 child: VehicleCard(
                   icon: Icons.directions_car,
@@ -77,7 +76,7 @@ class ParcelSelectionScreen extends StatelessWidget {
               const SizedBox(height: 12),
               InkWell(
                 onTap: () {
-                  RideType='auto-parcel';
+                  rideType='auto-parcel';
                   Navigator.pushNamed(context, '/chooseparcelthing');
                 },
                 child: VehicleCard(
@@ -91,7 +90,7 @@ class ParcelSelectionScreen extends StatelessWidget {
               const SizedBox(height: 12),
               InkWell(
                 onTap: () {
-                  RideType='truck-parcel';
+                  rideType='truck-parcel';
                   Navigator.pushNamed(context, '/heavyparceltype');
                 },
                 child: VehicleCard(

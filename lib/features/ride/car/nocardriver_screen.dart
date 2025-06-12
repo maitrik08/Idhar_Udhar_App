@@ -117,7 +117,7 @@ class _NoCarDriverScreenState extends State<NoCarDriverScreen> {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.primary,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                            borderRadius: BorderRadius.circular(buttonBorderRadius),
                           ),
                         ),
                         child: Text(
@@ -142,7 +142,7 @@ class _NoCarDriverScreenState extends State<NoCarDriverScreen> {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.primary,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                            borderRadius: BorderRadius.circular(buttonBorderRadius),
                           ),
                         ),
                         child: const Text(

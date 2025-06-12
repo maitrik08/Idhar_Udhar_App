@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../../core/constants/constants.dart';
-import '../../../core/themes/colors.dart';
-import '../../home/home_screen.dart';
 import '../../mainlayout.dart';
 import 'autocancelationfail_sheet.dart'; // Make sure this has AppColors.red etc.
 
@@ -123,7 +121,7 @@ void showCancelautoConfirmationSheet(BuildContext context) {
                 backgroundColor: Colors.grey[850],
                 minimumSize: Size(double.infinity, 48),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                  borderRadius: BorderRadius.circular(buttonBorderRadius),
                 ),
               ),
               child: Text('NO', style: TextStyle(color: Colors.white)),

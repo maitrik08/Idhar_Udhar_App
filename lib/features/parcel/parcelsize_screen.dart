@@ -95,7 +95,7 @@ class _ParcelSizeScreenState extends State<ParcelSizeScreen> {
                     isFormComplete ? AppColors.primary : AppColors.primarylite,
                     minimumSize: Size(double.infinity, 50),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                      borderRadius: BorderRadius.circular(buttonBorderRadius),
                     ),
                   ),
                   child: const Text(
@@ -123,11 +123,11 @@ class _ParcelSizeScreenState extends State<ParcelSizeScreen> {
         fillColor: Colors.transparent,
         enabledBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: Colors.white70),
-          borderRadius: BorderRadius.circular(ButtonBorderRadius),
+          borderRadius: BorderRadius.circular(buttonBorderRadius),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: Colors.greenAccent),
-          borderRadius: BorderRadius.circular(ButtonBorderRadius),
+          borderRadius: BorderRadius.circular(buttonBorderRadius),
         ),
       ),
     );

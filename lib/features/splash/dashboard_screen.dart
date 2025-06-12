@@ -145,7 +145,7 @@ class _DashboardScreenState extends State<DashboardScreen> with TickerProviderSt
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                    borderRadius: BorderRadius.circular(buttonBorderRadius),
                   ),
                 ),
                 child: Text(

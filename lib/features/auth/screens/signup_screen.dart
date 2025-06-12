@@ -148,7 +148,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                      borderRadius: BorderRadius.circular(buttonBorderRadius),
                     ),
                   ),
                   child: const Text(
@@ -209,7 +209,7 @@ class _SignupScreenState extends State<SignupScreen> {
       margin: const EdgeInsets.only(top: 8),
       decoration: BoxDecoration(
         border: Border.all(color: isEmpty ? Colors.red : Colors.white30),
-        borderRadius: BorderRadius.circular(ButtonBorderRadius),
+        borderRadius: BorderRadius.circular(buttonBorderRadius),
         color: Colors.transparent,
       ),
       child: Column(
@@ -246,7 +246,7 @@ class _SignupScreenState extends State<SignupScreen> {
           decoration: BoxDecoration(
             color: Colors.black45,
             border: Border.all(color: isEmpty ? Colors.red : Colors.white30),
-            borderRadius: BorderRadius.circular(ButtonBorderRadius),
+            borderRadius: BorderRadius.circular(buttonBorderRadius),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

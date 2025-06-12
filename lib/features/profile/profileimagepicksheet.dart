@@ -32,15 +32,15 @@ class ProfilePhotoPicker {
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 16),
-                child: Text("Select Profile Photo", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
+                child: Text("Select Profile Photo", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400,color: Colors.black)),
               ),
               _buildOption(
-                icon: Icons.photo_library_outlined,
+                icon: Icons.photo_outlined,
                 label: "Choose from Gallery",
                 onTap: () => _pickFromGallery(context, onImageSelected),
               ),
               _buildOption(
-                icon: Icons.folder_open,
+                icon: Icons.folder_open_sharp,
                 label: "Choose from Files",
                 onTap: () => _pickFromFiles(context, onImageSelected),
               ),
@@ -70,7 +70,7 @@ class ProfilePhotoPicker {
   static Widget _buildOption({required IconData icon, required String label, required VoidCallback onTap}) {
     return ListTile(
       leading: Icon(icon, color: Colors.black),
-      title: Text(label, style: const TextStyle(color: Colors.black)),
+      title: Text(label, style: const TextStyle(color: Colors.black,fontSize: 13)),
       onTap: onTap,
     );
   }

@@ -61,7 +61,7 @@ class CallSupportScreen extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primary,
                       padding: const EdgeInsets.symmetric(vertical: 13, horizontal: 115),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(ButtonBorderRadius)),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(buttonBorderRadius)),
                     ),
                     onPressed: () => _makePhoneCall(supportNumber),
                     child: const Text("Call Now", style: TextStyle(color: Colors.white, fontSize: 16)),

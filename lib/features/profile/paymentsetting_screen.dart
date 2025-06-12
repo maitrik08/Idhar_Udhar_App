@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../core/themes/colors.dart';
 import 'addpaymentsheet.dart';
 
 class PaymentSettingScreen extends StatefulWidget {

@@ -120,7 +120,7 @@ class OtpVerificationSheet {
                                 backgroundColor: AppColors.primary,
                                 padding: const EdgeInsets.symmetric(vertical: 14),
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                                  borderRadius: BorderRadius.circular(buttonBorderRadius),
                                 ),
                               ),
                               onPressed: () {

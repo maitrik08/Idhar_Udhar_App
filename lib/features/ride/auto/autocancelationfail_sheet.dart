@@ -64,7 +64,7 @@ void showautoCancellationFailedSheet(BuildContext context) {
                 backgroundColor: Colors.grey[850],
                 minimumSize: const Size(double.infinity, 48),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                  borderRadius: BorderRadius.circular(buttonBorderRadius),
                 ),
               ),
               child: const Text(

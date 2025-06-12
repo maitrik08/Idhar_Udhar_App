@@ -171,7 +171,7 @@ class BikeDriverParcelDetailsPopup extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                    borderRadius: BorderRadius.circular(buttonBorderRadius),
                   ),
                 ),
                 onPressed: () => Navigator.pop(context),

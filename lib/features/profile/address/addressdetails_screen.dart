@@ -193,7 +193,7 @@ class _AddressDetailsScreenState extends State<AddressDetailsScreen> {
                   } else {
                     // This is the last item: Add Address Button
                     return GestureDetector(
-                      onTap: () => showAddressDialog(),
+                      onTap: () => Navigator.pushNamed(context, '/selectlocation'),
                       child: Container(
                         //margin: const EdgeInsets.only(top: 8),
                         padding: const EdgeInsets.symmetric(vertical: 16,horizontal: 13),

@@ -75,7 +75,7 @@ class LoginSignupScreen extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                          borderRadius: BorderRadius.circular(buttonBorderRadius),
                         ),
                       ),
                       child: const Text(
@@ -95,7 +95,7 @@ class LoginSignupScreen extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                          borderRadius: BorderRadius.circular(buttonBorderRadius),
                         ),
                       ),
                       child: const Text(

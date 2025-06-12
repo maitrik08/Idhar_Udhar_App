@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:idhar_udhar/features/splash/splash_screen.dart';
 import 'routes/app_routes.dart';
 
 void main() {

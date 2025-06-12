@@ -10,7 +10,6 @@ class DeliveryScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     double titleFontSize = size.width * 0.054;
     double subtitleFontSize = size.width * 0.024;
-    double sectionTitleSize = size.width * 0.043;
 
     return SafeArea(
       child: SingleChildScrollView(

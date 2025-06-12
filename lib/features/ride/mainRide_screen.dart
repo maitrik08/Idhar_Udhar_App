@@ -33,24 +33,24 @@ class RideScreen extends StatelessWidget {
               InkWell(
                  onTap:() {
                    Navigator.pushNamed(context, '/selectbikelocation');
-                   RideType = "bike";
-                   print(RideType);
+                   rideType = "bike";
+                   print(rideType);
                  },
                   child: buildRideOption("Zip Through Traffic", "assets/images/ride/bike.png",cardSize)
               ),
               InkWell(
                   onTap:() {
                     Navigator.pushNamed(context, '/selectcarlocation');
-                    RideType = "car";
-                    print(RideType);
+                    rideType = "car";
+                    print(rideType);
                   },
                   child: buildRideOption("Ride in Comfort", "assets/images/ride/car.png",cardSize)
               ),
               InkWell(
                 onTap:() {
                   Navigator.pushNamed(context, '/selectautolocation');
-                  RideType = "auto";
-                  print(RideType);
+                  rideType = "auto";
+                  print(rideType);
                 },
                 child:buildRideOption("Go Local, Go Easy", "assets/images/ride/auto.png",cardSize),
               ),

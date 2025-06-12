@@ -152,7 +152,7 @@ class _RatingBottomSheetState extends State<RatingBottomSheet> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(ButtonBorderRadius)),
+                      borderRadius: BorderRadius.circular(buttonBorderRadius)),
                   minimumSize: Size(double.infinity, 50),
                 ),
                 onPressed: () {

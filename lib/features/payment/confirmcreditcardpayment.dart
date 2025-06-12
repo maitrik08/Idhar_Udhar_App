@@ -52,7 +52,7 @@ class ConfirmcardPaymentScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    switch (RideType) {
+                    switch (rideType) {
                       case 'bike':
                         Navigator.pushNamed(context, '/confirmmapbike');
                         break;
@@ -84,7 +84,7 @@ class ConfirmcardPaymentScreen extends StatelessWidget {
                     backgroundColor: AppColors.primary,
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                      borderRadius: BorderRadius.circular(buttonBorderRadius),
                     ),
                   ),
                   child: const Text(

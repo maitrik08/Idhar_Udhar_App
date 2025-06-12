@@ -98,7 +98,7 @@ class SelectBikeParcelScreen extends StatelessWidget {
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primary,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(ButtonBorderRadius)),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(buttonBorderRadius)),
               ),
               child: Text(
                 "Confirm Address",

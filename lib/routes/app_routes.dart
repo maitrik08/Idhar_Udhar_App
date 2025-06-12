@@ -51,6 +51,8 @@ import '../features/parcel/selectparcelbikelocation_screen.dart';
 import '../features/payment/allpaymentmethods.dart';
 import '../features/payment/confirmcreditcardpayment.dart';
 import '../features/payment/creditcardpayment.dart';
+import '../features/profile/address/confirmlocation_screen.dart';
+import '../features/profile/address/locationselection_screen.dart';
 import '../features/profile/helpsupport_screen.dart';
 import '../features/ride/auto/searchautodriver_screen.dart';
 import '../features/ride/bike/chatbike_screen.dart';
@@ -134,6 +136,8 @@ class AppRoutes {
 
 
         static const String addressdetail= '/addressdetail';
+        static const String selectlocation= '/selectlocation';
+        static const String confirmlocation= '/confirmlocation';
 
 
 
@@ -214,7 +218,9 @@ class AppRoutes {
          emailsupport: (context) => EmailSupportScreen(),
          callsupport: (context) => CallSupportScreen(),
 
-    addressdetail: (context) => AddressDetailsScreen(),
+         addressdetail: (context) => AddressDetailsScreen(),
+         selectlocation: (context) => LocationSelectionScreen(),
+         confirmlocation: (context) => ConfirmLocationScreen(),
 
 
 

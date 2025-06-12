@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:idhar_udhar/features/profile/profileimagepicksheet.dart';
+import '../../core/themes/colors.dart';
 import 'logoutpopup.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -24,27 +25,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
           Container(
             height: headerHeight,
             width: double.infinity,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Color(0xFF00C853), Color(0xFF64DD17)],
+                colors: [AppColors.gr1, AppColors.gr2],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
               ),
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(25),
                 bottomRight: Radius.circular(25),
               ),
             ),
             child: Stack(
               children: [
-                Positioned(
-                  top: 12,
-                  left: 12,
-                  child: IconButton(
-                    icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white),
-                    onPressed: () => Navigator.pop(context),
-                  ),
-                ),
                 Positioned(
                   left: 20,
                   bottom: 20,
@@ -53,12 +46,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Stack(
                         children: [
                           CircleAvatar(
-                            radius: 35,
-                            backgroundColor: Colors.white,
-                            child: CircleAvatar(
-                              radius: 32,
-                              backgroundImage: _profileImage,
-                            ),
+                            radius: 42,
+                            backgroundImage: _profileImage,
                           ),
                           Positioned(
                             bottom: 0,
@@ -84,21 +73,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                         ],
                       ),
-                      const SizedBox(width: 16),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: const [
-                          Text(
-                            'Name : Floyd Miles',
-                            style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600),
-                          ),
-                          SizedBox(height: 4),
-                          Text(
-                            'Number : +91 9876543160',
-                            style: TextStyle(color: Colors.white, fontSize: 14),
-                          ),
-                        ],
+                      const SizedBox(width: 40),
+                      Center(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: const [
+                            Text(
+                              'Name : Floyd Miles',
+                              style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
+                            ),
+                            SizedBox(height: 4),
+                            Text(
+                              'Number : +91 9876543160',
+                              style: TextStyle(color: Colors.white, fontSize: 12),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -160,7 +151,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             child: Image.asset(imagePath, width: 22, height: 22, color: Colors.white),
           ),
           const SizedBox(width: 18),
-          Text(title, style: const TextStyle(color: Colors.white, fontSize: 15.5, fontWeight: FontWeight.w500)),
+          Text(title, style: const TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w400)),
         ],
       ),
     );

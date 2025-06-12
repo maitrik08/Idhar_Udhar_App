@@ -130,7 +130,7 @@ class _BookCarScreenState extends State<BookCarScreen> {
                     backgroundColor: AppColors.primary,
                     minimumSize: Size.fromHeight(size.height * 0.055),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                      borderRadius: BorderRadius.circular(buttonBorderRadius),
                     ),
                   ),
                   child: Text("Ready to Ride",

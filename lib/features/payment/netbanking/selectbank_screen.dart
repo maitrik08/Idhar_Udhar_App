@@ -95,7 +95,7 @@ class PaymentBottomSheet {
                               : AppColors.primary,
                           padding: const EdgeInsets.symmetric(vertical: 14),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                            borderRadius: BorderRadius.circular(buttonBorderRadius),
                           ),
                         ),
                         onPressed: selectedBankName == null
@@ -126,7 +126,6 @@ class PaymentBottomSheet {
       String? selectedBankName,
       Function(String) onSelected,
       ) {
-    final isSelected = name == selectedBankName;
 
     return InkWell(
       onTap: () => onSelected(name),

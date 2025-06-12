@@ -83,7 +83,7 @@ class _NoAutoDriverScreenState extends State<NoAutoDriverScreen> {
                                   ? Colors.green.withOpacity(0.2)
                                   : Colors.transparent,
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                                borderRadius: BorderRadius.circular(buttonBorderRadius),
                               ),
                             ),
                             child: Padding(
@@ -117,7 +117,7 @@ class _NoAutoDriverScreenState extends State<NoAutoDriverScreen> {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.primary,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                            borderRadius: BorderRadius.circular(buttonBorderRadius),
                           ),
                         ),
                         child: Text(
@@ -142,7 +142,7 @@ class _NoAutoDriverScreenState extends State<NoAutoDriverScreen> {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.primary,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(ButtonBorderRadius),
+                            borderRadius: BorderRadius.circular(buttonBorderRadius),
                           ),
                         ),
                         child: const Text(
