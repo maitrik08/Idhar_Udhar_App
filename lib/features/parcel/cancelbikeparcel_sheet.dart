@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:idhar_udhar/core/themes/colors.dart';
 
-import '../../../core/constants/constants.dart';
+import '../../core/constants/constants.dart';
 import 'cancelbikeparcelconfirmation_sheet.dart';
 
 
@@ -53,7 +53,9 @@ class _CancelBikeParcelSheetState extends State<CancelBikeParcelSheet> {
                 style: TextStyle(fontWeight: FontWeight.w600),
               ),
               TextButton(
-                onPressed: () {}, // Skip action
+                onPressed: () {
+                  showCancelBikeParcelConfirmationSheet(context);
+                }, // Skip action
                 child: Text("Skip", style: TextStyle(color: Colors.white)),
               )
             ],

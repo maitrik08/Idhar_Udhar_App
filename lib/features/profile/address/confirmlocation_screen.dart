@@ -85,7 +85,7 @@ class _ConfirmLocationScreenState extends State<ConfirmLocationScreen> {
                     height: size.height * 0.06,
                     child: ElevatedButton(
                       onPressed: () {
-                        // Handle location confirmation
+                        Navigator.pushNamed(context, '/addressdetail');
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary,

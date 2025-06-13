@@ -1,26 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:idhar_udhar/core/constants/constants.dart';
 import 'package:idhar_udhar/core/themes/colors.dart';
+import 'package:idhar_udhar/features/profile/paymentsetting_screen.dart';
 
-class PaymentItem {
-  final IconData icon;
-  final String label;
-  final String number;
-  final String expiry;
-  final bool isDefault;
-
-  const PaymentItem({
-    required this.icon,
-    required this.label,
-    required this.number,
-    required this.expiry,
-    this.isDefault = false,
-  });
-}
 
 /// Bottom Sheet to Add Payment Method
 class AddCardBottomSheet {
-  static void show(BuildContext context, Function(PaymentItem) onAdd) {
+  static void show(BuildContext context, void Function(PaymentItem) onAdd) {
     final cardNumberController = TextEditingController();
     final nameController = TextEditingController();
     final expiryController = TextEditingController();

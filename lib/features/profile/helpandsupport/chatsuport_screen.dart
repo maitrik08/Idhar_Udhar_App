@@ -111,7 +111,7 @@ class _SupportChatScreenState extends State<SupportChatScreen> {
                                 ),
                                 child: Text(
                                   msg['text'],
-                                  style: const TextStyle(color: Colors.white),
+                                  style:  TextStyle(color: Colors.white,fontSize: MediaQuery.of(context).size.width * 0.035),
                                 ),
                               ),
                               const SizedBox(height: 4),
@@ -154,9 +154,9 @@ class _SupportChatScreenState extends State<SupportChatScreen> {
                           ),
                         ),
                       ),
-                      IconButton(
-                        icon: Icon(Icons.send, color: AppColors.primary),
-                        onPressed: sendMessage,
+                      InkWell(
+                        child: Icon(Icons.send, color: AppColors.primary,size: 20,),
+                        onTap: sendMessage,
                       ),
                     ],
                   ),

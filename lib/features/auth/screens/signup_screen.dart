@@ -138,7 +138,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 hint: "Enter your number",
                 inputType: TextInputType.phone,
               ),
-              SizedBox(height: size.height * 0.15),
+              SizedBox(height: size.height * 0.17),
 
               SizedBox(
                 width: double.infinity,
@@ -160,7 +160,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: size.height * 0.03),
+              SizedBox(height: size.height * 0.01),
 
               Center(
                 child: RichText(
@@ -177,6 +177,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             Navigator.pushNamed(context, '/login');
+                            IsLogin = true;
                           },
                       ),
                     ],

@@ -53,7 +53,9 @@ class _CancelAutoTripSheetState extends State<CancelAutoTripSheet> {
                 style: TextStyle(fontWeight: FontWeight.w600),
               ),
               TextButton(
-                onPressed: () {}, // Skip action
+                onPressed: () {
+                  showCancelautoConfirmationSheet(context);
+                }, // Skip action
                 child: Text("Skip", style: TextStyle(color: Colors.white)),
               )
             ],

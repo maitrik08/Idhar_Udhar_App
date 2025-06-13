@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:idhar_udhar/core/constants/constants.dart';
+import '../cancelBikeparceldetail_bottomsheet.dart';
 import 'bikeparceldetail.dart';
-import 'cancelBikeparceldetail_bottomsheet.dart';
 
 
 class BikeParcelDetailsPopup extends StatelessWidget {

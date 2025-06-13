@@ -159,7 +159,7 @@ class _OTPScreenState extends State<OTPScreen> {
           ),
         ),
 
-        const SizedBox(height: 20),
+        SizedBox(height: size.height * 0.1),
 
         SizedBox(
           width: double.infinity,
@@ -168,7 +168,8 @@ class _OTPScreenState extends State<OTPScreen> {
             onPressed: () {
               String otp = getEnteredOTP();
               debugPrint("Entered OTP: $otp");
-              Navigator.pushNamed(context, '/languageselection');
+
+                IsLogin!? Navigator.pushNamed(context, '/layout'):Navigator.pushNamed(context, '/languageselection');
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.primary,
@@ -186,7 +187,7 @@ class _OTPScreenState extends State<OTPScreen> {
           ),
         ),
 
-        const SizedBox(height: 12),
+        SizedBox(height: size.height * 0.01),
 
         RichText(
           text: TextSpan(
@@ -201,6 +202,7 @@ class _OTPScreenState extends State<OTPScreen> {
                 ),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
+                    IsLogin = true;
                     Navigator.pushNamed(context, '/login');
                   },
               ),
@@ -208,7 +210,7 @@ class _OTPScreenState extends State<OTPScreen> {
           ),
         ),
 
-        const SizedBox(height: 40),
+         SizedBox(height: size.height * 0.05),
       ],
     );
 

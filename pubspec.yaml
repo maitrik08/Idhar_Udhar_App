@@ -33,6 +33,7 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/images/delivery/vehicle/
     - assets/images/payment/
     - assets/images/profile/
     - assets/images/home/

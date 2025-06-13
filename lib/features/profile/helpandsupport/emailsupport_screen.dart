@@ -110,7 +110,7 @@ class _EmailSupportScreenState extends State<EmailSupportScreen> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    padding: const EdgeInsets.symmetric(vertical: 8),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8)),
                   ),
@@ -122,7 +122,7 @@ class _EmailSupportScreenState extends State<EmailSupportScreen> {
                   child: const Text(
                     "Send Email",
                     style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
                   ),
                 ),
               ],

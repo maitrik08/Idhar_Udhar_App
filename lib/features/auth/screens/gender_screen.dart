@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import '../../../core/constants/constants.dart';
 import '../../../core/themes/colors.dart';
@@ -176,25 +177,31 @@ class _GenderScreenState extends State<GenderScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        "Already have an account? ",
-                        style: TextStyle(color: Colors.white70),
+                  SizedBox(height: height * 0.01),
+
+                  Center(
+                    child: RichText(
+                      text: TextSpan(
+                        text: "Already have an account ? ",
+                        style: const TextStyle(color: Colors.white70),
+                        children: [
+                          TextSpan(
+                            text: "Log in",
+                            style: TextStyle(
+                              color: AppColors.primary,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                IsLogin = true;
+                                Navigator.pushNamed(context, '/login');
+                              },
+                          ),
+                        ],
                       ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.pushNamed(context, '/login');
-                        },
-                        child: Text(
-                          "Log in",
-                          style: TextStyle(color: AppColors.primary),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
+                  SizedBox(height: height * 0.005),
                 ],
               ),
             ],

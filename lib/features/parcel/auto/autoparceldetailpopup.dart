@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:idhar_udhar/core/constants/constants.dart';
-
-import '../bike/cancelBikeparceldetail_bottomsheet.dart';
+import '../cancelBikeparceldetail_bottomsheet.dart';
 import 'autoparceldriverdetail.dart';
 
 

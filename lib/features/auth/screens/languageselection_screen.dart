@@ -33,70 +33,88 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
     }
   }
 
+
   OverlayEntry _createOverlayEntry() {
     RenderBox renderBox = _selectBoxKey.currentContext!.findRenderObject() as RenderBox;
     final size = renderBox.size;
     final offset = renderBox.localToGlobal(Offset.zero);
 
     return OverlayEntry(
-      builder: (context) => Positioned(
-        left: offset.dx,
-        top: offset.dy + size.height + 4,
-        width: size.width,
-        child: CompositedTransformFollower(
-          link: _layerLink,
-          offset: Offset(0, size.height + 4),
-          showWhenUnlinked: false,
-          child: Material(
-            elevation: 8,
-            color: Colors.grey.shade800,
-            borderRadius: BorderRadius.circular(buttonBorderRadius),
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxHeight: 250),
-              child: ListView.separated(
-                shrinkWrap: true,
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                itemCount: languages.length,
-                separatorBuilder: (_, __) => const Divider(
-                  color: Colors.white24,
-                  height: 1,
-                  thickness: 0.5,
-                  indent: 12,
-                  endIndent: 12,
-                ),
-                  itemBuilder: (context, index) {
-                    final lang = languages[index];
-                    final isSelected = lang == selectedLanguage;
-
-                    return InkWell(
-                      onTap: () {
-                        setState(() {
-                          selectedLanguage = lang;
-                          _toggleDropdown(); // Close the dropdown
-                        });
-                      },
-                      child: Container(
-                        color: isSelected ? AppColors.primary : Colors.transparent, // Background color here
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-                        child: Text(
-                          lang,
-                          style: TextStyle(
-                            color: isSelected ? Colors.white : Colors.white, // Keep text white
-                            fontSize: 14,
-                            fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                          ),
-                        ),
+      builder: (context) => GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        onTap: () {
+          _toggleDropdown(); // Close when tapped outside
+        },
+        child: Stack(
+          children: [
+            Positioned(
+              left: offset.dx,
+              top: offset.dy + size.height + 4,
+              width: size.width,
+              child: CompositedTransformFollower(
+                link: _layerLink,
+                offset: Offset(0, size.height + 4),
+                showWhenUnlinked: false,
+                child: Material(
+                  elevation: 8,
+                  color: Colors.grey.shade800,
+                  borderRadius: BorderRadius.circular(buttonBorderRadius),
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxHeight: 250),
+                    child: ListView.separated(
+                      shrinkWrap: true,
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      itemCount: languages.length,
+                      separatorBuilder: (_, __) => const Divider(
+                        color: Colors.white24,
+                        height: 1,
+                        thickness: 0.5,
+                        indent: 12,
+                        endIndent: 12,
                       ),
-                    );
-                  }
+                      itemBuilder: (context, index) {
+                        final lang = languages[index];
+                        final isSelected = lang == selectedLanguage;
 
+                        return InkWell(
+                          onTap: () {
+                            setState(() {
+                              selectedLanguage = lang;
+                            });
+                            _overlayEntry?.remove();
+                            _overlayEntry = _createOverlayEntry();
+                            Overlay.of(context).insert(_overlayEntry!);
+                            Future.delayed(const Duration(milliseconds: 800), () {
+                              _toggleDropdown();
+                            });
+                          },
+
+
+                          child: Container(
+                            color: isSelected ? AppColors.primary : Colors.transparent,
+                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                            child: Text(
+                              lang,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
               ),
             ),
-          ),
+          ],
         ),
       ),
     );
   }
+
 
   @override
   void dispose() {
@@ -209,7 +227,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: height * 0.02),
+                    SizedBox(height: height * 0.01),
 
                     Center(
                       child: RichText(
@@ -225,6 +243,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                               ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
+                                  IsLogin = true;
                                   Navigator.pushNamed(context, '/login');
                                 },
                             ),

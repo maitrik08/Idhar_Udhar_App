@@ -32,18 +32,15 @@ class LoginSignupScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 12),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: Text(
-                      'Get started by logging into your existing account or create a new one to enjoy our services.',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                        fontSize: screenSize.width * 0.032,
-                        fontFamily: 'inter',
-                      ),
-                      textAlign: TextAlign.center,
+                  Text(
+                    'Get started by logging into your existing account or create a new one to enjoy our services.',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                      fontSize: screenSize.width * 0.032,
+                      fontFamily: 'inter',
                     ),
+                    textAlign: TextAlign.center,
                   ),
                 ],
               ),
@@ -71,6 +68,7 @@ class LoginSignupScreen extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.pushNamed(context, '/login');
+                        IsLogin = true;
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary,
@@ -91,6 +89,7 @@ class LoginSignupScreen extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.pushNamed(context, '/signup');
+                        IsLogin = false;
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary,

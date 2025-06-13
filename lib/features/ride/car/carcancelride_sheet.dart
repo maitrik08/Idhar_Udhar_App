@@ -53,7 +53,9 @@ class _CancelCarTripSheetState extends State<CancelCarTripSheet> {
                 style: TextStyle(fontWeight: FontWeight.w600),
               ),
               TextButton(
-                onPressed: () {}, // Skip action
+                onPressed: () {
+                  showCarCancelConfirmationSheet(context);
+                }, // Skip action
                 child: Text("Skip", style: TextStyle(color: Colors.white)),
               )
             ],

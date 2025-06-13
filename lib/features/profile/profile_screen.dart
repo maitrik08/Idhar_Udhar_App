@@ -102,27 +102,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: ListView(
                 children: [
-                  InkWell(
-                      onTap: () => Navigator.pushNamed(context, '/myride'),
-                      child: profileOption('assets/images/profile/myride.png', "My Ride")),
-                  InkWell(
-                      onTap: () => Navigator.pushNamed(context, '/helpandsupport'),
-                      child: profileOption('assets/images/profile/helpandsupport.png', "Help & Support")),
-                  InkWell(
-                      onTap: () => Navigator.pushNamed(context, '/addressdetail'),
-                      child: profileOption('assets/images/profile/address.png', "Address")),
-                  InkWell(
-                      onTap: () =>Navigator.pushNamed(context, '/rewards'),
-                      child: profileOption('assets/images/profile/reward.png', "Rewards")),
-                  InkWell(
-                      onTap: () => Navigator.pushNamed(context, '/paymentsetting'),
-                      child: profileOption('assets/images/profile/payment.png', "Payment Settings")),
-                  InkWell(
-                      onTap: () => Navigator.pushNamed(context, '/privacyandsecurity'),
-                      child: profileOption('assets/images/profile/privacy.png', "Account Privacy")),
-                  InkWell(
-                      onTap: () => showLogoutDialog(context),
-                      child: profileOption('assets/images/profile/logout.png', "Log Out")),
+                  profileOption('assets/images/profile/myride.png', "My Ride",routeName:'/myride'),
+                  profileOption('assets/images/profile/helpandsupport.png', "Help & Support",routeName:'/helpandsupport'),
+                  profileOption('assets/images/profile/address.png', "Address",routeName:'/addressdetail'),
+                  profileOption('assets/images/profile/reward.png', "Rewards",routeName:'/rewards'),
+                  profileOption('assets/images/profile/payment.png', "Payment Settings",routeName:'/paymentsetting'),
+                  profileOption('assets/images/profile/privacy.png', "Account Privacy",routeName:'/privacyandsecurity'),
+                  profileOption('assets/images/profile/logout.png', "Log Out"),
                 ],
               ),
             ),
@@ -132,7 +118,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Widget profileOption(String imagePath, String title) {
+  Widget profileOption(String imagePath, String title,{String? routeName}) {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -140,19 +126,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
         color: const Color(0xFF2C2C2C),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Row(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.grey.shade700,
-              borderRadius: BorderRadius.circular(7),
+      child: InkWell(
+        onTap: () {
+          if (routeName == null || routeName.isEmpty) {
+            showLogoutDialog(context);
+          } else {
+            Navigator.pushNamed(context, routeName);
+          }
+        },
+
+        child: Row(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.grey.shade700,
+                borderRadius: BorderRadius.circular(7),
+              ),
+              padding: const EdgeInsets.all(10),
+              child: Image.asset(imagePath, width: 22, height: 22, color: Colors.white),
             ),
-            padding: const EdgeInsets.all(10),
-            child: Image.asset(imagePath, width: 22, height: 22, color: Colors.white),
-          ),
-          const SizedBox(width: 18),
-          Text(title, style: const TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w400)),
-        ],
+            const SizedBox(width: 18),
+            Text(title, style: const TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w400)),
+          ],
+        ),
       ),
     );
   }

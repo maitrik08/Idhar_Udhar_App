@@ -20,7 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _onLoginPressed() {
     if (_isInputValid) {
-      Navigator.pushNamed(context, '/layout');
+      Navigator.pushNamed(context, '/otpscreen');
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please enter email or number')),
@@ -132,7 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
 
-                        SizedBox(height: size.height * 0.02),
+                        SizedBox(height: size.height * 0.05),
 
                         SizedBox(
                           width: double.infinity,
@@ -155,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
 
-                        SizedBox(height: size.height * 0.025),
+                        SizedBox(height: size.height * 0.01),
 
                         Center(
                           child: RichText(
@@ -172,6 +172,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
                                       Navigator.pushNamed(context, '/signup');
+                                      IsLogin = false;
                                     },
                                 ),
                               ],
