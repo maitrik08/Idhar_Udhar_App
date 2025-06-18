@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'ridedetailsPopup.dart';
+import 'ridedetailsPopup.dart'; // Make sure this path is correct
 
 class ConfirmMapWrapperScreen extends StatefulWidget {
   const ConfirmMapWrapperScreen({super.key});
@@ -10,78 +10,44 @@ class ConfirmMapWrapperScreen extends StatefulWidget {
 }
 
 class _ConfirmMapWrapperScreenState extends State<ConfirmMapWrapperScreen> {
-  bool showPopup = true;
+  bool _showSheet = true;
   static const LatLng destination = LatLng(23.0422, 72.5917);
 
   @override
   Widget build(BuildContext context) {
-    final popupHeight = MediaQuery.of(context).size.height * 0.6;
-
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Stack(
-        children: [
-          GoogleMap(
-            initialCameraPosition: const CameraPosition(
-              target: destination,
-              zoom: 16,
-            ),
-            markers: {
-              const Marker(
-                markerId: MarkerId('destination'),
-                position: destination,
-              ),
-            },
-          ),
-
-          // Fixed-position popup
-          if (showPopup)
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Container(
-                height: popupHeight,
-                decoration: const BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-                ),
-                child: Stack(
-                  children: [
-                    // Content
-                    const BikeRideDetailsPopup(),
-
-                    // Collapse button
-                    Positioned(
-                      top: 8,
-                      right: 8,
-                      child: IconButton(
-                        icon: const Icon(Icons.keyboard_arrow_down, color: Colors.white),
-                        onPressed: () {
-                          setState(() => showPopup = false);
-                        },
-                      ),
-                    ),
-                  ],
-                ),
+      body: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () {
+          if (_showSheet) {
+            setState(() {
+              _showSheet = false;
+            });
+          }
+        },
+        child: Stack(
+          children: [
+            const GoogleMap(
+              initialCameraPosition: CameraPosition(
+                target: destination,
+                zoom: 16,
               ),
             ),
-
-          // Expand FAB
-          if (!showPopup)
-            Positioned(
-              bottom: 20,
-              right: 20,
-              child: FloatingActionButton(
-                mini: true,
-                backgroundColor: Colors.blue,
-                onPressed: () {
-                  setState(() => showPopup = true);
+            if (_showSheet)
+              DraggableScrollableSheet(
+                initialChildSize: 0.55,
+                minChildSize: 0.05,
+                maxChildSize: 0.6,
+                builder: (context, scrollController) {
+                  return GestureDetector(
+                    onTap: () {}, // Prevent tap inside sheet from closing it
+                    child: BikeRideDetailsPopup(scrollController: scrollController),
+                  );
                 },
-                child: const Icon(Icons.keyboard_arrow_up),
               ),
-            ),
-        ],
+          ],
+        ),
       ),
     );
   }

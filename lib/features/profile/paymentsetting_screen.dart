@@ -73,11 +73,21 @@ class _PaymentSettingScreenState extends State<PaymentSettingScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Center(
-                child: Text(
-                  'Payment Methods',
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600, color: Colors.white),
-                ),
+              Row(
+                children: [
+                  InkWell(
+                      onTap: () => Navigator.pop(context),
+                      child: const Icon(Icons.arrow_back, color: Colors.white, size: 28)
+                  ),
+                  Expanded(
+                    child: const Center(
+                      child: Text(
+                        'Payment Methods',
+                        style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600, color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 32),
               const Text(

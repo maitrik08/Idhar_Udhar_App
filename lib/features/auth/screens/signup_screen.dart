@@ -1,9 +1,13 @@
+import 'dart:convert';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:idhar_udhar/core/themes/colors.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/constants/constants.dart';
+import '../../../core/themes/colors.dart';
+import '../../../core/services/authservices.dart';
+import 'otp_screen.dart';
+
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
 
@@ -17,22 +21,24 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   bool _submitted = false;
+  bool _isLoading = false;
+
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: DateTime(2000, 1),
+      initialDate: DateTime(2000),
       firstDate: DateTime(1900),
       lastDate: DateTime.now(),
       builder: (context, child) {
         return Theme(
           data: ThemeData.dark().copyWith(
-            colorScheme: ColorScheme.dark(
+            colorScheme: const ColorScheme.dark(
               primary: AppColors.primary,
               onPrimary: Colors.white,
               surface: Colors.black,
               onSurface: Colors.white,
             ),
-            dialogBackgroundColor: Colors.grey[900],
+            dialogBackgroundColor: Colors.grey,
           ),
           child: child!,
         );
@@ -46,32 +52,69 @@ class _SignupScreenState extends State<SignupScreen> {
     }
   }
 
-  void _onSignupPressed() {
-    setState(() {
-      _submitted = true;
-    });
+  Future<void> _handleSignup() async {
+    setState(() => _submitted = true);
 
-    final isValid = _nameController.text.trim().isNotEmpty &&
-        _dobController.text.trim().isNotEmpty &&
-        _emailController.text.trim().isNotEmpty &&
-        _numberController.text.trim().isNotEmpty;
+    final name = _nameController.text.trim();
+    final dob = _dobController.text.trim();
+    final email = _emailController.text.trim();
+    final phone = _numberController.text.trim();
 
-    if (isValid) {
-      Navigator.pushNamed(context, '/otpscreen');
-    } else {
+    if (name.isEmpty || dob.isEmpty || email.isEmpty || phone.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Please fill all required fields."),
-        ),
+        const SnackBar(content: Text("Please fill all required fields.")),
       );
+      return;
+    }
+
+    try {
+      setState(() => _isLoading = true);
+      final response = await AuthService.signUp(
+        name: name,
+        email: email,
+        dob: dob,
+        phone: phone,
+      );
+      print("Signup Payload: name=$name, email=$email, dob=$dob, number=$phone");
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        final userId = data['userId'];
+
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('userId', userId);
+        await AuthService.sendOTP(identifier: userId);
+
+        Navigator.push(context, MaterialPageRoute(builder: (_) =>  OTPScreen()));
+      } else {
+        print('$name $phone $dob $email');
+        print("Error: ${response.body}");
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Signup failed: ${response.body}")),
+        );
+      }
+    } catch (e) {
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Error: $e")),
+      );
+    } finally {
+      setState(() => _isLoading = false);
     }
   }
 
+  @override
+  void dispose() {
+    _dobController.dispose();
+    _numberController.dispose();
+    _nameController.dispose();
+    _emailController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -94,7 +137,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: size.height * 0.01),
+              const SizedBox(height: 8),
               Center(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -111,26 +154,13 @@ class _SignupScreenState extends State<SignupScreen> {
               SizedBox(height: size.height * 0.04),
 
               _buildLabel("Name"),
-              _buildInputField(
-                controller: _nameController,
-                icon: Icons.person,
-                hint: "Enter your name",
-              ),
-              SizedBox(height: size.height * 0.025),
+              _buildInputField(controller: _nameController, icon: Icons.person, hint: "Enter your name"),
 
+              SizedBox(height: size.height * 0.025),
               _buildLabel("Birthday"),
               _buildDatePickerField(context),
-              SizedBox(height: size.height * 0.025),
 
-              _buildLabel("Email"),
-              _buildInputField(
-                controller: _emailController,
-                icon: Icons.email_outlined,
-                hint: "Enter your email",
-                inputType: TextInputType.emailAddress,
-              ),
               SizedBox(height: size.height * 0.025),
-
               _buildLabel("Number"),
               _buildInputField(
                 controller: _numberController,
@@ -138,13 +168,26 @@ class _SignupScreenState extends State<SignupScreen> {
                 hint: "Enter your number",
                 inputType: TextInputType.phone,
               ),
-              SizedBox(height: size.height * 0.17),
 
-              SizedBox(
+              SizedBox(height: size.height * 0.025),
+              _buildLabel("Email"),
+              _buildInputField(
+                controller: _emailController,
+                icon: Icons.email_outlined,
+                hint: "Enter your email",
+                inputType: TextInputType.emailAddress,
+              ),
+
+
+
+              SizedBox(height: size.height * 0.17),
+              _isLoading
+                  ? const Center(child: CircularProgressIndicator(color: Colors.white))
+                  : SizedBox(
                 width: double.infinity,
                 height: 48,
                 child: ElevatedButton(
-                  onPressed: _onSignupPressed,
+                  onPressed: _handleSignup,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,
                     shape: RoundedRectangleBorder(
@@ -160,8 +203,8 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: size.height * 0.01),
 
+              SizedBox(height: size.height * 0.01),
               Center(
                 child: RichText(
                   text: TextSpan(
@@ -177,7 +220,6 @@ class _SignupScreenState extends State<SignupScreen> {
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             Navigator.pushNamed(context, '/login');
-                            IsLogin = true;
                           },
                       ),
                     ],
@@ -192,10 +234,7 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   Widget _buildLabel(String label) {
-    return Text(
-      label,
-      style: const TextStyle(color: Colors.white, fontSize: 15),
-    );
+    return Text(label, style: const TextStyle(color: Colors.white, fontSize: 15));
   }
 
   Widget _buildInputField({
@@ -204,41 +243,30 @@ class _SignupScreenState extends State<SignupScreen> {
     required TextEditingController controller,
     TextInputType inputType = TextInputType.text,
   }) {
-    final isEmpty = controller.text.trim().isEmpty && _submitted;
-
     return Container(
       margin: const EdgeInsets.only(top: 8),
       decoration: BoxDecoration(
-        border: Border.all(color: isEmpty ? Colors.red : Colors.white30),
+        border: Border.all(color: Colors.white30),
         borderRadius: BorderRadius.circular(buttonBorderRadius),
         color: Colors.transparent,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          TextField(
-            controller: controller,
-            keyboardType: inputType,
-            style: const TextStyle(color: Colors.white, fontSize: 14),
-            decoration: InputDecoration(
-              prefixIcon: Icon(icon, color: Colors.white70, size: 20),
-              hintText: hint,
-              hintStyle: const TextStyle(color: Colors.white54, fontSize: 13),
-              border: InputBorder.none,
-              isDense: true,
-              contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
-            ),
-          ),
-
-        ],
+      child: TextField(
+        controller: controller,
+        keyboardType: inputType,
+        style: const TextStyle(color: Colors.white, fontSize: 14),
+        decoration: InputDecoration(
+          prefixIcon: Icon(icon, color: Colors.white70, size: 20),
+          hintText: hint,
+          hintStyle: const TextStyle(color: Colors.white54, fontSize: 13),
+          border: InputBorder.none,
+          isDense: true,
+          contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+        ),
       ),
     );
   }
 
-
   Widget _buildDatePickerField(BuildContext context) {
-    final isEmpty = _dobController.text.trim().isEmpty && _submitted;
-
     return GestureDetector(
       onTap: () => _selectDate(context),
       child: AbsorbPointer(
@@ -246,31 +274,24 @@ class _SignupScreenState extends State<SignupScreen> {
           margin: const EdgeInsets.only(top: 8),
           decoration: BoxDecoration(
             color: Colors.black45,
-            border: Border.all(color: isEmpty ? Colors.red : Colors.white30),
+            border: Border.all(color: Colors.white30),
             borderRadius: BorderRadius.circular(buttonBorderRadius),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TextField(
-                controller: _dobController,
-                keyboardType: TextInputType.none,
-                style: const TextStyle(color: Colors.white, fontSize: 14),
-                decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.calendar_today_outlined, color: Colors.white70, size: 20),
-                  hintText: "DD/MM/YYYY",
-                  hintStyle: TextStyle(color: Colors.white54, fontSize: 13),
-                  isDense: true,
-                  contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 12),
-                  border: InputBorder.none,
-                ),
-              ),
-            ],
+          child: TextField(
+            controller: _dobController,
+            readOnly: true,
+            style: const TextStyle(color: Colors.white, fontSize: 14),
+            decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.calendar_today_outlined, color: Colors.white70, size: 20),
+              hintText: "DD/MM/YYYY",
+              hintStyle: TextStyle(color: Colors.white54, fontSize: 13),
+              isDense: true,
+              contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+              border: InputBorder.none,
+            ),
           ),
         ),
       ),
     );
   }
-
 }
-

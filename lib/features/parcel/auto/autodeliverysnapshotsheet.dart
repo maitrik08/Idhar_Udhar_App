@@ -114,12 +114,13 @@ class AutoDeliverySnapshotContent extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                showModalBottomSheet(
-                  context: context,
-                  isScrollControlled: true,
-                  backgroundColor: Colors.transparent,
-                  builder: (context) => const PaymentMethodScreen(),
-                );
+                // showModalBottomSheet(
+                //   context: context,
+                //   isScrollControlled: true,
+                //   backgroundColor: Colors.transparent,
+                //   builder: (context) => const PaymentMethodScreen(),
+                // );
+                Navigator.pushNamed(context, '/autoparcelmap');
               },
               child: const Text(
                 "Proceed to Payment",

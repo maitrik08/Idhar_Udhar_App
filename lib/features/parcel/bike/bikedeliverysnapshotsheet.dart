@@ -115,12 +115,13 @@ class BikeDeliverySnapshotContent extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                showModalBottomSheet(
-                  context: context,
-                  isScrollControlled: true,
-                  backgroundColor: Colors.transparent,
-                  builder: (context) => const PaymentMethodScreen(),
-                );
+                // showModalBottomSheet(
+                //   context: context,
+                //   isScrollControlled: true,
+                //   backgroundColor: Colors.transparent,
+                //   builder: (context) => const PaymentMethodScreen(),
+                // );
+                Navigator.pushNamed(context, '/bikeparcelmap');
               },
               child: const Text(
                 "Proceed to Payment",

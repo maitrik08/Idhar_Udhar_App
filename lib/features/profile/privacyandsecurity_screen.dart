@@ -34,14 +34,28 @@ class _PrivacyAndSecurityScreenState extends State<PrivacyAndSecurityScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Center(
-                child: Text(
-                  'Privacy & Security',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white,
-                  ),
+              Padding(
+                padding: const EdgeInsets.symmetric( horizontal: 20),
+                child: Row(
+
+                  children: [
+                    InkWell(
+                        onTap: () => Navigator.pop(context),
+                        child: const Icon(Icons.arrow_back, color: Colors.white, size: 28)
+                    ),
+                    Expanded(
+                      child: const Center(
+                        child: Text(
+                          'Privacy & Security',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(height: 32),

@@ -1,8 +1,11 @@
+import 'dart:convert';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:idhar_udhar/core/themes/colors.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/constants/constants.dart';
+import '../../../core/services/authservices.dart';
+import '../../../core/themes/colors.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -15,25 +18,50 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController numberController = TextEditingController();
 
+  bool isLoading = false;
+
   bool get _isInputValid =>
       emailController.text.trim().isNotEmpty || numberController.text.trim().isNotEmpty;
 
-  void _onLoginPressed() {
-    if (_isInputValid) {
-      Navigator.pushNamed(context, '/otpscreen');
-    } else {
+  void _onLoginPressed() async {
+    final input = emailController.text.trim().isNotEmpty
+        ? emailController.text.trim()
+        : numberController.text.trim();
+
+    if (input.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please enter email or number')),
       );
+      return;
     }
-  }
 
-  @override
-  void initState() {
-    super.initState();
+    setState(() => isLoading = true);
 
-    emailController.addListener(() => setState(() {}));
-    numberController.addListener(() => setState(() {}));
+    try {
+      final response = await AuthService.login(identifier: input);
+
+      setState(() => isLoading = false);
+
+      if (response.statusCode == 200) {
+        final responseBody = jsonDecode(response.body);
+        final userId = responseBody['userId'];
+
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('userId', userId);
+
+        Navigator.pushNamed(context, '/otpscreen');
+      } else {
+        final responseBody = jsonDecode(response.body);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(responseBody['msg'] ?? 'Login failed.')),
+        );
+      }
+    } catch (e) {
+      setState(() => isLoading = false);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: $e')),
+      );
+    }
   }
 
   @override
@@ -62,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(height: size.height * 0.05),
+                        const SizedBox(height: 40),
 
                         Center(
                           child: Text(
@@ -110,6 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             Expanded(child: Divider(color: Colors.white70)),
                           ],
                         ),
+                        //const SizedBox(height: 8),
 
                         Text('Number', style: TextStyle(color: Colors.white, fontSize: size.width * 0.04)),
                         const SizedBox(height: 8),
@@ -117,7 +146,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           controller: numberController,
                           icon: Icons.phone_outlined,
                           hintText: 'Enter your number',
-                          keyboardType: TextInputType.phone, // 👈 Add this line
+                          keyboardType: TextInputType.phone,
                         ),
 
                         ColorFiltered(
@@ -138,14 +167,19 @@ class _LoginScreenState extends State<LoginScreen> {
                           width: double.infinity,
                           height: 48,
                           child: ElevatedButton(
-                            onPressed: _onLoginPressed,
+                            //onPressed: isLoading ? null : _onLoginPressed,
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/otpscreen');
+                            },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppColors.primary,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(buttonBorderRadius),
                               ),
                             ),
-                            child: const Text(
+                            child: isLoading
+                                ? const CircularProgressIndicator(color: Colors.white, strokeWidth: 2)
+                                : const Text(
                               'Login',
                               style: TextStyle(
                                 color: Colors.white,
@@ -171,8 +205,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
-                                      Navigator.pushNamed(context, '/signup');
                                       IsLogin = false;
+                                      Navigator.pushNamed(context, '/signup');
                                     },
                                 ),
                               ],
@@ -196,7 +230,7 @@ class _LoginScreenState extends State<LoginScreen> {
     required IconData icon,
     required String hintText,
     required TextEditingController controller,
-    TextInputType keyboardType = TextInputType.text, // default
+    TextInputType keyboardType = TextInputType.text,
   }) {
     return Container(
       decoration: BoxDecoration(
@@ -205,18 +239,20 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
       child: TextField(
         controller: controller,
-        keyboardType: keyboardType, // <-- apply here
+        keyboardType: keyboardType,
         style: const TextStyle(color: Colors.white),
+        cursorColor: AppColors.primary,
         decoration: InputDecoration(
           prefixIcon: Icon(icon, color: Colors.white70),
           hintText: hintText,
           hintStyle: const TextStyle(color: Colors.white38),
           border: InputBorder.none,
           contentPadding: const EdgeInsets.symmetric(vertical: 14),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColors.primary)
+          )
         ),
       ),
     );
   }
-
 }
-

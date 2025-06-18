@@ -1,48 +1,57 @@
 import 'package:flutter/material.dart';
 
-import '../../core/themes/colors.dart';
-
 class RewardScreen extends StatelessWidget {
+  final List<Map<String, dynamic>> transactions = [
+    {
+      'amount': '+500 coins',
+      'type': 'credit',
+      'title': 'Referred Ramesh',
+      'date': '21 June'
+    },
+    {
+      'amount': '-1000 coins',
+      'type': 'debit',
+      'title': 'Redeemed Free Ride',
+      'date': '11 June'
+    },
+    {
+      'amount': '+200 coins',
+      'type': 'credit',
+      'title': 'Completed 5 rides',
+      'date': '10 June'
+    },
+    {
+      'amount': '-500 coins',
+      'type': 'debit',
+      'title': 'Redeemed Free Ride',
+      'date': '9 June'
+    },
+    {
+      'amount': '+200 coins',
+      'type': 'credit',
+      'title': 'Weekly Bonus',
+      'date': '10 June'
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildCoinBalance(),
-              SizedBox(height: 16),
-              _buildLevelProgress(),
-              SizedBox(height: 24),
-              Text("Earn More Coins",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              SizedBox(height: 12),
-              _buildTaskItem(
-                  "Book 3 Rides", "200 coins", "1/3", Icons.directions_car),
-              _buildTaskItem("Refer Friends", "500 coins", "0/1", Icons.group),
-              _buildTaskItem(
-                  "Complete Profile", "100 coins", "80%", Icons.person),
-              SizedBox(height: 24),
-              Text("Available Rewards",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              SizedBox(height: 12),
-              _buildRewardItem(
-                  "Free Ride", "1000 coins", 'assets/images/profile/car.png'),
-              _buildRewardItem("₹100 Cashback", "800 coins",
-                  'assets/images/profile/coupen.png'),
-              _buildRewardItem("Idhar T-Shirt", "1500 coins",
-                  'assets/images/profile/tshirt.png'),
-              SizedBox(height: 24),
-              _buildInviteSection(),
-              SizedBox(height: 24),
-              Text("Achievements",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              SizedBox(height: 12),
-              _buildAchievements(),
-            ],
-          ),
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        leading: BackButton(color: Colors.white),
+        elevation: 0,
+      ),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildCoinBalance(),
+            SizedBox(height: 20),
+            ...transactions.map((txn) => _buildTransactionCard(txn)).toList(),
+          ],
         ),
       ),
     );
@@ -51,267 +60,87 @@ class RewardScreen extends StatelessWidget {
   Widget _buildCoinBalance() {
     return Container(
       padding: EdgeInsets.all(16),
-      decoration: _cardDecoration(),
-      child: Row(
+      decoration: BoxDecoration(
+        color: Colors.grey[900],
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CircleAvatar(
-            backgroundColor: Color(0xff414000),
-            radius: 25,
-            child: Image.asset(
-              "assets/images/profile/coin.png",
-              height: 30,
-              width: 30,
-            ),
-          ),
-          SizedBox(
-            width: 20,
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
+          Row(
             children: [
-              Text("You have", style: TextStyle(fontSize: 16)),
-              Text("1,200 Idhar Coins",
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.yellow)),
+              Image.asset(
+                "assets/images/profile/coin.png",
+                height: 30,
+                width: 30,
+                color: Color(0xFFFCC602) ,
+              ),
+              SizedBox(width: 13),
+              Text("You have", style: TextStyle(color: Colors.white70)),
             ],
+          ),
+          SizedBox(height: 7),
+          Text(
+            "1200 Coins",
+            style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFFFCC602),
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildLevelProgress() {
+  Widget _buildTransactionCard(Map<String, dynamic> txn) {
+    final isCredit = txn['type'] == 'credit';
+    final amountColor = isCredit ? Color(0xFFFCC602) : Colors.red;
+    final amountColortext = isCredit ? Colors.white : Colors.red;
+
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-      decoration: _cardDecoration(),
+      margin: EdgeInsets.only(top: 12),
+      padding: EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.grey[900],
+        borderRadius: BorderRadius.circular(12),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("Level 2 – Explorer",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
-              Text("320 coins to Level 3",
-                  style: TextStyle(fontSize: 12, color: Colors.grey)),
+              Image.asset(
+                "assets/images/profile/coin.png",
+                height: 20,
+                width: 20,
+                color: amountColor,
+              ),
+              SizedBox(width: 8),
+              Text(
+                txn['amount'],
+                style: TextStyle(
+                  color: amountColortext,
+                  fontSize: 10
+                ),
+              ),
             ],
           ),
-          SizedBox(height: 10),
-          LinearProgressIndicator(
-            value: 0.68,
-            color: AppColors.primary,
-            borderRadius: BorderRadius.all(Radius.circular(40)),
-            minHeight: 8,
+          SizedBox(height: 8),
+          Text(
+            txn['title'],
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 15,
+            ),
           ),
           SizedBox(height: 4),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildTaskItem(
-      String title, String reward, String progress, IconData icon) {
-    return Container(
-      margin: EdgeInsets.only(bottom: 12),
-      padding: EdgeInsets.all(12),
-      decoration: _cardDecoration(),
-      child: Row(
-        children: [
-          CircleAvatar(
-              backgroundColor: Color(0xff414000),
-              child: Icon(icon, color: AppColors.yellow)),
-          SizedBox(width: 12),
-          Expanded(
-              child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("$title",
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
-              Text("$reward",
-                  style: TextStyle(fontSize: 14, color: Colors.white70)),
-            ],
-          )),
-          Text(progress,
-              style: TextStyle(
-                  color: AppColors.primary, fontWeight: FontWeight.bold)),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildRewardItem(String title, String cost, String imagepath) {
-    return Container(
-      margin: EdgeInsets.only(bottom: 12),
-      padding: EdgeInsets.symmetric(horizontal: 12,vertical: 16),
-      decoration: _cardDecoration(),
-      child: Row(
-        children: [
-          CircleAvatar(
-            backgroundColor: Color(0xff414000),
-            child: Image.asset(
-              imagepath,
-              color: AppColors.yellow,
-              height: 20,
-              width: 20,
-            ),
-          ),
-          SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(title,
-                    style:
-                        TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
-                Row(
-                  children: [
-                    Image.asset('assets/images/profile/coin.png', scale: 22),
-                    SizedBox(width: 4),
-                    Text(cost,
-                        style: TextStyle(fontSize: 14, color: Colors.white70)),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.primary,
-              foregroundColor: Colors.black,
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-              minimumSize: Size(0, 0), // Shrinks to fit content
-              tapTargetSize:
-                  MaterialTapTargetSize.shrinkWrap, // Removes extra padding
-              textStyle: TextStyle(
-                  fontSize: 12, fontWeight: FontWeight.bold), // Smaller font
-            ),
-            child: Text("Redeem"),
+          Text(
+            txn['date'],
+            style: TextStyle(color: Colors.white, fontSize: 12),
           ),
         ],
       ),
-    );
-  }
-
-  Widget _buildInviteSection() {
-    return Container(
-      padding: EdgeInsets.all(16),
-      decoration: _cardDecoration(),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Invite Friends",
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                  SizedBox(height: 8),
-                  Text("Get 500 coins for each friend",style: TextStyle(color: Colors.white70),),
-                ],
-              ),
-              Icon(Icons.share_outlined, color: AppColors.yellow),
-            ],
-          ),
-          SizedBox(height: 12),
-          ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              padding: EdgeInsets.zero, // Remove default padding
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(50),
-              ),
-              backgroundColor:
-                  Colors.transparent, // Make button background transparent
-              shadowColor: Colors.transparent, // Optional: remove shadow
-            ),
-            child: Ink(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    AppColors.yellow,
-                    Color(0xFFFCC602),
-                  ], // Customize colors here
-                ),
-                borderRadius: BorderRadius.circular(50),
-              ),
-              child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 14),
-                alignment: Alignment.center,
-                child: Text(
-                  "Share Invite Code",
-                  style: TextStyle(color: Colors.black),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildAchievements() {
-    final List<String> icons = [
-      'assets/images/profile/trophy.png',
-      'assets/images/profile/star.png',
-      'assets/images/profile/speed.png',
-      'assets/images/profile/VIP.png',
-    ];
-    final List<String> titles = [
-      "First Ride",
-      "Top Rated",
-      "Speed Demon",
-      "VIP Status"
-    ];
-
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: List.generate(icons.length, (index) {
-        return SizedBox(
-          width: 80, // Ensures equal width for all items
-          child: Column(
-            children: [
-              CircleAvatar(
-                radius: 27,
-                backgroundColor: Color(0xff414000),
-                child: Image.asset(
-                  icons[index],
-                  color: AppColors.yellow,
-                  height: 22,
-                  width: 22,
-                ),
-              ),
-              SizedBox(height: 4),
-              SizedBox(
-                height: 45,
-                child: Text(
-                  titles[index],
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.white70,
-                      fontWeight: FontWeight.w500),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-            ],
-          ),
-        );
-      }),
-    );
-  }
-
-  BoxDecoration _cardDecoration() {
-    return BoxDecoration(
-      color: Colors.grey[900],
-      borderRadius: BorderRadius.circular(12),
     );
   }
 }

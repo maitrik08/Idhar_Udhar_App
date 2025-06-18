@@ -6,6 +6,7 @@ import '../confirmpaymentsheet.dart';
 class BankLoginSheet {
   static void show(BuildContext context, {required String bankName}) {
     final usernameController = TextEditingController();
+    final passwordController = TextEditingController();
 
     showModalBottomSheet(
       context: context,
@@ -60,6 +61,7 @@ class BankLoginSheet {
                   ),
                   const SizedBox(height: 8),
                   TextFormField(
+                    cursorColor: AppColors.primary,
                     style: TextStyle(color: Colors.black,fontSize: 13),
                     controller: usernameController,
                     decoration: const InputDecoration(
@@ -69,6 +71,9 @@ class BankLoginSheet {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(buttonBorderRadius)),
                       ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: AppColors.primary),
+                        )
                     ),
                   ),
 
@@ -79,8 +84,9 @@ class BankLoginSheet {
                   ),
                   const SizedBox(height: 8),
                   TextFormField(
+                    cursorColor: AppColors.primary,
                     style: TextStyle(color: Colors.black,fontSize: 13),
-                    controller: usernameController,
+                    controller: passwordController,
                     decoration: const InputDecoration(
                       disabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black)
@@ -88,6 +94,9 @@ class BankLoginSheet {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(buttonBorderRadius)),
                       ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: AppColors.primary),
+                        )
                     ),
                   ),
 

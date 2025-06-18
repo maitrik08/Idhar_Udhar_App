@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:idhar_udhar/core/constants/constants.dart';
 import 'package:idhar_udhar/core/themes/colors.dart';
 
+import '../mainlayout.dart';
+
 class ConfirmcardPaymentScreen extends StatelessWidget {
   const ConfirmcardPaymentScreen({super.key});
 
@@ -52,33 +54,67 @@ class ConfirmcardPaymentScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    switch (rideType) {
-                      case 'bike':
-                        Navigator.pushNamed(context, '/confirmmapbike');
-                        break;
-                      case 'auto':
-                        Navigator.pushNamed(context, '/confirmmapauto');
-                        break;
-                      case 'car':
-                        Navigator.pushNamed(context, '/confirmmapcar');
-                        break;
-                      case 'bike-parcel':
-                        Navigator.pushNamed(context, '/bikeparcelmap');
-                        break;
-                      case 'car-parcel':
-                        Navigator.pushNamed(context, '/carparcelmap');
-                        break;
-                      case 'truck-parcel':
-                        Navigator.pushNamed(context, '/confirmmapcar');
-                        break;
-                      case 'auto-parcel':
-                        Navigator.pushNamed(context, '/autoparcelmap');
-                        break;
-                      default:
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Ride not implemented')),
-                        );
-                    }
+                    // switch (rideType) {
+                    //   case 'bike':
+                    //     Navigator.pushNamed(context, '/confirmmapbike');
+                    //     break;
+                    //   case 'auto':
+                    //     Navigator.pushNamed(context, '/confirmmapauto');
+                    //     break;
+                    //   case 'car':
+                    //     Navigator.pushNamed(context, '/confirmmapcar');
+                    //     break;
+                    //   case 'bike-parcel':
+                    //     Navigator.pushNamed(context, '/bikeparcelmap');
+                    //     break;
+                    //   case 'car-parcel':
+                    //     Navigator.pushNamed(context, '/carparcelmap');
+                    //     break;
+                    //   case 'truck-parcel':
+                    //     Navigator.pushNamed(context, '/confirmmapcar');
+                    //     break;
+                    //   case 'auto-parcel':
+                    //     Navigator.pushNamed(context, '/autoparcelmap');
+                    //     break;
+                    //   case 'tata-ace':
+                    //     Navigator.pushNamed(context, '/tataaceparcelmap');
+                    //     break;
+                    //   case 'Pickup-Truck':
+                    //     Navigator.pushNamed(context, '/pickuptruck');
+                    //     break;
+                    //   case 'mini-Truck':
+                    //     Navigator.pushNamed(context, '/minitruck');
+                    //     break;
+                    //   case 'tempo':
+                    //     Navigator.pushNamed(context, '/tempo');
+                    //     break;
+                    //   case 'canter':
+                    //     Navigator.pushNamed(context, '/canter');
+                    //     break;
+                    //   case '14feet-truck':
+                    //     Navigator.pushNamed(context, '/truck14feet');
+                    //     break;
+                    //   case '19feet-truck':
+                    //     Navigator.pushNamed(context, '/truck19feet');
+                    //     break;
+                    //   case 'duty-truck':
+                    //     Navigator.pushNamed(context, '/dutytruck');
+                    //     break;
+                    //   case '32feet-truck':
+                    //     Navigator.pushNamed(context, '/truck32feet');
+                    //     break;
+                    //   case 'container-truck':
+                    //     Navigator.pushNamed(context, '/containertruck');
+                    //     break;
+                    //   default:
+                    //     ScaffoldMessenger.of(context).showSnackBar(
+                    //       const SnackBar(content: Text('Ride not implemented')),
+                    //     );
+                    // }
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (_) => Scaffold(body: MainLayout())),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,

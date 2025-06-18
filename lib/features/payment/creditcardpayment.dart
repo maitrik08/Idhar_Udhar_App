@@ -16,16 +16,21 @@ class CreditCardPaymentScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Top Bar
+             SizedBox(height: 20,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Icon(Icons.arrow_back, color: Colors.white),
+                children:  [
+                  InkWell(
+                      onTap: () => Navigator.pop(context),
+                      child: Icon(Icons.arrow_back, color: Colors.white)),
                   Text(
                     "Choose Payment Method",
                     style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                   ),
-                  Icon(Icons.close, color: Colors.white),
+                  InkWell(
+                    onTap: () => Navigator.pop(context),
+                      child: Icon(Icons.close, color: Colors.white)
+                  ),
                 ],
               ),
               const SizedBox(height: 30),

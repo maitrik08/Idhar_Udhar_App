@@ -134,35 +134,35 @@ class _SupportChatScreenState extends State<SupportChatScreen> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               color: Colors.black,
-              child: Expanded(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF2C2C2C),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextField(
-                          controller: controller,
-                          style: const TextStyle(color: Colors.white),
-                          decoration: const InputDecoration(
-                            hintText: "Type your message...",
-                            hintStyle: TextStyle(color: Colors.white60,fontSize: 12),
-                            border: InputBorder.none,
-                          ),
+              // ❌ Don't wrap in Expanded here
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF2C2C2C),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        controller: controller,
+                        style: const TextStyle(color: Colors.white),
+                        decoration: const InputDecoration(
+                          hintText: "Type your message...",
+                          hintStyle: TextStyle(color: Colors.white60, fontSize: 12),
+                          border: InputBorder.none,
                         ),
                       ),
-                      InkWell(
-                        child: Icon(Icons.send, color: AppColors.primary,size: 20,),
-                        onTap: sendMessage,
-                      ),
-                    ],
-                  ),
+                    ),
+                    InkWell(
+                      onTap: sendMessage,
+                      child: Icon(Icons.send, color: AppColors.primary, size: 20),
+                    ),
+                  ],
                 ),
               ),
             ),
+
           ],
         ),
       ),

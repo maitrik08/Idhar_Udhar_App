@@ -44,13 +44,14 @@ class _ParcelSizeScreenState extends State<ParcelSizeScreen> {
       body: SafeArea(
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0,vertical: 30),
+            padding: const EdgeInsets.symmetric(horizontal: 24.0,vertical: 20),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                SizedBox(height: 20,),
+
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GestureDetector(
                       onTap: () => Navigator.pop(context),
@@ -63,19 +64,21 @@ class _ParcelSizeScreenState extends State<ParcelSizeScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(width: 10,),
-                    const Text(
-                      'Enter Parcel Size',
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
-                      ),
-                    ),
-                    SizedBox(width: 50,),
+                     Expanded(
+                       child: Center(
+                         child: Text(
+                          'Enter Parcel Size',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                                             ),
+                       ),
+                     ),
                   ],
                 ),
-                const SizedBox(height: 30),
+                Spacer(),
                 Column(
                   children: [
                     _buildTextField('Enter your Parcel Width', widthController),
@@ -86,6 +89,7 @@ class _ParcelSizeScreenState extends State<ParcelSizeScreen> {
                     const SizedBox(height: 40),
                   ],
                 ),
+                Spacer(),
                 ElevatedButton(
                   onPressed: isFormComplete ? () {
                     Navigator.pushNamed(context, '/selectparcelbike');

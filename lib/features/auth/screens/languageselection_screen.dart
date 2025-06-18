@@ -145,7 +145,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: height * 0.08),
+                    SizedBox(height: 40),
 
                     Text(
                       "Choose Your Language",

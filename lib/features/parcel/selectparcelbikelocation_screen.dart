@@ -34,7 +34,10 @@ class _SelectParcelBikeLocationScreenState extends State<SelectParcelBikeLocatio
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Back arrow
-              const Icon(Icons.arrow_back, color: Colors.white, size: 28),
+              InkWell(
+                  onTap: () => Navigator.pop(context),
+                  child: const Icon(Icons.arrow_back, color: Colors.white, size: 28)
+              ),
 
               const SizedBox(height: 30),
 
@@ -84,7 +87,7 @@ class _SelectParcelBikeLocationScreenState extends State<SelectParcelBikeLocatio
                   },
                   child: const Text(
                     "Confirm Address",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 14),
                   ),
                 ),
               ),
@@ -111,6 +114,7 @@ class _SelectParcelBikeLocationScreenState extends State<SelectParcelBikeLocatio
               style: TextStyle(
                 color: Colors.black
               ),
+              cursorColor: AppColors.primary,
               controller: controller,
               decoration: InputDecoration(
                 hintText: hintText,

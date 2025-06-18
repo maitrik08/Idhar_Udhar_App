@@ -141,20 +141,16 @@ class _BookBikeScreenState extends State<BookBikeScreen> {
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey.shade600,
-                        offset: const Offset(1, 3),
-                        blurRadius: 2,
+                        offset: const Offset(0, 1),
+                        blurRadius: 3,
+                        spreadRadius: 0.1
                       ),
                     ],
                   ),
                   child: IconButton(
                     icon: const Icon(Icons.calendar_month_rounded, color: Colors.black, size: 27),
                     onPressed: () {
-                      showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime.now(),
-                        lastDate: DateTime.now().add(const Duration(days: 365)),
-                      );
+                      _selectDate(context);
                     },
                   ),
                 ),
@@ -164,5 +160,36 @@ class _BookBikeScreenState extends State<BookBikeScreen> {
         ],
       ),
     );
+  }
+  Future<void> _selectDate(BuildContext context) async {
+    DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime.now(),
+      lastDate: DateTime.now().add(Duration(days: 365)),
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: ThemeData.dark().copyWith(
+            colorScheme: ColorScheme.dark(
+              primary: AppColors.primary, // ✅ selected date and header background
+              onPrimary: Colors.black,    // ✅ text color on header (e.g., month/year)
+              onSurface: Colors.white,    // ✅ default text color
+            ),
+            dialogBackgroundColor: Colors.white, // ✅ background of the date picker dialog
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                foregroundColor: AppColors.primary
+                , // ✅ color for OK/CANCEL
+              ),
+            ),
+          ),
+          child: child!,
+        );
+      },
+    );
+
+    if (picked != null) {
+      print("Selected date: $picked");
+    }
   }
 }

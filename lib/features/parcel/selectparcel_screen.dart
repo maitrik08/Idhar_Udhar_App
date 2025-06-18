@@ -16,31 +16,13 @@ class ParcelSelectionScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                height: 60,
-                child: Stack(
-                  children: [
-                    const Text(
-                      "Select a vehicle based on your parcel’s size and weight.",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16.5,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Positioned(
-                      width: 28,
-                      bottom: 20,
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 21,top: 0),
-                        child: IconButton(
-                          icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
-                          onPressed: () => Navigator.pop(context),
-                        ),
-                      ),
-                    ),
-                  ],
+              const Text(
+                "Select a vehicle based on your parcel’s size and weight.",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16.5,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
 
@@ -53,11 +35,11 @@ class ParcelSelectionScreen extends StatelessWidget {
                   Navigator.pushNamed(context, '/chooseparcelthing');
                 },
                 child: VehicleCard(
-                  icon: Icons.pedal_bike,
+                  imagePath: 'assets/images/delivery/vehicle/bike.png',
                   title: "Quick & Light",
                   subtitle:
                   "Ideal for small parcels, documents, or lightweight items.",
-                  maxWeight: "Max 10 KG",
+                  weight: "Max 10 KG",
                 ),
               ),
               const SizedBox(height: 12),
@@ -66,11 +48,11 @@ class ParcelSelectionScreen extends StatelessWidget {
                   rideType='car-parcel';
                 Navigator.pushNamed(context, '/chooseparcelthing');},
                 child: VehicleCard(
-                  icon: Icons.directions_car,
+                  imagePath: 'assets/images/delivery/vehicle/car.png',
                   title: "Medium & Safe",
                   subtitle:
                   "Perfect for electronics, boxes, and mid-size deliveries.",
-                  maxWeight: "Max 50 KG",
+                  weight: "Max 50 KG",
                 ),
               ),
               const SizedBox(height: 12),
@@ -80,11 +62,11 @@ class ParcelSelectionScreen extends StatelessWidget {
                   Navigator.pushNamed(context, '/chooseparcelthing');
                 },
                 child: VehicleCard(
-                  icon: Icons.electric_rickshaw_outlined,
+                  imagePath: 'assets/images/delivery/vehicle/auto.png',
                   title: "Spacious & Strong",
                   subtitle:
                   "Best for furniture, heavier goods, or stacked parcels.",
-                  maxWeight: "Max 80 KG",
+                  weight: "Max 80 KG",
                 ),
               ),
               const SizedBox(height: 12),
@@ -94,11 +76,11 @@ class ParcelSelectionScreen extends StatelessWidget {
                   Navigator.pushNamed(context, '/heavyparceltype');
                 },
                 child: VehicleCard(
-                  icon: Icons.fire_truck,
+                  imagePath: 'assets/images/delivery/vehicle/truck.png',
                   title: "Heavy Duty",
                   subtitle:
                   "For bulk deliveries, industrial items, or extra-large loads.",
-                  maxWeight: "Max 1000 KG",
+                  weight: "Max 1000 KG",
                 ),
               ),
             ],

@@ -3,7 +3,7 @@ import '../../core/constants/constants.dart';
 import '../mainlayout.dart';
 import 'bike/bikeparcelcancelationfail_sheet.dart'; // Make sure this has AppColors.red etc.
 
-void showCancelBikeParcelConfirmationSheet(BuildContext context) {
+void showCancelParcelConfirmationSheet(BuildContext context) {
   showModalBottomSheet(
     context: context,
     backgroundColor: Colors.black,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:idhar_udhar/features/parcel/auto/autoparceldetailpopup.dart';
 
-
 class AutoParcelMapScreen extends StatefulWidget {
   const AutoParcelMapScreen({super.key});
 
@@ -20,7 +19,6 @@ class _AutoParcelMapScreenState extends State<AutoParcelMapScreen> {
       backgroundColor: Colors.black,
       body: Stack(
         children: [
-
           GoogleMap(
             initialCameraPosition: const CameraPosition(
               target: destination,
@@ -32,51 +30,21 @@ class _AutoParcelMapScreenState extends State<AutoParcelMapScreen> {
                 position: destination,
               ),
             },
+            onTap: (_) {
+              setState(() {
+                showPopup = false;
+              });
+            },
           ),
 
-          // Bottom popup panel
+          // Show popup if enabled
           if (showPopup)
-            SafeArea(
-              bottom: false, // Prevent extra bottom padding
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: ClipRRect(
-                  borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-                  child: Container(
-                    height: MediaQuery.of(context).size.height * 0.6,
-                    color: Colors.black,
-                    padding: EdgeInsets.zero,
-                    margin: EdgeInsets.zero,
-                    child: Stack(
-                      children: [
-                        ListView(
-                          padding: EdgeInsets.zero,
-                          children: const [
-                            AutoParcelDetailsPopup(),
-                          ],
-                        ),
-                        Positioned(
-                          top: 4,
-                          right: 4,
-                          child: IconButton(
-                            icon: const Icon(Icons.keyboard_arrow_down, color: Colors.white, size: 20),
-                            padding: EdgeInsets.zero,
-                            constraints: const BoxConstraints(),
-                            onPressed: () {
-                              setState(() {
-                                showPopup = false;
-                              });
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: AutoParcelDetailsPopup(), // This is now the draggable scrollable sheet
             ),
 
-
+          // Button to bring popup back
           if (!showPopup)
             Positioned(
               bottom: 10,

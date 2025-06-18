@@ -28,7 +28,7 @@ class _GenderScreenState extends State<GenderScreen> {
             children: [
               Column(
                 children: [
-                  SizedBox(height: height * 0.09),
+                  SizedBox(height: 20),
                   const Text(
                     "What's your Gender?",
                     style: TextStyle(

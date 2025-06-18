@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:idhar_udhar/core/constants/constants.dart';
 
-class ChatParcelBikeScreen extends StatelessWidget {
-  const ChatParcelBikeScreen({super.key});
+class ChatParcelScreen extends StatelessWidget {
+  const ChatParcelScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

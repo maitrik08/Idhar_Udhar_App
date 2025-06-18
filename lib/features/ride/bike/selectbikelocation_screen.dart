@@ -34,7 +34,10 @@ class _SelectBikeLocationScreenState extends State<SelectBikeLocationScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Back arrow
-              const Icon(Icons.arrow_back, color: Colors.white, size: 28),
+              InkWell(
+                  onTap: () => Navigator.pop(context),
+                  child: const Icon(Icons.arrow_back, color: Colors.white, size: 28)
+              ),
 
               const SizedBox(height: 30),
 

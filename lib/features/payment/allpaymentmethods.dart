@@ -14,6 +14,7 @@ class PaymentMethodScreen extends StatelessWidget {
       {'icon': Icons.credit_card, 'label': 'UPI'},
       {'icon': Icons.account_balance, 'label': 'Net Banking'},
       {'icon': Icons.account_balance_wallet, 'label': 'Wallets'},
+      {'icon': Icons.money, 'label': 'Cash'},
     ];
 
     return Container(

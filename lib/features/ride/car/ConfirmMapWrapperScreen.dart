@@ -10,58 +10,8 @@ class ConfirmCarMapWrapperScreen extends StatefulWidget {
 }
 
 class _ConfirmCarMapWrapperScreenState extends State<ConfirmCarMapWrapperScreen> {
-  bool showPopup = false;
+  bool showPopup = true;
   static const LatLng destination = LatLng(23.0422, 72.5917);
-
-  @override
-  void initState() {
-    super.initState();
-    // Automatically show fixed bottom sheet on load
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _showFixedBottomSheet();
-    });
-  }
-
-  void _showFixedBottomSheet() {
-    setState(() {
-      showPopup = true;
-    });
-
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: false,
-      isDismissible: false,
-      enableDrag: false,
-      backgroundColor: Colors.black,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-      ),
-      builder: (BuildContext bottomSheetContext) {
-        final screenHeight = MediaQuery.of(bottomSheetContext).size.height;
-        return SizedBox(
-          height: screenHeight * 0.6, // 60% of screen height
-          child: Stack(
-            children: [
-              const CarRideDetailsPopup(),
-              Positioned(
-                top: 8,
-                right: 8,
-                child: IconButton(
-                  icon: const Icon(Icons.keyboard_arrow_down, color: Colors.white),
-                  onPressed: () {
-                    Navigator.pop(context);
-                    setState(() {
-                      showPopup = false;
-                    });
-                  },
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +30,21 @@ class _ConfirmCarMapWrapperScreenState extends State<ConfirmCarMapWrapperScreen>
                 position: destination,
               ),
             },
+            onTap: (_) {
+              setState(() {
+                showPopup = false;
+              });
+            },
           ),
+
+          // Draggable popup when visible
+          if (showPopup)
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: CarRideDetailsPopup(),
+            ),
+
+          // FAB to reopen the popup
           if (!showPopup)
             Positioned(
               bottom: 10,
@@ -88,7 +52,11 @@ class _ConfirmCarMapWrapperScreenState extends State<ConfirmCarMapWrapperScreen>
               child: FloatingActionButton(
                 mini: true,
                 backgroundColor: Colors.blue,
-                onPressed: _showFixedBottomSheet,
+                onPressed: () {
+                  setState(() {
+                    showPopup = true;
+                  });
+                },
                 child: const Icon(Icons.keyboard_arrow_up),
               ),
             ),

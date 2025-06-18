@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../../core/constants/constants.dart';
 import '../../../core/themes/colors.dart' show AppColors;
-import 'cancelbikeparcel_sheet.dart';
+import 'cancelparcel_sheet.dart';
 
 
-void showBikeParcelDetailsSheet(BuildContext context) {
+void showParcelDetailsSheet(BuildContext context) {
   showModalBottomSheet(
     context: context,
     isScrollControlled: true,
@@ -100,7 +100,7 @@ void showBikeParcelDetailsSheet(BuildContext context) {
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                   ),
-                  builder: (_) =>  CancelBikeParcelSheet(),
+                  builder: (_) =>  CancelParcelSheet(),
                 );
               },
               style: ElevatedButton.styleFrom(

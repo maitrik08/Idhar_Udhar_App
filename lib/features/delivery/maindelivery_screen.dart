@@ -17,6 +17,7 @@ class DeliveryScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox(height: 40),
             Container(
               width: size.width*0.8,
               child: Text(
@@ -28,15 +29,7 @@ class DeliveryScreen extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 8),
-            Text(
-              "Groceries, meals, and parcels — just a tap away, the Idhar Udhar way.",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: subtitleFontSize,
-                fontWeight: FontWeight.w600
-              ),
-            ),
+
             const SizedBox(height: 24),
 
             buildDeliveryCard(
@@ -53,11 +46,16 @@ class DeliveryScreen extends StatelessWidget {
               description: "Handpicked veggies & daily needs coming to your kitchen soon.",
             ),
             const SizedBox(height: 35),
-            buildDeliveryCard(
-              context,
-              imagePath: "assets/images/delivery/worker.png",
-              title: "Courier Runs Made Effortless.",
-              description: "Send parcels anywhere, anytime. Fast, safe & trackable.",
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, '/selectparceltype');
+              },
+              child: buildDeliveryCard(
+                context,
+                imagePath: "assets/images/delivery/worker.png",
+                title: "Courier Runs Made Effortless.",
+                description: "Send parcels anywhere, anytime. Fast, safe & trackable.",
+              ),
             ),
           ],
         ),

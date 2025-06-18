@@ -2,18 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:idhar_udhar/core/themes/colors.dart';
 
 import '../../core/constants/constants.dart';
-import 'cancelbikeparcelconfirmation_sheet.dart';
+import 'cancelparcelconfirmation_sheet.dart';
 
 
 
-class CancelBikeParcelSheet extends StatefulWidget {
+class CancelParcelSheet extends StatefulWidget {
   @override
-  _CancelBikeParcelSheetState createState() => _CancelBikeParcelSheetState();
+  _CancelParcelSheetState createState() => _CancelParcelSheetState();
 }
 
-class _CancelBikeParcelSheetState extends State<CancelBikeParcelSheet> {
+class _CancelParcelSheetState extends State<CancelParcelSheet> {
   int? selectedIndex;
-
   final reasons = [
     'Wait time was Too long',
     'Driver asked me to cancel or ride off app',
@@ -54,7 +53,7 @@ class _CancelBikeParcelSheetState extends State<CancelBikeParcelSheet> {
               ),
               TextButton(
                 onPressed: () {
-                  showCancelBikeParcelConfirmationSheet(context);
+                  showCancelParcelConfirmationSheet(context);
                 }, // Skip action
                 child: Text("Skip", style: TextStyle(color: Colors.white)),
               )
@@ -75,7 +74,7 @@ class _CancelBikeParcelSheetState extends State<CancelBikeParcelSheet> {
             return GestureDetector(
               onTap: () {
                 selectedIndex = index;
-                showCancelBikeParcelConfirmationSheet(context);
+                showCancelParcelConfirmationSheet(context);
               },
               behavior: HitTestBehavior.translucent,
               child: Align(

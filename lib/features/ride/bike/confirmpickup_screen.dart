@@ -79,12 +79,13 @@ class _ConfirmBikePickupScreenState extends State<ConfirmBikePickupScreen> {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        showModalBottomSheet(
-                          context: context,
-                          isScrollControlled: true,
-                          backgroundColor: Colors.transparent,
-                          builder: (context) => const PaymentMethodScreen(),
-                        );
+                        // showModalBottomSheet(
+                        //   context: context,
+                        //   isScrollControlled: true,
+                        //   backgroundColor: Colors.transparent,
+                        //   builder: (context) => const PaymentMethodScreen(),
+                        // );
+                        Navigator.pushNamed(context, '/confirmmapbike');
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary,

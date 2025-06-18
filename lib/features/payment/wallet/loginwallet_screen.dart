@@ -74,6 +74,8 @@ class WalletLoginSheet {
                 const SizedBox(height: 8),
 
                 TextFormField(
+                  style: TextStyle(color: Colors.black),
+                  cursorColor: AppColors.primary,
                   keyboardType: TextInputType.phone,
                   decoration: const InputDecoration(
                     hintText: 'Enter your number',
@@ -82,6 +84,9 @@ class WalletLoginSheet {
                     filled: true,
                     fillColor: Colors.white,
                     border: OutlineInputBorder(),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: AppColors.primary),
+                    )
                   ),
                 ),
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:idhar_udhar/features/delivery/maindelivery_screen.dart';
-
 import '../../core/constants/constants.dart';
 import '../mainlayout.dart';
+import 'notification_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,6 +12,25 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final List<bool> _visible = List.generate(10, (index) => false);
+
+  @override
+  void initState() {
+    super.initState();
+    _triggerAnimations();
+  }
+
+  void _triggerAnimations() async {
+    for (int i = 0; i < _visible.length; i++) {
+      await Future.delayed(const Duration(milliseconds: 200));
+      if (mounted) {
+        setState(() {
+          _visible[i] = true;
+        });
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -23,163 +42,206 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: size.height * 0.002),
-            Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    height: 45,
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Row(
-                      children: [
-                        const Icon(Icons.search, color: Colors.black),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: TextField(
-                            style: TextStyle(color: Colors.black),
-                            decoration: InputDecoration(
-                              hintText: 'Search',
-                              border: InputBorder.none,
-                              hintStyle: TextStyle(
-                                color: Colors.black,
-                                fontSize: size.height * 0.019,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: const Icon(Icons.notifications, color: Colors.black),
-                ),
-              ],
+            _buildAnimatedSection(
+              0,
+              _buildTopBar(size),
             ),
-
             const SizedBox(height: 20),
-            sectionTitle('Ride in Comfort', sectionTitleFontSize),
-            const SizedBox(height: 10),
-            InkWell(
-                onTap:() {
-                  Navigator.pushNamed(context, '/selectcarlocation');
-                  rideType = "car";
-                },
-                child: roundedImage('assets/images/home/car.png', size)),
-
-            const SizedBox(height: 16),
-            Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    children: [
-                      sectionTitle('Swift Rides, Zero Wait', sectionTitleFontSize),
-                      const SizedBox(height: 10),
-                      InkWell(
-                          onTap:() {
-                            Navigator.pushNamed(context, '/selectbikelocation');
-                            rideType = "bike";
-                          },
-                          child: roundedImage('assets/images/home/bike.png', size)),
-                    ],
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Column(
-                    children: [
-                      sectionTitle('Swift Rides, Zero Wait', sectionTitleFontSize),
-                      const SizedBox(height: 10),
-                      InkWell(
-                          onTap:() {
-                            Navigator.push(context,MaterialPageRoute(builder: (_) => Scaffold(body: DeliveryScreen())) );
-                          },
-                          child: roundedImage('assets/images/home/bag.png', size)
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+            _buildAnimatedSection(
+              1,
+              _buildSection('Ride in Comfort', sectionTitleFontSize, 'assets/images/home/car.png', () {
+                Navigator.pushNamed(context, '/selectcarlocation');
+                rideType = "car";
+              }),
             ),
-
             const SizedBox(height: 16),
-            sectionTitle("Hungry? We've Got You", sectionTitleFontSize),
-            const SizedBox(height: 10),
-            InkWell(
-                onTap: () {
-                  MainLayout.mainLayoutKey.currentState?.setIndex(2);
-                },
-                child: roundedImage('assets/images/home/burger.png', size)),
-
+            _buildAnimatedSection(2, _buildBikeBagRow(size, sectionTitleFontSize)),
             const SizedBox(height: 16),
-            sectionTitle('Deliver Anything, Anytime', sectionTitleFontSize),
-            const SizedBox(height: 10),
-            InkWell(
-              onTap: () {
+            _buildAnimatedSection(
+              3,
+              _buildSection("Hungry? We've Got You", sectionTitleFontSize, 'assets/images/home/burger.png', () {
+                MainLayout.mainLayoutKey.currentState?.setIndex(2);
+              }),
+            ),
+            const SizedBox(height: 16),
+            _buildAnimatedSection(
+              4,
+              _buildSection('Deliver Anything, Anytime', sectionTitleFontSize, 'assets/images/home/delivery.png', () {
                 Navigator.pushNamed(context, '/selectparceltype');
-              },
-                child: roundedImage('assets/images/home/delivery.png', size)
+              }),
             ),
-
             const SizedBox(height: 16),
-            sectionTitle('Your Ride, Your Way', sectionTitleFontSize),
-            const SizedBox(height: 1),
-            Text(
-              'We get it done – that’s Idhar Udhar for you',
-              style: TextStyle(
-                color: Colors.white70,
-                fontSize: size.width * 0.03,
+            _buildAnimatedSection(
+              5,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  sectionTitle('Your Ride, Your Way', sectionTitleFontSize),
+                  const SizedBox(height: 1),
+                  Text(
+                    'We get it done – that’s Idhar Udhar for you',
+                    style: TextStyle(
+                      color: Colors.white70,
+                      fontSize: size.width * 0.03,
+                    ),
+                  ),
+                ],
               ),
             ),
             const SizedBox(height: 10),
-            GridView.count(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              crossAxisCount: 2,
-              crossAxisSpacing: 12,
-              mainAxisSpacing: 12,
-              children: [
-                InkWell(
-                    onTap:() {
-                      Navigator.pushNamed(context, '/selectbikelocation');
-                      rideType = "bike";
-                    },
-                    child: rideTile('Bike Ride', 'assets/images/home/bike1.png')
-                ),
-                InkWell(
-                    onTap:() {
-                      Navigator.pushNamed(context, '/selectcarlocation');
-                      rideType = "car";
-                    },
-                    child: rideTile('Car Ride', 'assets/images/home/car1.png')
-                ),
-                InkWell(
-                    onTap:() {
-                      Navigator.pushNamed(context, '/selectautolocation');
-                      rideType = "auto";
-                    },
-                    child: rideTile('Auto Ride', 'assets/images/home/auto.png')
-                ),
-                InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/selectparceltype');
-                    },
-                    child: rideTile('Send a Parcel', 'assets/images/home/parcel.png')),
-              ],
-            ),
+            _buildAnimatedSection(6, _buildGrid()),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildAnimatedSection(int index, Widget child) {
+    return AnimatedOpacity(
+      opacity: _visible[index] ? 1.0 : 0.0,
+      duration: const Duration(milliseconds: 600),
+      curve: Curves.easeInOut,
+      child: AnimatedSlide(
+        offset: _visible[index] ? Offset.zero : const Offset(0, 0.05),
+        duration: const Duration(milliseconds: 600),
+        curve: Curves.easeInOut,
+        child: child,
+      ),
+    );
+  }
+
+  Widget _buildTopBar(Size size) {
+    return Row(
+      children: [
+        Expanded(
+          child: Container(
+            height: 45,
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Row(
+              children: [
+                const Icon(Icons.search, color: Colors.black),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: TextField(
+                    style: const TextStyle(color: Colors.black),
+                    decoration: InputDecoration(
+                      hintText: 'Search',
+                      border: InputBorder.none,
+                      hintStyle: TextStyle(
+                        color: Colors.black,
+                        fontSize: size.height * 0.019,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        const SizedBox(width: 12),
+        InkWell(
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationScreen()));
+          },
+          child: Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: const Icon(Icons.notifications, color: Colors.black),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSection(String title, double fontSize, String imgPath, VoidCallback onTap) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        sectionTitle(title, fontSize),
+        const SizedBox(height: 10),
+        InkWell(
+          onTap: onTap,
+          child: roundedImage(imgPath, MediaQuery.of(context).size),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildBikeBagRow(Size size, double fontSize) {
+    return Row(
+      children: [
+        Expanded(
+          child: Column(
+            children: [
+              sectionTitle('Swift Rides, Zero Wait', fontSize),
+              const SizedBox(height: 10),
+              InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, '/selectbikelocation');
+                  rideType = "bike";
+                },
+                child: roundedImage('assets/images/home/bike.png', size),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            children: [
+              sectionTitle('Swift Rides, Zero Wait', fontSize),
+              const SizedBox(height: 10),
+              InkWell(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => Scaffold(body: DeliveryScreen())));
+                },
+                child: roundedImage('assets/images/home/bag.png', size),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildGrid() {
+    return GridView.count(
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      crossAxisCount: 2,
+      crossAxisSpacing: 12,
+      mainAxisSpacing: 12,
+      children: [
+        _gridTile('Bike Ride', 'assets/images/home/bike1.png', () {
+          Navigator.pushNamed(context, '/selectbikelocation');
+          rideType = "bike";
+        }),
+        _gridTile('Car Ride', 'assets/images/home/car1.png', () {
+          Navigator.pushNamed(context, '/selectcarlocation');
+          rideType = "car";
+        }),
+        _gridTile('Auto Ride', 'assets/images/home/auto.png', () {
+          Navigator.pushNamed(context, '/selectautolocation');
+          rideType = "auto";
+        }),
+        _gridTile('Send a Parcel', 'assets/images/home/parcel.png', () {
+          Navigator.pushNamed(context, '/selectparceltype');
+        }),
+      ],
+    );
+  }
+
+  Widget _gridTile(String title, String path, VoidCallback onTap) {
+    return InkWell(
+      onTap: onTap,
+      child: rideTile(title, path),
     );
   }
 

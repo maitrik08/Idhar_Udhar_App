@@ -51,6 +51,48 @@ class _FAQScreenState extends State<FAQScreen> with TickerProviderStateMixin {
   ];
 
   int? expandedIndex;
+  late List<AnimationController> _controllers;
+  late List<Animation<double>> _animations;
+
+  @override
+  void initState() {
+    super.initState();
+    _controllers = List.generate(
+      faqList.length,
+          (_) => AnimationController(
+        duration: const Duration(milliseconds: 300),
+        vsync: this,
+      ),
+    );
+
+    _animations = _controllers
+        .map((controller) =>
+        CurvedAnimation(parent: controller, curve: Curves.easeInOut))
+        .toList();
+  }
+
+  @override
+  void dispose() {
+    for (var controller in _controllers) {
+      controller.dispose();
+    }
+    super.dispose();
+  }
+
+  void _toggleExpand(int index) {
+    setState(() {
+      if (expandedIndex == index) {
+        _controllers[index].reverse();
+        expandedIndex = null;
+      } else {
+        if (expandedIndex != null) {
+          _controllers[expandedIndex!].reverse();
+        }
+        expandedIndex = index;
+        _controllers[index].forward();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +100,8 @@ class _FAQScreenState extends State<FAQScreen> with TickerProviderStateMixin {
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: const Text("Frequently Asked Questions", style: TextStyle(color: Colors.white, fontSize: 18)),
+        title: const Text("Frequently Asked Questions",
+            style: TextStyle(color: Colors.white, fontSize: 18)),
         elevation: 0,
         centerTitle: true,
         automaticallyImplyLeading: false,
@@ -70,15 +113,7 @@ class _FAQScreenState extends State<FAQScreen> with TickerProviderStateMixin {
           bool isExpanded = expandedIndex == index;
 
           return GestureDetector(
-            onTap: () {
-              setState(() {
-                if (isExpanded) {
-                  expandedIndex = null;
-                } else {
-                  expandedIndex = index;
-                }
-              });
-            },
+            onTap: () => _toggleExpand(index),
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 300),
               curve: Curves.easeInOut,
@@ -105,17 +140,20 @@ class _FAQScreenState extends State<FAQScreen> with TickerProviderStateMixin {
                       ),
                       AnimatedCrossFade(
                         duration: const Duration(milliseconds: 300),
-                        firstChild: Icon(Icons.add, color: AppColors.primary, size: 24),
-                        secondChild: Icon(Icons.remove, color: AppColors.primary, size: 24),
-                        crossFadeState: isExpanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+                        firstChild:
+                        Icon(Icons.add, color: AppColors.primary, size: 24),
+                        secondChild:
+                        Icon(Icons.remove, color: AppColors.primary, size: 24),
+                        crossFadeState: isExpanded
+                            ? CrossFadeState.showSecond
+                            : CrossFadeState.showFirst,
                       ),
                     ],
                   ),
-                  AnimatedSize(
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeInOut,
-                    child: isExpanded
-                        ? Padding(
+                  SizeTransition(
+                    sizeFactor: _animations[index],
+                    axisAlignment: -1.0,
+                    child: Padding(
                       padding: const EdgeInsets.only(top: 12),
                       child: Text(
                         faqList[index]["answer"]!,
@@ -125,8 +163,7 @@ class _FAQScreenState extends State<FAQScreen> with TickerProviderStateMixin {
                           fontFamily: 'lexend',
                         ),
                       ),
-                    )
-                        : const SizedBox(),
+                    ),
                   ),
                 ],
               ),

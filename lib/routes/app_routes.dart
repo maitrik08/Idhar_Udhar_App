@@ -7,11 +7,10 @@ import 'package:idhar_udhar/features/auth/screens/login_screen.dart';
 import 'package:idhar_udhar/features/auth/screens/otp_screen.dart';
 import 'package:idhar_udhar/features/auth/screens/signup_screen.dart';
 import 'package:idhar_udhar/features/delivery/maindelivery_screen.dart';
-import 'package:idhar_udhar/features/parcel/bike/chatparcelbike_screen.dart';
-import 'package:idhar_udhar/features/parcel/bike/selectlocationbikeparcel_screen.dart';
 import 'package:idhar_udhar/features/parcel/car/carparcelmap_screen.dart';
 import 'package:idhar_udhar/features/parcel/heavyparcle_screen.dart';
 import 'package:idhar_udhar/features/parcel/parcelsize_screen.dart';
+import 'package:idhar_udhar/features/parcel/pickupTruck/pickuptruckparcelmap_screen.dart';
 import 'package:idhar_udhar/features/profile/address/addressdetails_screen.dart';
 import 'package:idhar_udhar/features/profile/avtarselection_screen.dart';
 import 'package:idhar_udhar/features/profile/helpandsupport/callsupport_screen.dart';
@@ -45,9 +44,20 @@ import '../features/home/home_screen.dart';
 import '../features/mainlayout.dart';
 import '../features/parcel/auto/autoparcelmap_screen.dart';
 import '../features/parcel/bike/bikeparcelmap_screen.dart';
+import '../features/parcel/canter/canterparcelmap_screen.dart';
+import '../features/parcel/chatparcel_screen.dart' show ChatParcelScreen;
 import '../features/parcel/chooceparcelthing_screen.dart';
+import '../features/parcel/containerTruck/containertruckparcelmap_screen.dart';
+import '../features/parcel/dutyTruck/dutyTruckparcelmap_screen.dart';
+import '../features/parcel/miniTruck/minitruckparcelmap_screen.dart';
+import '../features/parcel/selectlocationparcel_screen.dart';
 import '../features/parcel/selectparcel_screen.dart';
 import '../features/parcel/selectparcelbikelocation_screen.dart';
+import '../features/parcel/tataAce/tataaceparcelmap_screen.dart';
+import '../features/parcel/tempo/tempoparcelmap_screen.dart';
+import '../features/parcel/truck14Feet/truck14feetparcelmap_screen.dart';
+import '../features/parcel/truck19Feet/truck19feetparcelmap_screen.dart';
+import '../features/parcel/truck32Feet/truck32feetparcelmap_screen.dart';
 import '../features/payment/allpaymentmethods.dart';
 import '../features/payment/confirmcreditcardpayment.dart';
 import '../features/payment/creditcardpayment.dart';
@@ -154,6 +164,16 @@ class AppRoutes {
 
   static const String carparcelmap= '/carparcelmap';
   static const String autoparcelmap= '/autoparcelmap';
+  static const String tataaceparcelmap= '/tataaceparcelmap';
+  static const String pickuptruck= '/pickuptruck';
+  static const String minitruck= '/minitruck';
+  static const String tempo= '/tempo';
+  static const String canter= '/canter';
+  static const String truck14feet= '/truck14feet';
+  static const String truck19feet= '/truck19feet';
+  static const String dutytruck= '/dutytruck';
+  static const String truck32feet= '/truck32feet';
+  static const String containertruck= '/containertruck';
 
 
   static Map<String, WidgetBuilder> routes = {
@@ -226,15 +246,26 @@ class AppRoutes {
 
     selectparceltype: (context) => ParcelSelectionScreen(),
     heavyparceltype: (context) => HeavyParcelSelectionScreen(),
-    chooseparcelthing: (context) => ChoosePrcelThingScreen(),
+    chooseparcelthing: (context) => ChooseParcelThingScreen(),
     parcelsize: (context) => ParcelSizeScreen(),
     selectparcelbike: (context) => SelectParcelBikeLocationScreen(),
-    selectlocaionbikeparcel: (context) => SelectBikeParcelScreen(),
-    chatparcelbikedriver: (context) => ChatParcelBikeScreen(),
+    selectlocaionbikeparcel: (context) => SelectParcelScreen(),
+    chatparcelbikedriver: (context) => ChatParcelScreen(),
     bikeparcelmap: (context) => BikeParcelMapScreen(),
 
     carparcelmap: (context) => CarParcelMapScreen(),
     autoparcelmap: (context) => AutoParcelMapScreen(),
+    tataaceparcelmap: (context) => TataAceParcelMapScreen(),
+    pickuptruck: (context) => PickupTruckParcelMapScreen(),
+    minitruck: (context) => MinitruckParcelMapScreen(),
+    tempo: (context) => TempoParcelMapScreen(),
+    canter: (context) => CanterParcelMapScreen(),
+    truck14feet: (context) => Truck14feetParcelMapScreen(),
+    truck19feet: (context) => Truck19feetParcelMapScreen(),
+    dutytruck: (context) => DutyTruckParcelMapScreen(),
+    truck32feet: (context) => Truck32feetParcelMapScreen(),
+    containertruck: (context) => ContainertruckParcelMapScreen(),
+
 
 
 

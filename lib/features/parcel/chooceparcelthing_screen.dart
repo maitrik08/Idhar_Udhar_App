@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:idhar_udhar/core/themes/colors.dart';
-
 import '../../core/constants/constants.dart';
 
-class ChoosePrcelThingScreen extends StatefulWidget {
+class ChooseParcelThingScreen extends StatefulWidget {
   @override
-  _ChoosePrcelThingScreenState createState() => _ChoosePrcelThingScreenState();
+  _ChooseParcelThingScreenState createState() => _ChooseParcelThingScreenState();
 }
 
-class _ChoosePrcelThingScreenState extends State<ChoosePrcelThingScreen> {
+class _ChooseParcelThingScreenState extends State<ChooseParcelThingScreen> {
   String? selectedOption;
 
-  final List<Map<String, dynamic>> parcelOptions = [
-    {'label': '📁  Document'},
-    {'label': '🪑  Furniture',},
-    {'label': '📱  Electronics'},
-    {'label': '📦  Others'},
+  final List<String> parcelOptions = [
+    'Timber / Plywood / Laminate',
+    'General',
+    'Electrical / Electronics',
+    'Building / Construction',
+    'Catering / Restaurant',
+    'Machines / Equipments',
+    'Textile / Garments',
+    'Furniture / Home Furnishing',
   ];
 
   void selectOption(String label) {
@@ -26,100 +29,106 @@ class _ChoosePrcelThingScreenState extends State<ChoosePrcelThingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0,vertical: 30),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    GestureDetector(
-                      onTap: () => Navigator.pop(context),
-                      child:  Padding(
-                        padding: const EdgeInsets.only(top: 7.0),
-                        child: Icon(
-                          Icons.arrow_back_ios_new,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 20,),
+              Row(
+                children: [
+                  GestureDetector(
+                    onTap: () => Navigator.pop(context),
+                    child: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
+                  ),
+                  Expanded(
+                    child: Center(
+                      child: Text(
+                        'What Are You Sending?',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
                           color: Colors.white,
-                          size: 20,
                         ),
                       ),
                     ),
-                    Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'What Are You Sending?',
-                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                  ),
+                ],
+              ),
+              const SizedBox(height: 45),
+
+              // Subtitle
+              Text(
+                'Choose the type of parcel you want to ship.',
+                style: TextStyle(
+                  fontSize: 13,
+                  color: Colors.white70,
                 ),
-                Column(
-                  children: [
-                    const SizedBox(height: 10),
-                    Text(
-                      'Choose the type of parcel you want to ship.',
-                      style: TextStyle(color: Colors.grey[400],fontSize: 13),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 25),
-                    ...parcelOptions.map((option) {
-                      bool isSelected = selectedOption == option['label'];
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 6.0),
-                        child: ElevatedButton(
-                          onPressed: () => selectOption(option['label']),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                            isSelected ? AppColors.primary : Colors.grey[850],
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 16, horizontal: 20),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(buttonBorderRadius),
-                            ),
-                            alignment: Alignment.centerLeft,
+              ),
+              const SizedBox(height: 20),
+
+              // Options
+              Expanded(
+                child: ListView.builder(
+                  itemCount: parcelOptions.length,
+                  itemBuilder: (context, index) {
+                    final label = parcelOptions[index];
+                    final isSelected = selectedOption == label;
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: ElevatedButton(
+                        onPressed: () => selectOption(label),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: isSelected
+                              ? Colors.green.shade900
+                              : Colors.grey.shade800,
+                          padding: const EdgeInsets.symmetric(vertical: 13),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(buttonBorderRadius),
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                option['label'],
-                                style: const TextStyle(fontSize: 16,color: Colors.white),
-                              ),
-                            ],
+                          alignment: Alignment.centerLeft,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 15),
+                          child: Text(
+                            label,
+                            style: const TextStyle(color: Colors.white, fontSize: 15),
                           ),
                         ),
-                      );
-                    }).toList(),
-                  ],
+                      ),
+                    );
+                  },
                 ),
-                const SizedBox(height: 40),
-                ElevatedButton(
-                  onPressed: () {
+              ),
+
+              // Continue Button
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: selectedOption == null
+                      ? null
+                      : () {
                     Navigator.pushNamed(context, '/parcelsize');
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,
-                    minimumSize: Size(double.infinity, 50),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(buttonBorderRadius),
                     ),
                   ),
                   child: const Text(
                     'Continue',
-                    style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+                    style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
